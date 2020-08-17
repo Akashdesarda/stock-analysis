@@ -37,30 +37,7 @@ class StockAnalysis:
             self.data['Date'] = pd.to_datetime(self.data['Date'])
         if 'yaml' in os.path.split(self.path)[-1]:
             with open(self.path, 'r') as f:
-                self.data = yaml.load(f)
-        
-    def calculate_duration_return(self, company_name: str ,
-                                  duration: Tuple[int, int]=(None, 0), 
-                                  verbosity: int=1)-> float:
-        """
-        Calculate duration specific annualized return of a given company name
-
-        Parameters
-        ----------
-        company_name : str
-            Name of desired company
-        duration : tuple[Year, Month], optional
-            Desired duration, by default (None, 0)
-        verbosity : int, optional
-            Logging level of detail, by default 1
-
-        Returns
-        -------
-        float
-            annualized return
-        """        
-
-    
+                self.data = yaml.load(f)    
 
     def momentum_strategy(self,
                           end_date: str='today', 
