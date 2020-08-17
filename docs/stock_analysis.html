@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>stock_analysis module &mdash; Stock Analysis  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="stock_analysis_cli module" href="stock_analysis_cli.html" />
+    <link rel="prev" title="logger module" href="logger.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stock Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">stock-analysis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="logger.html">logger module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">stock_analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_analysis_cli.html">stock_analysis_cli module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stock Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">stock-analysis</a> &raquo;</li>
+        
+      <li>stock_analysis module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/stock_analysis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-stock_analysis">
+<span id="stock-analysis-module"></span><h1>stock_analysis module<a class="headerlink" href="#module-stock_analysis" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="stock_analysis.DataRetrive">
+<em class="property">class </em><code class="sig-prename descclassname">stock_analysis.</code><code class="sig-name descname">DataRetrive</code><a class="headerlink" href="#stock_analysis.DataRetrive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Import Stock data using Yahoo Finance Api</p>
+<dl class="py method">
+<dt id="stock_analysis.DataRetrive.single_company">
+<em class="property">static </em><code class="sig-name descname">single_company</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">company_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">save</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">export_path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#stock_analysis.DataRetrive.single_company" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrive single company date from given start date and end</p>
+<dl class="simple">
+<dt>company_name<span class="classifier">str</span></dt><dd><p>name of desired company</p>
+</dd>
+<dt>start_date<span class="classifier">Tuple(year, month, day)</span></dt><dd><p>Start date</p>
+</dd>
+<dt>end_date<span class="classifier">Tuple(year, month, day)</span></dt><dd><p>End date</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Data from Yahoo finance</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>[description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="stock_analysis.Indicator">
+<em class="property">class </em><code class="sig-prename descclassname">stock_analysis.</code><code class="sig-name descname">Indicator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">company_list</span><span class="p">:</span> <span class="n">List</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stock_analysis.Indicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="stock_analysis.Indicator.volume_indicator_n_days">
+<code class="sig-name descname">volume_indicator_n_days</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">duration</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">90</span></em>, <em class="sig-param"><span class="n">export_path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'.'</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stock_analysis.Indicator.volume_indicator_n_days" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="stock_analysis.StockAnalysis">
+<em class="property">class </em><code class="sig-prename descclassname">stock_analysis.</code><code class="sig-name descname">StockAnalysis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stock_analysis.StockAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Perform general operation</p>
+<p>Eg:
+&gt;&gt;&gt;from stock_analysis import StockAnalysis
+&gt;&gt;&gt;sa = StockAnalysis(‘./data/company_list.yaml’)</p>
+<dl class="py method">
+<dt id="stock_analysis.StockAnalysis.calculate_duration_return">
+<code class="sig-name descname">calculate_duration_return</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">company_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">duration</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>int<span class="p">, </span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None, 0</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#stock_analysis.StockAnalysis.calculate_duration_return" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate duration specific annualized return of a given company name</p>
+<dl class="simple">
+<dt>company_name<span class="classifier">str</span></dt><dd><p>Name of desired company</p>
+</dd>
+<dt>duration<span class="classifier">tuple[Year, Month], optional</span></dt><dd><p>Desired duration, by default (None, 0)</p>
+</dd>
+<dt>verbosity<span class="classifier">int, optional</span></dt><dd><p>Logging level of detail, by default 1</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>float</dt><dd><p>annualized return</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="stock_analysis.StockAnalysis.momentum_strategy">
+<code class="sig-name descname">momentum_strategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'today'</span></em>, <em class="sig-param"><span class="n">top_company_count</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">20</span></em>, <em class="sig-param"><span class="n">export_path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'.'</span></em>, <em class="sig-param"><span class="n">verbosity</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#stock_analysis.StockAnalysis.momentum_strategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>The strategy is used to identity stocks which had ‘good performance’ based on desired ‘return’ duration</p>
+<p>eg
+&gt;&gt;&gt;from stock_analysis import StockAnalysis
+&gt;&gt;&gt;sa = StockAnalysis(‘./data/company_list.yaml’)
+&gt;&gt;&gt;sa.momentum_strategy(end_date=’01/06/2020’)</p>
+<dl class="simple">
+<dt>end_date<span class="classifier">str, optional</span></dt><dd><p>End date of of stock record to retrive. Must be in format: dd/mm/yyyy, by default ‘today’ for current date</p>
+</dd>
+<dt>top_company_count<span class="classifier">int, optional</span></dt><dd><p>No of top company to retrieve based on Annualized return, by default 20</p>
+</dd>
+<dt>export_path<span class="classifier">str, optional</span></dt><dd><p>Path to save csv, by default ‘.’</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Record based on monthly and yearly calculation</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="stock_analysis_cli.html" class="btn btn-neutral float-right" title="stock_analysis_cli module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="logger.html" class="btn btn-neutral float-left" title="logger module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Akash Desarda, Tushar Desarda
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
