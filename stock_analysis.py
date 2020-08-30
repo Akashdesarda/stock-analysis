@@ -196,8 +196,8 @@ class DataRetrive:
     #         path of older csv to be updated or to save new csv
     #     """
     #     self.path = path
-    @staticmethod   
-    def single_company(company_name: str,
+    @classmethod   
+    def single_company(cls, company_name: str,
                        start_date: datetime.datetime,
                        end_date: datetime.datetime, 
                        save: bool=False, 
