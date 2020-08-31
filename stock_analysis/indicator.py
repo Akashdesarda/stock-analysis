@@ -48,11 +48,12 @@ class Indicator:
         # vol_ind_df_true['company'].to_csv(f'{export_path}/VolumeIndicator90Days_{now_strting}.csv', index=False)
         vol_ind_df.to_csv(f"{export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv", index=False)
         
-    def ema_indicator(self,export_path: str='.',
-                        verbosity: int=1):
+    def ema_indicator(self, ema_canditate:Tuple[int, int]=(50,200), 
+                      export_path: str='.',
+                      verbosity: int=1):
         
         invalid = []
-        ema_indicator_df = pd.DataFrame(columns=['company','ema50', 'ema200','action'])
+        ema_indicator_df = pd.DataFrame(columns=['company',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}','action'])
         for idx,company in  enumerate(self.data['company']):
             logger.info(f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
             company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
@@ -60,17 +61,17 @@ class Indicator:
                 logger.warning(f"{company} have some missing value, fixing it")
                 company_df.dropna(inplace=True)
             try:
-                ema50 = self._exponential_moving_avarage(data=company_df['Close'], 
+                ema_A = self._exponential_moving_avarage(data=company_df['Close'], 
                                                         period=50)
-                ema200 = self._exponential_moving_avarage(data=company_df['Close'],
+                ema_B = self._exponential_moving_avarage(data=company_df['Close'],
                                                         period=200)
-                if ema50 > ema200:
+                if ema_A > ema_B:
                     action = 'buy'
                 else:
                     action = 'sell'
                 ema_indicator_df = ema_indicator_df.append({'company': company,
-                                                            'ema50':ema50, 
-                                                            'ema200': ema200,
+                                                            f'ema{str(ema_canditate[0])}':ema_A, 
+                                                            f'ema{str(ema_canditate[1])}': ema_B,
                                                             'action':action},
                                                         ignore_index=True)
             except Exception as e:
@@ -78,7 +79,7 @@ class Indicator:
                 invalid.append(company)
                 logger.warning(f"{', '.join(invalid)} has less record than minimum rexquired")
                 
-        ema_indicator_df.to_csv(f"{export_path}/ema_indicator_{now_strting}.csv", index=False)
+        ema_indicator_df.to_csv(f"{export_path}/ema_indicator_{len(self.data['company'])}company_{now_strting}.csv", index=False)
         if verbosity > 0:
             logger.debug(f"Saving at {export_path}/ema_indicator_{len(self.data['company'])}company_{now_strting}.csv")
 
