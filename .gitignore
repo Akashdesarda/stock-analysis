@@ -4,3 +4,6 @@ __pycache__
 Untitled.ipynb
 tata.csv
 .vscode
+Dockerfile
+results/ema_indicator_500company_30-08-2020.csv
+results/ema_indicator_30-08-2020.csv
