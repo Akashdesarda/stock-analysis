@@ -44,7 +44,7 @@ class Indicator:
                                         ignore_index=True)
         
         if verbosity > 0:
-            logger.info(f"Here are sample 5 company\n{vol_ind_df.head()}\n remaining can be viewed at exported path")
+            logger.debug(f"Here are sample 5 company\n{vol_ind_df.head()}\n remaining can be viewed at exported path")
         # vol_ind_df_true['company'].to_csv(f'{export_path}/VolumeIndicator90Days_{now_strting}.csv', index=False)
         vol_ind_df.to_csv(f"{export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv", index=False)
         
@@ -79,9 +79,10 @@ class Indicator:
                 invalid.append(company)
                 logger.warning(f"{', '.join(invalid)} has less record than minimum rexquired")
                 
-        ema_indicator_df.to_csv(f"{export_path}/ema_indicator_{len(self.data['company'])}company_{now_strting}.csv", index=False)
+        ema_indicator_df.to_csv(f"{export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)
         if verbosity > 0:
-            logger.debug(f"Saving at {export_path}/ema_indicator_{len(self.data['company'])}company_{now_strting}.csv")
+            logger.debug(f"Here are sample 5 company\n{ema_indicator_df.head()}\n remaining can be viewed at exported path")
+            logger.debug(f"Exported at {export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
 
     
     @staticmethod

@@ -108,6 +108,9 @@ class UnitStrategy:
                                 inplace=True)
         momentum_df.head(top_company_count).to_csv(
             f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
+        if verbosity > 0:
+            logger.debug(
+                f"Sample output:\n{momentum_df.head(top_company_count)}")
         if verbosity > 0 and len(invalid_company) != 0:
             logger.debug(
                 f"Following Company's data is not available: {', '.join(invalid_company)}")
