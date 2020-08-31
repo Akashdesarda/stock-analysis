@@ -1,5 +1,6 @@
 import warnings
-from stock_analysis import StockAnalysis, Indicator
+from stock_analysis.data_retrive import StockAnalysis
+from stock_analysis.indicator import Indicator
 
 warnings.filterwarnings('ignore')
 print("Please give your input to Start Stock Analysis")
