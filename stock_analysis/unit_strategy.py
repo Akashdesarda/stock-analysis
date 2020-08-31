@@ -3,8 +3,8 @@ import yaml
 import datetime
 import dateutil
 import pandas as pd
-from data_retrive import DataRetrive
-from utils.logger import logger
+from stock_analysis.data_retrive import DataRetrive
+from stock_analysis.utils.logger import logger
 from typing import List, Union, Tuple
 from pandas_datareader import data as pdr
 import yfinance as yf
