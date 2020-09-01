@@ -1,6 +1,7 @@
 import logging
 import sys
 
+
 class CustomFormatter(logging.Formatter):
     """Logging Formatter to add colors and count warning / errors"""
 
@@ -23,19 +24,25 @@ class CustomFormatter(logging.Formatter):
 
     def format(self, record):
         log_fmt = self.FORMATS.get(record.levelno)
-        formatter = logging.Formatter(log_fmt,"%Y-%m-%d %H:%M:%S")
+        formatter = logging.Formatter(log_fmt, "%Y-%m-%d %H:%M:%S")
         return formatter.format(record)
-    
-def logger(level: str='debug'):
+
+
+def logger(level: str = 'debug'):
     # create logger with 'spam_application'
     logger = logging.getLogger(__name__)
-    
+
     if level == 'debug':
         logger.setLevel(logging.DEBUG)
     if level == 'info':
         logger.setLevel(logging.INFO)
     if level == 'warning':
         logger.setLevel(logging.WARNING)
+
+    # Removing handlers which will(probably) added multiple time if run in multiple file
+    while logger.handlers:
+        logger.handlers.pop()
+
     # create console handler with a higher log level
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
@@ -43,8 +50,9 @@ def logger(level: str='debug'):
     ch.setFormatter(CustomFormatter())
 
     logger.addHandler(ch)
-    
+
     if level not in ['debug', 'info', 'warning']:
-        logger.error('level can be from debug, info, warning');sys.exit()
+        logger.error('level can be from debug, info, warning')
+        sys.exit()
 
     return logger
