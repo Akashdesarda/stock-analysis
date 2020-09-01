@@ -23,22 +23,25 @@ class UnitStrategy:
     >>>sa = UnitStrategy('./data/company_list.yaml')
     """
 
-    def __init__(self, path: str):
+    def __init__(self, path: str=None, company_name: List=None):
         """
         Parameters
         ----------
-        path : str
-            Path to csv
+        path : str, optional
+            Path to company yaml/json. Either path or company_name can be used, by default None
+        company_name : List, optional
+            List of company name. If path is used then this is obsolete as 'path' preside over 'company_name', by default None
         """
 
+        
         self.path = path
+        self.company_name = company_name
 
-        if 'csv' in os.path.split(self.path)[-1]:
-            self.data = pd.read_csv(path, dayfirst=True)
-            self.data['Date'] = pd.to_datetime(self.data['Date'])
-        if 'yaml' in os.path.split(self.path)[-1]:
+        if path is not None:
             with open(self.path, 'r') as f:
                 self.data = yaml.load(f, Loader=yaml.FullLoader)
+        else:
+            self.data = {'company':self.company_name}
 
     def momentum_strategy(self,
                           end_date: str = 'today',
