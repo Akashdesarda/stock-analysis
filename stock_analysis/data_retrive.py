@@ -4,6 +4,7 @@ from pandas_datareader import data as pdr
 import yfinance as yf
 yf.pdr_override()
 
+
 class DataRetrive:
     """
     Import Stock data using Yahoo Finance Api
@@ -18,12 +19,12 @@ class DataRetrive:
     #         path of older csv to be updated or to save new csv
     #     """
     #     self.path = path
-    @classmethod   
+    @classmethod
     def single_company_specific(cls, company_name: str,
-                       start_date: datetime.datetime,
-                       end_date: datetime.datetime, 
-                       save: bool=False, 
-                       export_path: str=None)->pd.DataFrame:
+                                start_date: datetime.datetime,
+                                end_date: datetime.datetime,
+                                save: bool = False,
+                                export_path: str = None) -> pd.DataFrame:
         """
         Retrive single company date from given start date and end
 
@@ -46,17 +47,18 @@ class DataRetrive:
         ValueError
             [description]
         """
-        data = pdr.get_data_yahoo(company_name, start=start_date, end=end_date, progress=False)
-        
+        data = pdr.get_data_yahoo(
+            company_name, start=start_date, end=end_date, progress=False)
+
         if save is True:
             data.to_csv(f"{export_path}/{company_name}.csv")
-        
+
         return data
-    
-    @classmethod 
-    def single_company_complete(cls, company_name:str,
-                                save: bool=False,
-                                export_path: str=None)->pd.DataFrame:
+
+    @classmethod
+    def single_company_complete(cls, company_name: str,
+                                save: bool = False,
+                                export_path: str = None) -> pd.DataFrame:
         """Retrive complete data right from its IPO till today
 
         Parameters
@@ -73,10 +75,10 @@ class DataRetrive:
         pd.DataFrame
             Data from Yahoo finance
         """
-        
+
         data = pdr.get_data_yahoo(company_name, progress=False)
 
         if save is True:
             data.to_csv(f"{export_path}/{company_name}.csv")
 
-        return data        
+        return data
