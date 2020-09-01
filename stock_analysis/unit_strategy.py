@@ -3,13 +3,14 @@ import yaml
 import datetime
 import dateutil
 import pandas as pd
-from stock_analysis.data_retrive import DataRetrive
-from stock_analysis.utils.logger import logger
+import yfinance as yf
 from typing import List, Union, Tuple
 from pandas_datareader import data as pdr
-import yfinance as yf
-yf.pdr_override()
+from stock_analysis.indicator import Indicator
+from stock_analysis.utils.logger import logger
+from stock_analysis.data_retrive import DataRetrive
 
+yf.pdr_override()
 logger = logger()
 
 
@@ -37,11 +38,12 @@ class UnitStrategy:
             self.data['Date'] = pd.to_datetime(self.data['Date'])
         if 'yaml' in os.path.split(self.path)[-1]:
             with open(self.path, 'r') as f:
-                self.data = yaml.load(f)
+                self.data = yaml.load(f, Loader=yaml.FullLoader)
 
     def momentum_strategy(self,
                           end_date: str = 'today',
                           top_company_count: int = 20,
+                          save: bool =True,
                           export_path: str = '.',
                           verbosity: int = 1) -> pd.DataFrame:
         """
@@ -58,8 +60,10 @@ class UnitStrategy:
             End date of of stock record to retrive. Must be in format: dd/mm/yyyy, by default 'today' for current date
         top_company_count : int, optional
             No of top company to retrieve based on Annualized return, by default 20
+        save : int, optional
+            Wether to export to disk, by default True
         export_path : str, optional
-            Path to save csv, by default '.'
+            Path to export csv. To be used only if 'save' is True, by default '.'
 
         Returns
         -------
@@ -100,20 +104,55 @@ class UnitStrategy:
                                                   'monthly_end_date': company_df.iloc[-1].Date,
                                                   'monthly_end_date_close': company_df.iloc[-1].Close,
                                                   'return_monthly': ar_monthly},
-                                                 ignore_index=True)
+                                                ignore_index=True)
             except:
                 invalid_company.append(company)
         momentum_df.sort_values(by=['return_yearly'],
                                 ascending=False,
                                 inplace=True)
-        momentum_df.head(top_company_count).to_csv(
-            f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
-        if verbosity > 0:
-            logger.debug(
-                f"Sample output:\n{momentum_df.head(top_company_count)}")
+        
         if verbosity > 0 and len(invalid_company) != 0:
             logger.debug(
                 f"Following Company's data is not available: {', '.join(invalid_company)}")
+        if save is True:
+            momentum_df.head(top_company_count).to_csv(
+            f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
+            logger.debug(f"Saved at {export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
+        if verbosity > 0:
+            logger.debug(
+                f"Sample output:\n{momentum_df.head(top_company_count)}")
+            
+        return momentum_df.head(top_company_count)
+    
+    def momentum_with_ema_strategy(self,
+                                    end_date: str = 'today',
+                                    top_company_count: int = 20,
+                                    ema_canditate:Tuple[int, int]=(50,200),
+                                    save: bool=True,
+                                    export_path: str = '.',
+                                    verbosity: int = 1):
+        logger.info("Performing Momentum Strategy task")
+        momentum_df = self.momentum_strategy(end_date=end_date,
+                                             top_company_count=top_company_count,
+                                             save=False,
+                                             verbosity=verbosity)
+        momentum_df.reset_index(inplace=True)
+        
+        ind = Indicator(company_name=momentum_df.loc[:,'company'])
+        logger.info("Performing EMA task")
+        ema_df = ind.ema_indicator(ema_canditate=ema_canditate,
+                                   save=False, 
+                                   verbosity=verbosity)
+        momentum_ema_df = momentum_df.merge(ema_df, 
+                                            on='company',
+                                            validate='1:1')
+        if save is True:
+            momentum_ema_df.to_csv(
+            f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
+            logger.debug(f"Saved at {export_path}/momentum_result_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
+        if verbosity > 0:
+            logger.debug(
+                f"Sample output:\n{momentum_df.head(top_company_count)}")
 
     @staticmethod
     def _annualized_rate_of_return(end_date: int,
