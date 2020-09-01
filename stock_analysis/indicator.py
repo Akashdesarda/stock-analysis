@@ -11,7 +11,8 @@ now_strting = datetime.datetime.now().strftime('%d-%m-%Y')
 
 yf.pdr_override()
 logger = logger()
-    
+pd.options.display.float_format = '{:,.2f}'.format
+   
     
 class Indicator:
     """Perform all variety of Indicator operation 
@@ -53,7 +54,7 @@ class Indicator:
                 company_name=f"{company}.NS", start_date=start, end_date=end)
             buy_stock = company_df.iloc[-1].Volume > company_df['Volume'].mean()
             vol_ind_df = vol_ind_df.append({'company': company,
-                                            'current date': company_df.index[-1].strftime('%m-%d-%Y'),
+                                            'current date': company_df.index[-1].strftime('%d-%m-%Y'),
                                             'start date': company_df.index[0].strftime('%d-%m-%Y'),
                                             'current volume': company_df.iloc[-1].Volume,
                                             'mean volume': company_df['Volume'].mean(),
