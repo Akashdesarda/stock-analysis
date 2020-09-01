@@ -1,4 +1,5 @@
 import os
+from sys import path
 import yaml
 import datetime
 import dateutil
@@ -7,7 +8,7 @@ from logger import logger
 from datetime import date
 from typing import List, Union, Tuple
 from pandas_datareader import data as pdr
-now_strting = datetime.datetime.now().strftime('%d/%m/%Y')
+now_strting = datetime.datetime.now().strftime('%d-%m-%Y')
 
 import yfinance as yf
 yf.pdr_override()
@@ -195,8 +196,8 @@ class DataRetrive:
     #         path of older csv to be updated or to save new csv
     #     """
     #     self.path = path
-    @staticmethod   
-    def single_company(company_name: str,
+    @classmethod   
+    def single_company(cls, company_name: str,
                        start_date: datetime.datetime,
                        end_date: datetime.datetime, 
                        save: bool=False, 
@@ -234,9 +235,13 @@ class DataRetrive:
         
 class Indicator:
     
-    def __init__(self, company_list: List):
+    def __init__(self, path: List):
         
-        self.company_list = company_list
+        self.path = path
+
+        if 'yaml' in os.path.split(self.path)[-1]:
+            with open(self.path, 'r') as f:
+                self.data = yaml.load(f)
         
     def volume_indicator_n_days(self, duration: int=90, 
                                 export_path: str='.',
@@ -245,8 +250,8 @@ class Indicator:
         end = datetime.datetime.now()
         start = end - dateutil.relativedelta.relativedelta(days=duration)
         vol_ind_df = pd.DataFrame(columns=['company','current date' ,'start date','current volume','mean volume','action'])
-        for idx,company in  enumerate(self.company_list):
-            print(f"[INFO]...Retriving data {idx + 1} out of {len(self.company_list)} for {company}")
+        for idx,company in  enumerate(self.data['company']):
+            logger.info(f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
             company_df = DataRetrive.single_company(company_name=f"{company}.NS", start_date=start, end_date=end)
             buy_stock = company_df.iloc[-1].Volume > company_df['Volume'].mean()
             vol_ind_df = vol_ind_df.append({'company':company,
@@ -259,7 +264,7 @@ class Indicator:
                                         ignore_index=True)
         
         if verbosity > 0:
-            print(f"[INFO]...Here are sample 5 company\n{vol_ind_df.head()}\n remaining can be viewed at exported path")
+            logger.info(f"Here are sample 5 company\n{vol_ind_df.head()}\n remaining can be viewed at exported path")
         # vol_ind_df_true['company'].to_csv(f'{export_path}/VolumeIndicator90Days_{now_strting}.csv', index=False)
-        vol_ind_df.to_csv(f'{export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv', index=False)
+        vol_ind_df.to_csv(f"{export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv", index=False)
     
