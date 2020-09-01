@@ -12,6 +12,7 @@ from stock_analysis.data_retrive import DataRetrive
 
 yf.pdr_override()
 logger = logger()
+pd.options.display.float_format = '{:,.2f}'.format
 
 
 class UnitStrategy:
@@ -97,14 +98,14 @@ class UnitStrategy:
                                                              start_date=self._get_appropriate_date(company_df, verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
                     duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30)
                 momentum_df = momentum_df.append({'company': company,
-                                                  'yealy_start_date': company_df.iloc[0].Date,
+                                                  'yealy_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
                                                   'yealy_start_date_close': company_df.iloc[0].Close,
-                                                  'yealy_end_date': company_df.iloc[-1].Date,
+                                                  'yealy_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
                                                   'yealy_end_date_close': company_df.iloc[-1].Close,
                                                   'return_yearly': ar_yearly,
-                                                  'monthly_start_date': self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%Y-%m-%d'),
+                                                  'monthly_start_date': self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%d-%m-%Y'),
                                                   'monthly_start_date_close': company_df.iloc[-30].Close,
-                                                  'monthly_end_date': company_df.iloc[-1].Date,
+                                                  'monthly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
                                                   'monthly_end_date_close': company_df.iloc[-1].Close,
                                                   'return_monthly': ar_monthly},
                                                 ignore_index=True)
@@ -139,10 +140,10 @@ class UnitStrategy:
                                              top_company_count=top_company_count,
                                              save=False,
                                              verbosity=verbosity)
-        momentum_df.reset_index(inplace=True)
+        momentum_df.reset_index(drop=True,inplace=True)
         
         ind = Indicator(company_name=momentum_df.loc[:,'company'])
-        logger.info("Performing EMA task")
+        logger.info(f"Performing EMA task on top {top_company_count} company")
         ema_df = ind.ema_indicator(ema_canditate=ema_canditate,
                                    save=False, 
                                    verbosity=verbosity)
@@ -150,12 +151,13 @@ class UnitStrategy:
                                             on='company',
                                             validate='1:1')
         if save is True:
+            momentum_ema_df.reset_index(drop=True, inplace=True)
             momentum_ema_df.to_csv(
             f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
             logger.debug(f"Saved at {export_path}/momentum_result_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
         if verbosity > 0:
             logger.debug(
-                f"Sample output:\n{momentum_df.head(top_company_count)}")
+                f"Sample output:\n{momentum_ema_df.head()}")
 
     @staticmethod
     def _annualized_rate_of_return(end_date: int,
