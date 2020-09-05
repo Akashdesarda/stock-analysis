@@ -132,9 +132,11 @@ class UnitStrategy:
                                     end_date: str = 'today',
                                     top_company_count: int = 20,
                                     ema_canditate:Tuple[int, int]=(50,200),
+                                    # cutoff_date: str='today',
                                     save: bool=True,
                                     export_path: str = '.',
                                     verbosity: int = 1):
+        
         logger.info("Performing Momentum Strategy task")
         momentum_df = self.momentum_strategy(end_date=end_date,
                                              top_company_count=top_company_count,
@@ -143,8 +145,9 @@ class UnitStrategy:
         momentum_df.reset_index(drop=True,inplace=True)
         
         ind = Indicator(company_name=momentum_df.loc[:,'company'])
-        logger.info(f"Performing EMA task on top {top_company_count} company")
+        logger.info(f"Performing EMA task on top {top_company_count} company till {end_date}")
         ema_df = ind.ema_indicator(ema_canditate=ema_canditate,
+                                   cutoff_date=end_date,
                                    save=False, 
                                    verbosity=verbosity)
         momentum_ema_df = momentum_df.merge(ema_df, 
@@ -155,9 +158,11 @@ class UnitStrategy:
             momentum_ema_df.to_csv(
             f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
             logger.debug(f"Saved at {export_path}/momentum_result_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
-        if verbosity > 0:
-            logger.debug(
-                f"Sample output:\n{momentum_ema_df.head()}")
+            if verbosity > 0:
+                logger.debug(
+                    f"Sample output:\n{momentum_ema_df.head()}")
+        else:
+            return momentum_ema_df.reset_index(drop=True, inplace=True)
 
     @staticmethod
     def _annualized_rate_of_return(end_date: int,
@@ -215,13 +220,13 @@ class UnitStrategy:
                 years=duration[0], months=duration[1])
         if desired_date < company_df.iloc[0].Date:
             logger.error(
-                f"Given desired date {desired_date.strftime('%m-%d-%Y')} is older than first recorded date {company_df.iloc[0].Date.strftime('%m-%d-%Y')}")
+                f"Given desired date {desired_date.strftime('%d-%m-%Y')} is older than first recorded date {company_df.iloc[0].Date.strftime('%d-%m-%Y')}")
             raise ValueError
         dd_copy = desired_date
 
         if verbosity > 0:
             logger.debug(
-                f"Your desired date is {desired_date.strftime('%m-%d-%Y')}")
+                f"Your desired date is {desired_date.strftime('%d-%m-%Y')}")
 
         if len(company_df.loc[company_df['Date'] == desired_date]) != 0:
             desired_close = company_df.loc[company_df['Date'] == desired_date]
@@ -235,5 +240,5 @@ class UnitStrategy:
                 break
             if verbosity > 0:
                 logger.warning(
-                    f"Desired date: {dd_copy.strftime('%m-%d-%Y')} not found going for next possible date: {desired_date.strftime('%m-%d-%Y')}")
+                    f"Desired date: {dd_copy.strftime('%d-%m-%Y')} not found going for next possible date: {desired_date.strftime('%d-%m-%Y')}")
         return desired_date, desired_close.iloc[-1].Close
