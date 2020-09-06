@@ -64,7 +64,7 @@ class Indicator:
 
         if verbosity > 0:
             logger.debug(
-                f"Here are sample 5 company\n{vol_ind_df.head()}\n remaining can be viewed at exported path")
+                f"Here are sample 5 company\n{vol_ind_df.head()}")
         # vol_ind_df_true['company'].to_csv(f'{export_path}/VolumeIndicator90Days_{now_strting}.csv', index=False)
         if save is True:
             vol_ind_df.to_csv(
@@ -114,12 +114,25 @@ class Indicator:
             except Exception as e:
                 print(company, e)
                 invalid.append(company)
-            logger.warning(
-                f"{', '.join(invalid)} has less record than minimum rexquired")
+                logger.warning(
+                    f"{', '.join(invalid)} has less record than minimum rexquired")
+        
+        ema_indicator_df['ratio'] = ema_indicator_df.apply(
+            lambda x: self._ratio_analysis(x[f'ema{str(ema_canditate[0])}'], x[f'ema{str(ema_canditate[1])}']),
+            axis=1
+        )
+        ema_indicator_df['outcome'] = ema_indicator_df.apply(
+            lambda x: self._outcome_analysis(x['ratio']),
+            axis=1
+        )
+        
+        ema_indicator_df = ema_indicator_df[['company',f'ema{str(ema_canditate[0])}',
+                                             f'ema{str(ema_canditate[1])}','ratio',
+                                             'outcome','action']]
 
         if verbosity > 0:
             logger.debug(
-                f"Here are sample 5 company\n{ema_indicator_df.head()}\n remaining can be viewed at exported path")
+                f"Here are sample 5 company\n{ema_indicator_df.head()}")
         if save is True:
             ema_indicator_df.to_csv(
             f"{export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
@@ -129,6 +142,55 @@ class Indicator:
 
         else:
             return ema_indicator_df
+        
+    def ema_indicator_detail(self,
+                             ema_canditate: Tuple[int, int]=(50,200),
+                             save: bool=True,
+                             export_path: str='.',
+                             verbosity: int=1)->pd.DataFrame:
+        
+        logger.info("Performing EMA Indicator Task")
+        ema_short = self.ema_indicator(
+            ema_canditate=ema_canditate,
+            save=False,
+            verbosity=verbosity
+        )
+        
+        logger.info("Extarcting detail company quote data")
+        batch_company_quote = pd.DataFrame()
+        for idx,company in enumerate(ema_short['company']):
+            logger.info(
+                f"Retriving Detail Quote data {idx + 1} out of {len(ema_short['company'])} for {company}")
+            company_quote = DataRetrive.single_company_quote(f'{company}.NS')
+            batch_company_quote = batch_company_quote.append(company_quote)
+            
+        batch_company_quote = batch_company_quote.reset_index().rename(columns={'index':'company'})
+        batch_company_quote = batch_company_quote[['company','longName','price','regularMarketVolume','marketCap',
+                                    'bookValue', 'priceToBook','averageDailyVolume3Month', 'averageDailyVolume10Day', 
+                                    'fiftyTwoWeekLowChange', 'fiftyTwoWeekLowChangePercent', 'fiftyTwoWeekRange', 
+                                    'fiftyTwoWeekHighChange', 'fiftyTwoWeekHighChangePercent', 'fiftyTwoWeekLow', 
+                                    'fiftyTwoWeekHigh']]
+        
+        batch_company_quote['company'] = batch_company_quote['company'].str.replace('.NS','')
+        
+        ema_quote = ema_short.merge(
+            batch_company_quote,
+            on='company',
+            validate='1:1'
+        )
+        
+        if verbosity > 0:
+            logger.debug(
+                f"Here are sample 5 company\n{ema_quote.head()}")
+        if save is not False:
+            ema_quote.to_csv(
+            f"{export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
+            if verbosity > 0:
+                logger.debug(
+                    f"Exported at {export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
+
+        else:
+            return ema_quote
 
     def _exponential_moving_avarage(self, 
                                     data_df: Union[pd.Series, List],
@@ -229,3 +291,15 @@ class Indicator:
                     f"Desired date: {desired_date.strftime('%d-%m-%Y')} not found going for next possible date: {date.strftime('%d-%m-%Y')}")
         
         return date
+    
+    def _ratio_analysis(self,
+                        emaA,
+                        emaB):
+        return (emaB - emaA)/emaA
+
+    def _outcome_analysis(self, ratio):
+        if -0.5 < ratio < 0.5:
+            outcome = 'close by'
+        else:
+            outcome = 'far away'
+        return outcome
