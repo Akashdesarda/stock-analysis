@@ -146,8 +146,10 @@ class UnitStrategy:
         
         ind = Indicator(company_name=momentum_df.loc[:,'company'])
         logger.info(f"Performing EMA task on top {top_company_count} company till {end_date}")
+        cutoff_date = datetime.datetime.strptime(end_date, '%d/%m/%Y')
+        assert isinstance(cutoff_date, datetime.datetime), 'Incorrect date type'
         ema_df = ind.ema_indicator(ema_canditate=ema_canditate,
-                                   cutoff_date=end_date,
+                                   cutoff_date=cutoff_date,
                                    save=False, 
                                    verbosity=verbosity)
         momentum_ema_df = momentum_df.merge(ema_df, 

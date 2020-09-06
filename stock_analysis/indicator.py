@@ -72,6 +72,8 @@ class Indicator:
             if verbosity > 0:
                 logger.debug(
                     f"Save at {export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv")
+        else:
+            return vol_ind_df
 
     def ema_indicator(self, ema_canditate: Tuple[int, int] = (50, 200),
                       cutoff_date: Union[str,datetime.datetime]='today',
@@ -81,7 +83,7 @@ class Indicator:
 
         invalid = []
         ema_indicator_df = pd.DataFrame(columns=[
-                                        'company', f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}', 'action'])
+                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}', 'action'])
         for idx, company in enumerate(self.data['company']):
             logger.info(
                 f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
@@ -104,6 +106,7 @@ class Indicator:
                 else:
                     action = 'sell'
                 ema_indicator_df = ema_indicator_df.append({'company': company,
+                                                            'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
                                                             f'ema{str(ema_canditate[0])}': ema_A,
                                                             f'ema{str(ema_canditate[1])}': ema_B,
                                                             'action': action},
@@ -111,8 +114,8 @@ class Indicator:
             except Exception as e:
                 print(company, e)
                 invalid.append(company)
-                logger.warning(
-                    f"{', '.join(invalid)} has less record than minimum rexquired")
+            logger.warning(
+                f"{', '.join(invalid)} has less record than minimum rexquired")
 
         if verbosity > 0:
             logger.debug(
@@ -124,7 +127,8 @@ class Indicator:
                 logger.debug(
                     f"Exported at {export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
 
-        return ema_indicator_df
+        else:
+            return ema_indicator_df
 
     def _exponential_moving_avarage(self, 
                                     data_df: Union[pd.Series, List],
@@ -207,7 +211,6 @@ class Indicator:
         if desired_date < company_df.index[0]:
             logger.error(
                 f"Given desired date {desired_date.strftime('%d-%m-%Y')} is older than first recorded date {company_df.index[0].strftime('%d-%m-%Y')}")
-        raise ValueError
         
         
         if verbosity > 0:
