@@ -148,7 +148,9 @@ class UnitStrategy:
         logger.info(f"Performing EMA task on top {top_company_count} company till {end_date}")
         if end_date == 'today':
             cutoff_date = end_date
+            save_date = datetime.datetime.now().strftime('%d-%m-%Y')
         else:
+            save_date = end_date.replace('/', '-')
             cutoff_date = datetime.datetime.strptime(end_date, '%d/%m/%Y')
             assert isinstance(cutoff_date, datetime.datetime), 'Incorrect date type'
         ema_df = ind.ema_indicator(ema_canditate=ema_canditate,
@@ -161,13 +163,13 @@ class UnitStrategy:
         if save is True:
             momentum_ema_df.reset_index(drop=True, inplace=True)
             momentum_ema_df.to_csv(
-            f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
-            logger.debug(f"Saved at {export_path}/momentum_result_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
+            f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv", index=False)
+            logger.debug(f"Saved at {export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv")
             if verbosity > 0:
                 logger.debug(
                     f"Sample output:\n{momentum_ema_df.head()}")
         else:
-            return momentum_ema_df.reset_index(drop=True, inplace=True)
+            return momentum_ema_df
 
     @staticmethod
     def _annualized_rate_of_return(end_date: int,
@@ -231,7 +233,7 @@ class UnitStrategy:
 
         if verbosity > 0:
             logger.debug(
-                f"Your desired date is {desired_date.strftime('%d-%m-%Y')}")
+                f"Your desired date for monthly return is {desired_date.strftime('%d-%m-%Y')}")
 
         if len(company_df.loc[company_df['Date'] == desired_date]) != 0:
             desired_close = company_df.loc[company_df['Date'] == desired_date]
