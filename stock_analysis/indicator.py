@@ -96,11 +96,13 @@ class Indicator:
                 ema_A = self._exponential_moving_avarage(
                     data_df=company_df,
                     cutoff_date=cutoff_date,
-                    period=ema_canditate[0])
+                    period=ema_canditate[0],
+                    verbosity=verbosity)
                 ema_B = self._exponential_moving_avarage(
                     data_df=company_df,
                     cutoff_date=cutoff_date,
-                    period=ema_canditate[1])
+                    period=ema_canditate[1],
+                    verbosity=verbosity)
                 if ema_A > ema_B:
                     action = 'buy'
                 else:
@@ -117,18 +119,18 @@ class Indicator:
                 logger.warning(
                     f"{', '.join(invalid)} has less record than minimum rexquired")
         
-        ema_indicator_df['ratio'] = ema_indicator_df.apply(
-            lambda x: self._ratio_analysis(x[f'ema{str(ema_canditate[0])}'], x[f'ema{str(ema_canditate[1])}']),
+        ema_indicator_df['percentage_diff'] = ema_indicator_df.apply(
+            lambda x: self._percentage_diff_analysis(x[f'ema{str(ema_canditate[0])}'], x[f'ema{str(ema_canditate[1])}']),
             axis=1
         )
         ema_indicator_df['outcome'] = ema_indicator_df.apply(
-            lambda x: self._outcome_analysis(x['ratio']),
+            lambda x: self._outcome_analysis(x['percentage_diff']),
             axis=1
         )
         
-        ema_indicator_df = ema_indicator_df[['company',f'ema{str(ema_canditate[0])}',
-                                             f'ema{str(ema_canditate[1])}','ratio',
-                                             'outcome','action']]
+        ema_indicator_df = ema_indicator_df[['company', 'ema_date',
+                                             f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}',
+                                             'percentage_diff', 'outcome','action']]
 
         if verbosity > 0:
             logger.debug(
@@ -245,7 +247,8 @@ class Indicator:
 
         invalid = []
         ema_indicator_df = pd.DataFrame(columns=[
-                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}',f'ema{str(ema_canditate[2])}', 'action'])
+                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}',f'ema{str(ema_canditate[2])}', 'action']) 
+                                        # 'percentage_diffCB', 'percentage_diffCA', 'percentage_diffBA'])
         for idx, company in enumerate(self.data['company']):
             logger.info(
                 f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
@@ -258,39 +261,39 @@ class Indicator:
                 ema_A = self._exponential_moving_avarage(
                     data_df=company_df,
                     cutoff_date=cutoff_date,
-                    period=ema_canditate[0])
+                    period=ema_canditate[0],
+                    verbosity=verbosity
+                )
                 ema_B = self._exponential_moving_avarage(
                     data_df=company_df,
                     cutoff_date=cutoff_date,
-                    period=ema_canditate[1])
+                    period=ema_canditate[1],
+                    verbosity=verbosity
+                )
                 ema_C = self._exponential_moving_avarage(
                     data_df=company_df,
                     cutoff_date=cutoff_date,
-                    period=ema_canditate[2]
+                    period=ema_canditate[2],
+                    verbosity=verbosity
                 )
                 
-                ratio_CB = self._ratio_analysis(ema_C, ema_B)
-                ratio_CA = self._ratio_analysis(ema_C, ema_A)
-                ratio_BA = self._ratio_analysis(ema_B, ema_A)
-                # if -0.25 < ratio_CB < 0.25:
-                #     if -0.25 < ratio_CA < 0.25:
-                #         if -0.25 < ratio_BA < 0.25:
-                #             action = 'buy'
-                # else:
-                #     action = 'sell'
-                if (-0.25 < ratio_CB < 0.25) and (-0.25 < ratio_CA < 0.25) and (-0.25 < ratio_BA < 0.25):
+                percentage_diff_CB = self._percentage_diff_analysis(ema_C, ema_B)
+                percentage_diff_CA = self._percentage_diff_analysis(ema_C, ema_A)
+                percentage_diff_BA = self._percentage_diff_analysis(ema_B, ema_A)
+            
+                if (percentage_diff_CB < 1) and (percentage_diff_CA < 1) and (percentage_diff_BA < 1):
                     action = 'buy'
                 else:
                     action = 'sell'
                     
-                    
-                
-                
                 ema_indicator_df = ema_indicator_df.append({'company': company,
                                                             'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
                                                             f'ema{str(ema_canditate[0])}': ema_A,
                                                             f'ema{str(ema_canditate[1])}': ema_B,
                                                             f'ema{str(ema_canditate[2])}': ema_C,
+                                                            # 'percentage_diffCB': percentage_diff_CB, 
+                                                            # 'percentage_diffCA': percentage_diff_CA, 
+                                                            # 'percentage_diffBA': percentage_diff_BA,
                                                             'action': action},
                                                           ignore_index=True)
             except Exception as e:
@@ -298,19 +301,6 @@ class Indicator:
                 invalid.append(company)
                 logger.warning(
                     f"{', '.join(invalid)} has less record than minimum rexquired")
-        
-        # ema_indicator_df['ratio'] = ema_indicator_df.apply(
-        #     lambda x: self._ratio_analysis(x[f'ema{str(ema_canditate[0])}'], x[f'ema{str(ema_canditate[1])}']),
-        #     axis=1
-        # )
-        # ema_indicator_df['outcome'] = ema_indicator_df.apply(
-        #     lambda x: self._outcome_analysis(x['ratio']),
-        #     axis=1
-        # )
-        
-        # ema_indicator_df = ema_indicator_df[['company',f'ema{str(ema_canditate[0])}',
-        #                                      f'ema{str(ema_canditate[1])}','ratio',
-        #                                      'outcome','action']]
 
         if verbosity > 0:
             logger.debug(
@@ -328,7 +318,8 @@ class Indicator:
                                     data_df: Union[pd.Series, List],
                                     period: int,
                                     cutoff_date: Union[str,datetime.datetime]='today',
-                                    smoothing_factor: int = 2) -> float:
+                                    smoothing_factor: int = 2,
+                                    verbosity:int =1) -> float:
         """Calculate exponential moving avarage based on given period
 
         Parameters
@@ -371,7 +362,8 @@ class Indicator:
         else:
             date = self._get_appropriate_date(
                 company_df=data_df,
-                desired_date=cutoff_date
+                desired_date=cutoff_date,
+                verbosity=verbosity
             )
         
         return float(data_df[data_df.index == date]['ema'])
@@ -409,7 +401,7 @@ class Indicator:
         
         if verbosity > 0:
             logger.debug(
-                f"Your desired date is {desired_date.strftime('%d-%m-%Y')}")
+                f"Your desired EMA cut-off date is {desired_date.strftime('%d-%m-%Y')}")
     
         for day_idx in range(1,100):
             if desired_date not in company_df.index:
@@ -424,13 +416,13 @@ class Indicator:
         
         return date
     
-    def _ratio_analysis(self,
+    def _percentage_diff_analysis(self,
                         emaA,
                         emaB):
-        return (emaB - emaA)/emaA
+        return abs((emaB - emaA)/((emaA + emaB) / 2) * 100)
 
-    def _outcome_analysis(self, ratio):
-        if -0.5 < ratio < 0.5:
+    def _outcome_analysis(self, percentage_diff):
+        if 5 < percentage_diff < 5:
             outcome = 'close by'
         else:
             outcome = 'far away'
