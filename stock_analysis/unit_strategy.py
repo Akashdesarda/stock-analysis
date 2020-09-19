@@ -82,7 +82,7 @@ class UnitStrategy:
         start = end - dateutil.relativedelta.relativedelta(years=1)
 
         invalid_company = []
-        momentum_df = pd.DataFrame(columns=['company', 'yealy_start_date', 'yealy_start_date_close', 'yealy_end_date', 'yealy_end_date_close',
+        momentum_df = pd.DataFrame(columns=['company', 'yearly_start_date', 'yearly_start_date_close', 'yearly_end_date', 'yearly_end_date_close',
                                             'return_yearly', 'monthly_start_date', 'monthly_start_date_close', 'monthly_end_date', 'monthly_end_date_close', 'return_monthly'])
         for idx, company in enumerate(self.data['company']):
             logger.info(
@@ -98,10 +98,10 @@ class UnitStrategy:
                                                              start_date=self._get_appropriate_date(company_df, verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
                     duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30)
                 momentum_df = momentum_df.append({'company': company,
-                                                  'yealy_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
-                                                  'yealy_start_date_close': company_df.iloc[0].Close,
-                                                  'yealy_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
-                                                  'yealy_end_date_close': company_df.iloc[-1].Close,
+                                                  'yearly_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
+                                                  'yearly_start_date_close': company_df.iloc[0].Close,
+                                                  'yearly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
+                                                  'yearly_end_date_close': company_df.iloc[-1].Close,
                                                   'return_yearly': ar_yearly,
                                                   'monthly_start_date': self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%d-%m-%Y'),
                                                   'monthly_start_date_close': company_df.iloc[-30].Close,
@@ -132,10 +132,9 @@ class UnitStrategy:
                                     end_date: str = 'today',
                                     top_company_count: int = 20,
                                     ema_canditate:Tuple[int, int]=(50,200),
-                                    # cutoff_date: str='today',
                                     save: bool=True,
                                     export_path: str = '.',
-                                    verbosity: int = 1):
+                                    verbosity: int = 1)->pd.DataFrame:
         
         logger.info("Performing Momentum Strategy task")
         momentum_df = self.momentum_strategy(end_date=end_date,
