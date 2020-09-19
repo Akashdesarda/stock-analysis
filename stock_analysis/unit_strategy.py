@@ -68,6 +68,8 @@ class UnitStrategy:
             Wether to export to disk, by default True
         export_path : str, optional
             Path to export csv. To be used only if 'save' is True, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
 
         Returns
         -------
@@ -135,6 +137,28 @@ class UnitStrategy:
                                     save: bool=True,
                                     export_path: str = '.',
                                     verbosity: int = 1)->pd.DataFrame:
+        """The strategy is used to identity stocks which had 'good performance' based on desired 'return' duration and 'exponential moving avg'.
+
+        Parameters
+        ----------
+        end_date : str, optional
+            End date of of stock record to retrive. Must be in format: dd/mm/yyyy, by default 'today' for current date
+        top_company_count : int, optional
+            No of top company to retrieve based on Annualized return, by default 20
+        ema_canditate : Tuple[int, int], optional
+            Period (or days) to calculate EMA, by default (50,200)
+        save : int, optional
+            Wether to export to disk, by default True
+        export_path : str, optional
+            Path to export csv. To be used only if 'save' is True, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+            Record based on monthly and yearly calculation and EMA calculation
+        """
         
         logger.info("Performing Momentum Strategy task")
         momentum_df = self.momentum_strategy(end_date=end_date,
@@ -207,7 +231,7 @@ class UnitStrategy:
         duration : Tuple[year,month], optional
             Desired duration to go back to retrive record, by default (0,1)
         verbosity : int, optional
-            Level of detail logging, by default 1
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
 
         Returns
         -------

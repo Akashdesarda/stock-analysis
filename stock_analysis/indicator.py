@@ -41,7 +41,26 @@ class Indicator:
     def volume_indicator_n_days(self, duration: int = 90,
                                 save:bool=True,
                                 export_path: str = '.',
-                                verbosity: int = 1):
+                                verbosity: int = 1)-> pd.DataFrame:
+        
+        """Mean Volume Indicator based on desired days
+
+        Parameters
+        ----------
+        duration : int, optional
+            Total days from current date to retrive data, by default 90
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+            All Volume based indicator
+        """        
 
         end = datetime.datetime.now()
         start = end - dateutil.relativedelta.relativedelta(days=duration)
@@ -80,6 +99,26 @@ class Indicator:
                       save: bool=True,
                       export_path: str = '.',
                       verbosity: int = 1):
+        """Exponential moving average based on desired two period (or no of days)
+
+        Parameters
+        ----------
+        ema_canditate : Tuple[int, int], optional
+            [description], by default (50, 200)
+        cutoff_date : Union[str,datetime.datetime], optional
+            Desired date till which to calculate ema. 'today' for current day, eg 01/01/2020 for any other date, by default 'today'
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        [type]
+            EMA and indicators based on it
+        """
 
         invalid = []
         ema_indicator_df = pd.DataFrame(columns=[
@@ -150,6 +189,23 @@ class Indicator:
                              save: bool=True,
                              export_path: str='.',
                              verbosity: int=1)->pd.DataFrame:
+        """EMA indicator with detail or wide variety of indicators
+
+        Parameters
+        ----------
+        ema_canditate : Tuple[int, int], optional
+            Period (or days) to calculate EMA, by default (50, 200)
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+        """        
         
         logger.info("Performing EMA Indicator Task")
         ema_short = self.ema_indicator(
@@ -199,6 +255,24 @@ class Indicator:
                              save: bool=True,
                              export_path: str='.',
                              verbosity: int=1)->pd.DataFrame:
+        """Exponential moving average for crossover triple period technique 
+
+        Parameters
+        ----------
+        ema_canditate : Tuple[int, int, int], optional
+            Three Period (or days) to calculate EMA, by default (5,13,26)
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+            
+        """        
         
         logger.info("Performing EMA Indicator Task")
         ema_short = self._ema_indicator_n3(
@@ -419,6 +493,9 @@ class Indicator:
     def _percentage_diff_analysis(self,
                         emaA,
                         emaB):
+        """
+        Used to calculate Percentage difference
+        """        
         return abs((emaB - emaA)/((emaA + emaB) / 2) * 100)
 
     def _outcome_analysis(self, percentage_diff):
