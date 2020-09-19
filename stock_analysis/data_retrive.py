@@ -82,3 +82,7 @@ class DataRetrive:
             data.to_csv(f"{export_path}/{company_name}.csv")
 
         return data
+    
+    @classmethod 
+    def single_company_quote(cls, company_name:str)->pd.DataFrame:
+        return pdr.get_quote_yahoo(company_name)

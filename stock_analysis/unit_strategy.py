@@ -68,6 +68,8 @@ class UnitStrategy:
             Wether to export to disk, by default True
         export_path : str, optional
             Path to export csv. To be used only if 'save' is True, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
 
         Returns
         -------
@@ -82,7 +84,7 @@ class UnitStrategy:
         start = end - dateutil.relativedelta.relativedelta(years=1)
 
         invalid_company = []
-        momentum_df = pd.DataFrame(columns=['company', 'yealy_start_date', 'yealy_start_date_close', 'yealy_end_date', 'yealy_end_date_close',
+        momentum_df = pd.DataFrame(columns=['company', 'yearly_start_date', 'yearly_start_date_close', 'yearly_end_date', 'yearly_end_date_close',
                                             'return_yearly', 'monthly_start_date', 'monthly_start_date_close', 'monthly_end_date', 'monthly_end_date_close', 'return_monthly'])
         for idx, company in enumerate(self.data['company']):
             logger.info(
@@ -98,10 +100,10 @@ class UnitStrategy:
                                                              start_date=self._get_appropriate_date(company_df, verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
                     duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30)
                 momentum_df = momentum_df.append({'company': company,
-                                                  'yealy_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
-                                                  'yealy_start_date_close': company_df.iloc[0].Close,
-                                                  'yealy_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
-                                                  'yealy_end_date_close': company_df.iloc[-1].Close,
+                                                  'yearly_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
+                                                  'yearly_start_date_close': company_df.iloc[0].Close,
+                                                  'yearly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
+                                                  'yearly_end_date_close': company_df.iloc[-1].Close,
                                                   'return_yearly': ar_yearly,
                                                   'monthly_start_date': self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%d-%m-%Y'),
                                                   'monthly_start_date_close': company_df.iloc[-30].Close,
@@ -134,7 +136,30 @@ class UnitStrategy:
                                     ema_canditate:Tuple[int, int]=(50,200),
                                     save: bool=True,
                                     export_path: str = '.',
-                                    verbosity: int = 1):
+                                    verbosity: int = 1)->pd.DataFrame:
+        """The strategy is used to identity stocks which had 'good performance' based on desired 'return' duration and 'exponential moving avg'.
+
+        Parameters
+        ----------
+        end_date : str, optional
+            End date of of stock record to retrive. Must be in format: dd/mm/yyyy, by default 'today' for current date
+        top_company_count : int, optional
+            No of top company to retrieve based on Annualized return, by default 20
+        ema_canditate : Tuple[int, int], optional
+            Period (or days) to calculate EMA, by default (50,200)
+        save : int, optional
+            Wether to export to disk, by default True
+        export_path : str, optional
+            Path to export csv. To be used only if 'save' is True, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+            Record based on monthly and yearly calculation and EMA calculation
+        """
+        
         logger.info("Performing Momentum Strategy task")
         momentum_df = self.momentum_strategy(end_date=end_date,
                                              top_company_count=top_company_count,
@@ -143,8 +168,16 @@ class UnitStrategy:
         momentum_df.reset_index(drop=True,inplace=True)
         
         ind = Indicator(company_name=momentum_df.loc[:,'company'])
-        logger.info(f"Performing EMA task on top {top_company_count} company")
+        logger.info(f"Performing EMA task on top {top_company_count} company till {end_date}")
+        if end_date == 'today':
+            cutoff_date = end_date
+            save_date = datetime.datetime.now().strftime('%d-%m-%Y')
+        else:
+            save_date = end_date.replace('/', '-')
+            cutoff_date = datetime.datetime.strptime(end_date, '%d/%m/%Y')
+            assert isinstance(cutoff_date, datetime.datetime), 'Incorrect date type'
         ema_df = ind.ema_indicator(ema_canditate=ema_canditate,
+                                   cutoff_date=cutoff_date,
                                    save=False, 
                                    verbosity=verbosity)
         momentum_ema_df = momentum_df.merge(ema_df, 
@@ -153,11 +186,13 @@ class UnitStrategy:
         if save is True:
             momentum_ema_df.reset_index(drop=True, inplace=True)
             momentum_ema_df.to_csv(
-            f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
-            logger.debug(f"Saved at {export_path}/momentum_result_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
-        if verbosity > 0:
-            logger.debug(
-                f"Sample output:\n{momentum_ema_df.head()}")
+            f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv", index=False)
+            logger.debug(f"Saved at {export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv")
+            if verbosity > 0:
+                logger.debug(
+                    f"Sample output:\n{momentum_ema_df.head()}")
+        else:
+            return momentum_ema_df
 
     @staticmethod
     def _annualized_rate_of_return(end_date: int,
@@ -196,7 +231,7 @@ class UnitStrategy:
         duration : Tuple[year,month], optional
             Desired duration to go back to retrive record, by default (0,1)
         verbosity : int, optional
-            Level of detail logging, by default 1
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
 
         Returns
         -------
@@ -215,13 +250,13 @@ class UnitStrategy:
                 years=duration[0], months=duration[1])
         if desired_date < company_df.iloc[0].Date:
             logger.error(
-                f"Given desired date {desired_date.strftime('%m-%d-%Y')} is older than first recorded date {company_df.iloc[0].Date.strftime('%m-%d-%Y')}")
+                f"Given desired date {desired_date.strftime('%d-%m-%Y')} is older than first recorded date {company_df.iloc[0].Date.strftime('%d-%m-%Y')}")
             raise ValueError
         dd_copy = desired_date
 
         if verbosity > 0:
             logger.debug(
-                f"Your desired date is {desired_date.strftime('%m-%d-%Y')}")
+                f"Your desired date for monthly return is {desired_date.strftime('%d-%m-%Y')}")
 
         if len(company_df.loc[company_df['Date'] == desired_date]) != 0:
             desired_close = company_df.loc[company_df['Date'] == desired_date]
@@ -235,5 +270,5 @@ class UnitStrategy:
                 break
             if verbosity > 0:
                 logger.warning(
-                    f"Desired date: {dd_copy.strftime('%m-%d-%Y')} not found going for next possible date: {desired_date.strftime('%m-%d-%Y')}")
+                    f"Desired date: {dd_copy.strftime('%d-%m-%Y')} not found going for next possible date: {desired_date.strftime('%d-%m-%Y')}")
         return desired_date, desired_close.iloc[-1].Close

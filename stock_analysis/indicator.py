@@ -41,7 +41,26 @@ class Indicator:
     def volume_indicator_n_days(self, duration: int = 90,
                                 save:bool=True,
                                 export_path: str = '.',
-                                verbosity: int = 1):
+                                verbosity: int = 1)-> pd.DataFrame:
+        
+        """Mean Volume Indicator based on desired days
+
+        Parameters
+        ----------
+        duration : int, optional
+            Total days from current date to retrive data, by default 90
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+            All Volume based indicator
+        """        
 
         end = datetime.datetime.now()
         start = end - dateutil.relativedelta.relativedelta(days=duration)
@@ -64,7 +83,7 @@ class Indicator:
 
         if verbosity > 0:
             logger.debug(
-                f"Here are sample 5 company\n{vol_ind_df.head()}\n remaining can be viewed at exported path")
+                f"Here are sample 5 company\n{vol_ind_df.head()}")
         # vol_ind_df_true['company'].to_csv(f'{export_path}/VolumeIndicator90Days_{now_strting}.csv', index=False)
         if save is True:
             vol_ind_df.to_csv(
@@ -72,15 +91,38 @@ class Indicator:
             if verbosity > 0:
                 logger.debug(
                     f"Save at {export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv")
+        else:
+            return vol_ind_df
 
     def ema_indicator(self, ema_canditate: Tuple[int, int] = (50, 200),
+                      cutoff_date: Union[str,datetime.datetime]='today',
                       save: bool=True,
                       export_path: str = '.',
                       verbosity: int = 1):
+        """Exponential moving average based on desired two period (or no of days)
+
+        Parameters
+        ----------
+        ema_canditate : Tuple[int, int], optional
+            [description], by default (50, 200)
+        cutoff_date : Union[str,datetime.datetime], optional
+            Desired date till which to calculate ema. 'today' for current day, eg 01/01/2020 for any other date, by default 'today'
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        [type]
+            EMA and indicators based on it
+        """
 
         invalid = []
         ema_indicator_df = pd.DataFrame(columns=[
-                                        'company', f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}', 'action'])
+                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}', 'action'])
         for idx, company in enumerate(self.data['company']):
             logger.info(
                 f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
@@ -90,15 +132,22 @@ class Indicator:
                 logger.warning(f"{company} have some missing value, fixing it")
                 company_df.dropna(inplace=True)
             try:
-                ema_A = self._exponential_moving_avarage(data=company_df['Close'],
-                                                         period=50)
-                ema_B = self._exponential_moving_avarage(data=company_df['Close'],
-                                                         period=200)
+                ema_A = self._exponential_moving_avarage(
+                    data_df=company_df,
+                    cutoff_date=cutoff_date,
+                    period=ema_canditate[0],
+                    verbosity=verbosity)
+                ema_B = self._exponential_moving_avarage(
+                    data_df=company_df,
+                    cutoff_date=cutoff_date,
+                    period=ema_canditate[1],
+                    verbosity=verbosity)
                 if ema_A > ema_B:
                     action = 'buy'
                 else:
                     action = 'sell'
                 ema_indicator_df = ema_indicator_df.append({'company': company,
+                                                            'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
                                                             f'ema{str(ema_canditate[0])}': ema_A,
                                                             f'ema{str(ema_canditate[1])}': ema_B,
                                                             'action': action},
@@ -108,10 +157,23 @@ class Indicator:
                 invalid.append(company)
                 logger.warning(
                     f"{', '.join(invalid)} has less record than minimum rexquired")
+        
+        ema_indicator_df['percentage_diff'] = ema_indicator_df.apply(
+            lambda x: self._percentage_diff_analysis(x[f'ema{str(ema_canditate[0])}'], x[f'ema{str(ema_canditate[1])}']),
+            axis=1
+        )
+        ema_indicator_df['outcome'] = ema_indicator_df.apply(
+            lambda x: self._outcome_analysis(x['percentage_diff']),
+            axis=1
+        )
+        
+        ema_indicator_df = ema_indicator_df[['company', 'ema_date',
+                                             f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}',
+                                             'percentage_diff', 'outcome','action']]
 
         if verbosity > 0:
             logger.debug(
-                f"Here are sample 5 company\n{ema_indicator_df.head()}\n remaining can be viewed at exported path")
+                f"Here are sample 5 company\n{ema_indicator_df.head()}")
         if save is True:
             ema_indicator_df.to_csv(
             f"{export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
@@ -119,12 +181,219 @@ class Indicator:
                 logger.debug(
                     f"Exported at {export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
 
+        else:
+            return ema_indicator_df
+        
+    def ema_indicator_detail(self,
+                             ema_canditate: Tuple[int, int]=(50,200),
+                             save: bool=True,
+                             export_path: str='.',
+                             verbosity: int=1)->pd.DataFrame:
+        """EMA indicator with detail or wide variety of indicators
+
+        Parameters
+        ----------
+        ema_canditate : Tuple[int, int], optional
+            Period (or days) to calculate EMA, by default (50, 200)
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+        """        
+        
+        logger.info("Performing EMA Indicator Task")
+        ema_short = self.ema_indicator(
+            ema_canditate=ema_canditate,
+            save=False,
+            verbosity=verbosity
+        )
+        
+        logger.info("Extarcting detail company quote data")
+        batch_company_quote = pd.DataFrame()
+        for idx,company in enumerate(ema_short['company']):
+            logger.info(
+                f"Retriving Detail Quote data {idx + 1} out of {len(ema_short['company'])} for {company}")
+            company_quote = DataRetrive.single_company_quote(f'{company}.NS')
+            batch_company_quote = batch_company_quote.append(company_quote)
+            
+        batch_company_quote = batch_company_quote.reset_index().rename(columns={'index':'company'})
+        batch_company_quote = batch_company_quote[['company','longName','price','regularMarketVolume','marketCap',
+                                    'bookValue', 'priceToBook','averageDailyVolume3Month', 'averageDailyVolume10Day', 
+                                    'fiftyTwoWeekLowChange', 'fiftyTwoWeekLowChangePercent', 'fiftyTwoWeekRange', 
+                                    'fiftyTwoWeekHighChange', 'fiftyTwoWeekHighChangePercent', 'fiftyTwoWeekLow', 
+                                    'fiftyTwoWeekHigh']]
+        
+        batch_company_quote['company'] = batch_company_quote['company'].str.replace('.NS','')
+        
+        ema_quote = ema_short.merge(
+            batch_company_quote,
+            on='company',
+            validate='1:1'
+        )
+        
+        if verbosity > 0:
+            logger.debug(
+                f"Here are sample 5 company\n{ema_quote.head()}")
+        if save is not False:
+            ema_quote.to_csv(
+            f"{export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
+            if verbosity > 0:
+                logger.debug(
+                    f"Exported at {export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
+
+        else:
+            return ema_quote
+        
+    def ema_crossover_indicator_detail(self,
+                             ema_canditate: Tuple[int, int, int]=(5,13,26),
+                             save: bool=True,
+                             export_path: str='.',
+                             verbosity: int=1)->pd.DataFrame:
+        """Exponential moving average for crossover triple period technique 
+
+        Parameters
+        ----------
+        ema_canditate : Tuple[int, int, int], optional
+            Three Period (or days) to calculate EMA, by default (5,13,26)
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+        verbosity : int, optional
+            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+
+        Returns
+        -------
+        pd.DataFrame
+            
+        """        
+        
+        logger.info("Performing EMA Indicator Task")
+        ema_short = self._ema_indicator_n3(
+            ema_canditate=ema_canditate,
+            verbosity=verbosity
+        )
+        
+        logger.info("Extarcting detail company quote data")
+        batch_company_quote = pd.DataFrame()
+        for idx,company in enumerate(ema_short['company']):
+            logger.info(
+                f"Retriving Detail Quote data {idx + 1} out of {len(ema_short['company'])} for {company}")
+            company_quote = DataRetrive.single_company_quote(f'{company}.NS')
+            batch_company_quote = batch_company_quote.append(company_quote)
+            
+        batch_company_quote = batch_company_quote.reset_index().rename(columns={'index':'company'})
+        batch_company_quote = batch_company_quote[['company','longName','price','regularMarketVolume','marketCap',
+                                    'bookValue', 'priceToBook','averageDailyVolume3Month', 'averageDailyVolume10Day', 
+                                    'fiftyTwoWeekLowChange', 'fiftyTwoWeekLowChangePercent', 'fiftyTwoWeekRange', 
+                                    'fiftyTwoWeekHighChange', 'fiftyTwoWeekHighChangePercent', 'fiftyTwoWeekLow', 
+                                    'fiftyTwoWeekHigh']]
+        
+        batch_company_quote['company'] = batch_company_quote['company'].str.replace('.NS','')
+        
+        ema_quote = ema_short.merge(
+            batch_company_quote,
+            on='company',
+            validate='1:1'
+        )
+        
+        if verbosity > 0:
+            logger.debug(
+                f"Here are sample 5 company\n{ema_quote.head()}")
+        if save is not False:
+            ema_quote.to_csv(
+            f"{export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
+            if verbosity > 0:
+                logger.debug(
+                    f"Exported at {export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
+
+        else:
+            return ema_quote
+    def _ema_indicator_n3(self, ema_canditate: Tuple[int, int] = (5, 13, 26),
+                                cutoff_date: Union[str,datetime.datetime]='today',
+                                verbosity: int = 1):
+
+        invalid = []
+        ema_indicator_df = pd.DataFrame(columns=[
+                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}',f'ema{str(ema_canditate[2])}', 'action']) 
+                                        # 'percentage_diffCB', 'percentage_diffCA', 'percentage_diffBA'])
+        for idx, company in enumerate(self.data['company']):
+            logger.info(
+                f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
+            company_df = DataRetrive.single_company_complete(
+                company_name=f"{company}.NS")
+            if company_df['Close'].isnull().sum() != 0:
+                logger.warning(f"{company} have some missing value, fixing it")
+                company_df.dropna(inplace=True)
+            try:
+                ema_A = self._exponential_moving_avarage(
+                    data_df=company_df,
+                    cutoff_date=cutoff_date,
+                    period=ema_canditate[0],
+                    verbosity=verbosity
+                )
+                ema_B = self._exponential_moving_avarage(
+                    data_df=company_df,
+                    cutoff_date=cutoff_date,
+                    period=ema_canditate[1],
+                    verbosity=verbosity
+                )
+                ema_C = self._exponential_moving_avarage(
+                    data_df=company_df,
+                    cutoff_date=cutoff_date,
+                    period=ema_canditate[2],
+                    verbosity=verbosity
+                )
+                
+                percentage_diff_CB = self._percentage_diff_analysis(ema_C, ema_B)
+                percentage_diff_CA = self._percentage_diff_analysis(ema_C, ema_A)
+                percentage_diff_BA = self._percentage_diff_analysis(ema_B, ema_A)
+            
+                if (percentage_diff_CB < 1) and (percentage_diff_CA < 1) and (percentage_diff_BA < 1):
+                    action = 'buy'
+                else:
+                    action = 'sell'
+                    
+                ema_indicator_df = ema_indicator_df.append({'company': company,
+                                                            'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
+                                                            f'ema{str(ema_canditate[0])}': ema_A,
+                                                            f'ema{str(ema_canditate[1])}': ema_B,
+                                                            f'ema{str(ema_canditate[2])}': ema_C,
+                                                            # 'percentage_diffCB': percentage_diff_CB, 
+                                                            # 'percentage_diffCA': percentage_diff_CA, 
+                                                            # 'percentage_diffBA': percentage_diff_BA,
+                                                            'action': action},
+                                                          ignore_index=True)
+            except Exception as e:
+                print(company, e)
+                invalid.append(company)
+                logger.warning(
+                    f"{', '.join(invalid)} has less record than minimum rexquired")
+
+        if verbosity > 0:
+            logger.debug(
+                f"Here are sample 5 company\n{ema_indicator_df.head()}")
+        # if save is True:
+        #     ema_indicator_df.to_csv(
+        #     f"{export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
+        #     if verbosity > 0:
+        #         logger.debug(
+        #             f"Exported at {export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
+
         return ema_indicator_df
 
-    @staticmethod
-    def _exponential_moving_avarage(data: Union[pd.Series, List],
+    def _exponential_moving_avarage(self, 
+                                    data_df: Union[pd.Series, List],
                                     period: int,
-                                    smoothing_factor: int = 2) -> float:
+                                    cutoff_date: Union[str,datetime.datetime]='today',
+                                    smoothing_factor: int = 2,
+                                    verbosity:int =1) -> float:
         """Calculate exponential moving avarage based on given period
 
         Parameters
@@ -141,21 +410,97 @@ class Indicator:
         float
             ema value
         """
+        ema_list = []
         # Calculating multiplying factor
         mf = smoothing_factor/(1 + period)
 
         # Calculating first SMA
-        sma0 = (sum(data[:period])) / period
+        sma0 = (sum(data_df['Close'][:period])) / period
 
         # Calculating first EMA
-        ema0 = (data[period] * mf) + (sma0 * (1 - mf))
+        ema0 = (data_df['Close'][period] * mf) + (sma0 * (1 - mf))
 
         # Calculating latest EMA
         ema_pre = ema0
 
-        for idx in range(1, len(data)-50):
-            ema = (data[idx + 50] * mf) + (ema_pre * (1 - mf))
+        for idx in range(1, len(data_df)-50):
+            ema = (data_df['Close'][idx + 50] * mf) + (ema_pre * (1 - mf))
             ema_pre = ema
-            if idx == (len(data) - 50):
+            ema_list.append(ema)
+            # if cutoff_date is not None:   
+            if idx == (len(data_df) - 50):
                 break
-        return ema
+        data_df['ema'] =[pd.NA] * (len(data_df) - len(ema_list)) + ema_list
+        if cutoff_date == 'today':
+            date = data_df.index[-1]
+        else:
+            date = self._get_appropriate_date(
+                company_df=data_df,
+                desired_date=cutoff_date,
+                verbosity=verbosity
+            )
+        
+        return float(data_df[data_df.index == date]['ema'])
+    
+    def _get_appropriate_date(self, 
+                              company_df: pd.DataFrame,
+                              desired_date  : datetime.datetime,
+                              verbosity: int = 1) -> Tuple[datetime.datetime, float]:
+        """
+        Return appropriate date which is present in data record.
+
+        Parameters
+        ----------
+        company_df : pd.DataFrame
+            Company dataframe
+        duration : datetime.datetime
+            Desired date cut-off to calculate ema
+        verbosity : int, optional
+            Level of detail logging, by default 1
+
+        Returns
+        -------
+        Tuple[datetime.datetime,float]
+            Date,Close value on date retrived
+
+        Raises
+        ------
+        ValueError
+            If desired old is older than first record
+        """
+        if desired_date < company_df.index[0]:
+            logger.error(
+                f"Given desired date {desired_date.strftime('%d-%m-%Y')} is older than first recorded date {company_df.index[0].strftime('%d-%m-%Y')}")
+        
+        
+        if verbosity > 0:
+            logger.debug(
+                f"Your desired EMA cut-off date is {desired_date.strftime('%d-%m-%Y')}")
+    
+        for day_idx in range(1,100):
+            if desired_date not in company_df.index:
+                date = desired_date - dateutil.relativedelta.relativedelta(days=day_idx)
+            else:
+                date = desired_date
+            if date in company_df.index:
+                break
+        if verbosity > 0 and desired_date != date:
+                logger.warning(
+                    f"Desired date: {desired_date.strftime('%d-%m-%Y')} not found going for next possible date: {date.strftime('%d-%m-%Y')}")
+        
+        return date
+    
+    def _percentage_diff_analysis(self,
+                        emaA,
+                        emaB):
+        """
+        Used to calculate Percentage difference
+        """        
+        return abs((emaB - emaA)/((emaA + emaB) / 2) * 100)
+
+    def _outcome_analysis(self, percentage_diff):
+        if 5 < percentage_diff < 5:
+            outcome = 'close by'
+        else:
+            outcome = 'far away'
+        return outcome
