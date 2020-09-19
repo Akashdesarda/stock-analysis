@@ -86,7 +86,7 @@ elif task == 2:
     ind = Indicator(path=yaml_path)
 
     sub_task = int(input(
-        "Choose sub task to perform: \n1.Volume Indicator for [n] days\n2.Exponential moving average\nChoice: "))
+        "Choose sub task to perform: \n1.Volume Indicator for [n] days\n2.Exponential moving average (short)\n3.Exponential moving average (detailed)\n4.Exponential moving average crossover \nChoice: "))
     if sub_task == 1:
         sub_task_para = int(input("Choose input parameter nature \n1.Default --> i)Duration = 90 days, \
 ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
@@ -126,3 +126,51 @@ ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
             ind.ema_indicator(ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
                               export_path=sub_task_para_export,
                               verbosity=sub_task_para_verbosity)
+    
+    elif sub_task == 3:
+        sub_task_para = int(input("Choose input parameter nature \n1.Default --> i)EMA Candidate = (50,200) days, \
+ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
+\n2.Manual \nChoice: "))
+        if sub_task_para == 1:
+            ind.ema_indicator_detail()
+        elif sub_task_para == 2:
+            logger.info(
+                "In Manual mode whereever you see 'default' then presing enter key will take default value")
+            sub_task_para_emacandidate1 = int(
+                input("Input desired first EMA candidate (default: 50): ") or 50)
+            sub_task_para_emacandidate2 = int(
+                input("Input desired second EMA candidate (default: 200): ") or 200)
+            sub_task_para_export = (input(
+                'Enter path to save result (eg: ./some_folder) (default: .  (to save in current working directory): ') or '.')
+            sub_task_para_verbosity = int(
+                input('Input Verbosity [level 0: Minimal, 1: Detail (default: 1)]: ') or 1)
+            ind.ema_indicator_detail(
+                ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
+                export_path=sub_task_para_export,
+                verbosity=sub_task_para_verbosity
+                )
+
+    elif sub_task == 4:
+        sub_task_para = int(input("Choose input parameter nature \n1.Default --> i)EMA Candidate = (5, 13, 26) days, \
+ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
+\n2.Manual \nChoice: "))
+        if sub_task_para == 1:
+            ind.ema_crossover_indicator_detail()
+        elif sub_task_para == 2:
+            logger.info(
+                "In Manual mode whereever you see 'default' then presing enter key will take default value")
+            sub_task_para_emacandidate1 = int(
+                input("Input desired first EMA candidate (default: 5): ") or 5)
+            sub_task_para_emacandidate2 = int(
+                input("Input desired second EMA candidate (default: 13): ") or 13)
+            sub_task_para_emacandidate3 = int(
+                input("Input desired third EMA candidate (default: 26): ") or 26)
+            sub_task_para_export = (input(
+                'Enter path to save result (eg: ./some_folder) (default: .  (to save in current working directory): ') or '.')
+            sub_task_para_verbosity = int(
+                input('Input Verbosity [level 0: Minimal, 1: Detail (default: 1)]: ') or 1)
+            ind.ema_crossover_indicator_detail(
+                ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2, sub_task_para_emacandidate3),
+                export_path=sub_task_para_export,
+                verbosity=sub_task_para_verbosity
+                )
