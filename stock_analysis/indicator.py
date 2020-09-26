@@ -7,7 +7,7 @@ import dateutil
 import pandas as pd
 from stock_analysis.utils.logger import logger
 from stock_analysis.data_retrive import DataRetrive
-from typing import List, Union, Tuple
+from typing import *
 now_strting = datetime.datetime.now().strftime('%d-%m-%Y')
 
 yf.pdr_override()
@@ -106,44 +106,11 @@ class Indicator:
             EMA and indicators based on it
         """
 
-        invalid = []
-        ema_indicator_df = pd.DataFrame(columns=[
-                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}', 'action'])
-        for idx, company in enumerate(self.data['company']):
-            logger.info(
-                f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
-            company_df = DataRetrive.single_company_complete(
-                company_name=f"{company}.NS")
-            if company_df['Close'].isnull().sum() != 0:
-                logger.warning(f"{company} have some missing value, fixing it")
-                company_df.dropna(inplace=True)
-            try:
-                ema_A = self._exponential_moving_avarage(
-                    data_df=company_df,
-                    cutoff_date=cutoff_date,
-                    period=ema_canditate[0],
-                    verbosity=verbosity)
-                ema_B = self._exponential_moving_avarage(
-                    data_df=company_df,
-                    cutoff_date=cutoff_date,
-                    period=ema_canditate[1],
-                    verbosity=verbosity)
-                if ema_A > ema_B:
-                    action = 'buy'
-                else:
-                    action = 'sell'
-                ema_indicator_df = ema_indicator_df.append({'company': company,
-                                                            'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
-                                                            f'ema{str(ema_canditate[0])}': ema_A,
-                                                            f'ema{str(ema_canditate[1])}': ema_B,
-                                                            'action': action},
-                                                           ignore_index=True)
-            except Exception as e:
-                print(company, e)
-                invalid.append(company)
-                logger.warning(
-                    f"{', '.join(invalid)} has less record than minimum rexquired")
-        
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            result = pool.starmap(self._parallel_ema_indicator, 
+                                  [(company, ema_canditate, cutoff_date,verbosity) for company in self.data['company']])
+        ema_indicator_df = pd.DataFrame(result)
+        ema_indicator_df.dropna(inplace=True)
         ema_indicator_df['percentage_diff'] = ema_indicator_df.apply(
             lambda x: self._percentage_diff_analysis(x[f'ema{str(ema_canditate[0])}'], x[f'ema{str(ema_canditate[1])}']),
             axis=1
@@ -510,3 +477,42 @@ class Indicator:
                 'mean volume': company_df['Volume'].mean(),
                 'close price': company_df.iloc[-1].Close,
                 'action': buy_stock}
+    
+    def _parallel_ema_indicator(self, 
+                                company: str=None,
+                                ema_canditate: Tuple[int, int] = (50, 200),
+                                cutoff_date: Union[str,datetime.datetime]='today',
+                                verbosity: int = 1)-> Dict:
+        logger.info(
+            f"Retriving data {self.data['company'].index(company) + 1} out of {len(self.data['company'])} for {company}")
+        company_df = DataRetrive.single_company_complete(
+            company_name=f"{company}.NS")
+        if company_df['Close'].isnull().sum() != 0:
+            logger.warning(f"{company} have some missing value, fixing it")
+            company_df.dropna(inplace=True)
+        try:
+            ema_A = self._exponential_moving_avarage(
+                data_df=company_df,
+                cutoff_date=cutoff_date,
+                period=ema_canditate[0],
+                verbosity=verbosity)
+            ema_B = self._exponential_moving_avarage(
+                data_df=company_df,
+                cutoff_date=cutoff_date,
+                period=ema_canditate[1],
+                verbosity=verbosity)
+            if ema_A > ema_B:
+                action = 'buy'
+            else:
+                action = 'sell'
+        except Exception as e:
+                logger.warning(
+                    f"{company} has less record than minimum rexquired")
+                ema_A, ema_B, action = pd.NA, pd.NA, pd.NA
+        return {'company': company,
+                'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
+                f'ema{str(ema_canditate[0])}': ema_A,
+                f'ema{str(ema_canditate[1])}': ema_B,
+                'action': action}
+
+        
