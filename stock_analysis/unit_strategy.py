@@ -1,3 +1,4 @@
+import multiprocessing
 import os
 import yaml
 import datetime
@@ -83,52 +84,27 @@ class UnitStrategy:
             end = datetime.datetime.strptime(end_date, '%d/%m/%Y').date()
         start = end - dateutil.relativedelta.relativedelta(years=1)
 
-        invalid_company = []
-        momentum_df = pd.DataFrame(columns=['company', 'yearly_start_date', 'yearly_start_date_close', 'yearly_end_date', 'yearly_end_date_close',
-                                            'return_yearly', 'monthly_start_date', 'monthly_start_date_close', 'monthly_end_date', 'monthly_end_date_close', 'return_monthly'])
-        for idx, company in enumerate(self.data['company']):
-            logger.info(
-                f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
-            try:
-                company_df = DataRetrive.single_company_specific(
-                    company_name=f"{company}.NS", start_date=start, end_date=end)
-                company_df.reset_index(inplace=True)
-                ar_yearly = self._annualized_rate_of_return(end_date=company_df.iloc[-1].Close,
-                                                            start_date=company_df.iloc[0].Close,
-                                                            duration=1)  # (company_df.iloc[-30,0] - company_df.iloc[0,0]).days/365)
-                ar_monthly = self._annualized_rate_of_return(end_date=company_df.iloc[-1].Close,
-                                                             start_date=self._get_appropriate_date(company_df, verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
-                    duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30)
-                momentum_df = momentum_df.append({'company': company,
-                                                  'yearly_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
-                                                  'yearly_start_date_close': company_df.iloc[0].Close,
-                                                  'yearly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
-                                                  'yearly_end_date_close': company_df.iloc[-1].Close,
-                                                  'return_yearly': ar_yearly,
-                                                  'monthly_start_date': self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%d-%m-%Y'),
-                                                  'monthly_start_date_close': company_df.iloc[-30].Close,
-                                                  'monthly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
-                                                  'monthly_end_date_close': company_df.iloc[-1].Close,
-                                                  'return_monthly': ar_monthly},
-                                                ignore_index=True)
-            except:
-                invalid_company.append(company)
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            result = pool.starmap(
+                self._parallel_momentum, 
+                [(company, start, end, verbosity) for company in self.data['company']]
+            )
+        momentum_df = pd.DataFrame(result)
         momentum_df.sort_values(by=['return_yearly'],
                                 ascending=False,
                                 inplace=True)
         
-        if verbosity > 0 and len(invalid_company) != 0:
-            logger.debug(
-                f"Following Company's data is not available: {', '.join(invalid_company)}")
-        if save is True:
-            momentum_df.head(top_company_count).to_csv(
-            f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
-            logger.debug(f"Saved at {export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
         if verbosity > 0:
             logger.debug(
                 f"Sample output:\n{momentum_df.head(top_company_count)}")
-            
-        return momentum_df.head(top_company_count)
+        if save is True:
+            momentum_df.head(top_company_count).to_csv(
+            f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv", index=False)
+            if verbosity > 0:
+                logger.debug(
+                    f"Saved at {export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv")
+        else:
+            return momentum_df.head(top_company_count)
     
     def momentum_with_ema_strategy(self,
                                     end_date: str = 'today',
@@ -272,3 +248,46 @@ class UnitStrategy:
                 logger.warning(
                     f"Desired date: {dd_copy.strftime('%d-%m-%Y')} not found going for next possible date: {desired_date.strftime('%d-%m-%Y')}")
         return desired_date, desired_close.iloc[-1].Close
+    
+    def _parallel_momentum(self, company: str, 
+                           start,
+                           end,
+                           verbosity: int = 1):
+        # if end_date == 'today':
+        #     end = datetime.datetime.now()
+        # else:
+        #     end = datetime.datetime.strptime(end_date, '%d/%m/%Y').date()
+        # start = end - dateutil.relativedelta.relativedelta(years=1)
+    
+        logger.info(
+            f"Retriving data for {company}")
+        try:
+            company_df = DataRetrive.single_company_specific(
+                company_name=f"{company}.NS", start_date=start, end_date=end)
+            company_df.reset_index(inplace=True)
+            ar_yearly = self._annualized_rate_of_return(end_date=company_df.iloc[-1].Close,
+                                                        start_date=company_df.iloc[0].Close,
+                                                        duration=1)  # (company_df.iloc[-30,0] - company_df.iloc[0,0]).days/365)
+            ar_monthly = self._annualized_rate_of_return(end_date=company_df.iloc[-1].Close,
+                                                            start_date=self._get_appropriate_date(company_df, verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
+                duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30)
+            monthly_start_date = self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%d-%m-%Y')
+        except:
+            if verbosity > 0:
+                logger.debug(
+                    f"Data is not available for: {company}")
+            company_df = pd.DataFrame({'Date':[datetime.datetime(1000,1,1)] * 30,
+                                       'Close':[pd.NA] * 30})
+            ar_yearly, ar_monthly, monthly_start_date = pd.NA, pd.NA, pd.NA
+            
+        return {'company': company,
+                'yearly_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
+                'yearly_start_date_close': company_df.iloc[0].Close,
+                'yearly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
+                'yearly_end_date_close': company_df.iloc[-1].Close,
+                'return_yearly': ar_yearly,
+                'monthly_start_date': monthly_start_date,
+                'monthly_start_date_close': company_df.iloc[-30].Close,
+                'monthly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
+                'monthly_end_date_close': company_df.iloc[-1].Close,
+                'return_monthly': ar_monthly}
