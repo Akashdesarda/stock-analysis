@@ -1,4 +1,5 @@
 import yfinance as yf
+import multiprocessing
 import os
 import yaml
 import datetime
@@ -61,26 +62,11 @@ class Indicator:
         pd.DataFrame
             All Volume based indicator
         """        
-
-        end = datetime.datetime.now()
-        start = end - dateutil.relativedelta.relativedelta(days=duration)
-        vol_ind_df = pd.DataFrame(columns=[
-                                  'company', 'current date', 'start date', 'current volume', 'mean volume', 'action'])
-        for idx, company in enumerate(self.data['company']):
-            logger.info(
-                f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
-            company_df = DataRetrive.single_company_specific(
-                company_name=f"{company}.NS", start_date=start, end_date=end)
-            buy_stock = company_df.iloc[-1].Volume > company_df['Volume'].mean()
-            vol_ind_df = vol_ind_df.append({'company': company,
-                                            'current date': company_df.index[-1].strftime('%d-%m-%Y'),
-                                            'start date': company_df.index[0].strftime('%d-%m-%Y'),
-                                            'current volume': company_df.iloc[-1].Volume,
-                                            'mean volume': company_df['Volume'].mean(),
-                                            'close price': company_df.iloc[-1].Close,
-                                            'action': buy_stock},
-                                           ignore_index=True)
-
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            result = pool.starmap(self._parallel_vol_indicator_n_days, 
+                                       [(company,duration) for company in self.data['company']])
+        
+        vol_ind_df = pd.DataFrame(result)
         if verbosity > 0:
             logger.debug(
                 f"Here are sample 5 company\n{vol_ind_df.head()}")
@@ -504,3 +490,23 @@ class Indicator:
         else:
             outcome = 'far away'
         return outcome
+    
+    # TODO: Add all parallel executor function here
+    def _parallel_vol_indicator_n_days(self,company: str=None, duration: int=90):
+        end = datetime.datetime.now()
+        start = end - dateutil.relativedelta.relativedelta(days=duration)
+        logger.info(
+            f"Retriving data {self.data['company'].index(company) + 1} out of {len(self.data['company'])} for {company}")
+        company_df = DataRetrive.single_company_specific(company_name=f"{company}.NS",
+                                                        start_date=start, 
+                                                        end_date=end)
+        
+        buy_stock = company_df.iloc[-1].Volume > company_df['Volume'].mean()
+        print(f"Problem with {company}, moving on")
+        return {'company': company,
+                'current date': company_df.index[-1].strftime('%d-%m-%Y'),
+                'start date': company_df.index[0].strftime('%d-%m-%Y'),
+                'current volume': company_df.iloc[-1].Volume,
+                'mean volume': company_df['Volume'].mean(),
+                'close price': company_df.iloc[-1].Close,
+                'action': buy_stock}
