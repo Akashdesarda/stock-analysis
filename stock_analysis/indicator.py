@@ -403,7 +403,7 @@ class Indicator:
         end = datetime.datetime.now()
         start = end - dateutil.relativedelta.relativedelta(days=duration)
         logger.info(
-            f"Retriving data {self.data['company'].index(company) + 1} out of {len(self.data['company'])} for {company}")
+            f"Retriving data for {company}")
         company_df = DataRetrive.single_company_specific(company_name=f"{company}.NS",
                                                         start_date=start, 
                                                         end_date=end)
@@ -424,7 +424,7 @@ class Indicator:
                                 cutoff_date: Union[str,datetime.datetime]='today',
                                 verbosity: int = 1)-> Dict:
         logger.info(
-            f"Retriving data {self.data['company'].index(company) + 1} out of {len(self.data['company'])} for {company}")
+            f"Retriving data for {company}")
         company_df = DataRetrive.single_company_complete(
             company_name=f"{company}.NS")
         if company_df['Close'].isnull().sum() != 0:
