@@ -84,7 +84,7 @@ class Indicator:
                       cutoff_date: Union[str,datetime.datetime]='today',
                       save: bool=True,
                       export_path: str = '.',
-                      verbosity: int = 1):
+                      verbosity: int = 1)-> pd.DataFrame:
         """Exponential moving average based on desired two period (or no of days)
 
         Parameters
@@ -102,7 +102,7 @@ class Indicator:
 
         Returns
         -------
-        [type]
+        -> pd.DataFrame
             EMA and indicators based on it
         """
 
@@ -234,11 +234,10 @@ class Indicator:
         
         logger.info("Extarcting detail company quote data")
         batch_company_quote = pd.DataFrame()
-        for idx,company in enumerate(ema_short['company']):
-            logger.info(
-                f"Retriving Detail Quote data {idx + 1} out of {len(ema_short['company'])} for {company}")
-            company_quote = DataRetrive.single_company_quote(f'{company}.NS')
-            batch_company_quote = batch_company_quote.append(company_quote)
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            company_quote = pool.map(self._parallel_quote_retrive, ema_short['company'])
+        for single_company_quote in company_quote:
+            batch_company_quote = batch_company_quote.append(single_company_quote)
             
         batch_company_quote = batch_company_quote.reset_index().rename(columns={'index':'company'})
         batch_company_quote = batch_company_quote[['company','longName','price','regularMarketVolume','marketCap',
@@ -271,73 +270,15 @@ class Indicator:
                                 cutoff_date: Union[str,datetime.datetime]='today',
                                 verbosity: int = 1):
 
-        invalid = []
-        ema_indicator_df = pd.DataFrame(columns=[
-                                        'company', 'ema_date',f'ema{str(ema_canditate[0])}', f'ema{str(ema_canditate[1])}',f'ema{str(ema_canditate[2])}', 'action']) 
-                                        # 'percentage_diffCB', 'percentage_diffCA', 'percentage_diffBA'])
-        for idx, company in enumerate(self.data['company']):
-            logger.info(
-                f"Retriving data {idx + 1} out of {len(self.data['company'])} for {company}")
-            company_df = DataRetrive.single_company_complete(
-                company_name=f"{company}.NS")
-            if company_df['Close'].isnull().sum() != 0:
-                logger.warning(f"{company} have some missing value, fixing it")
-                company_df.dropna(inplace=True)
-            try:
-                ema_A = self._exponential_moving_avarage(
-                    data_df=company_df,
-                    cutoff_date=cutoff_date,
-                    period=ema_canditate[0],
-                    verbosity=verbosity
-                )
-                ema_B = self._exponential_moving_avarage(
-                    data_df=company_df,
-                    cutoff_date=cutoff_date,
-                    period=ema_canditate[1],
-                    verbosity=verbosity
-                )
-                ema_C = self._exponential_moving_avarage(
-                    data_df=company_df,
-                    cutoff_date=cutoff_date,
-                    period=ema_canditate[2],
-                    verbosity=verbosity
-                )
-                
-                percentage_diff_CB = self._percentage_diff_analysis(ema_C, ema_B)
-                percentage_diff_CA = self._percentage_diff_analysis(ema_C, ema_A)
-                percentage_diff_BA = self._percentage_diff_analysis(ema_B, ema_A)
-            
-                if (percentage_diff_CB < 1) and (percentage_diff_CA < 1) and (percentage_diff_BA < 1):
-                    action = 'buy'
-                else:
-                    action = 'sell'
-                    
-                ema_indicator_df = ema_indicator_df.append({'company': company,
-                                                            'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
-                                                            f'ema{str(ema_canditate[0])}': ema_A,
-                                                            f'ema{str(ema_canditate[1])}': ema_B,
-                                                            f'ema{str(ema_canditate[2])}': ema_C,
-                                                            # 'percentage_diffCB': percentage_diff_CB, 
-                                                            # 'percentage_diffCA': percentage_diff_CA, 
-                                                            # 'percentage_diffBA': percentage_diff_BA,
-                                                            'action': action},
-                                                          ignore_index=True)
-            except Exception as e:
-                print(company, e)
-                invalid.append(company)
-                logger.warning(
-                    f"{', '.join(invalid)} has less record than minimum rexquired")
-
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            result = pool.starmap(self._parallel_ema_indicator_n3,
+                                  [(company, ema_canditate, cutoff_date,verbosity) for company in self.data['company']]) 
+        ema_indicator_df = pd.DataFrame(result)
+        ema_indicator_df.dropna(inplace=True)
+        
         if verbosity > 0:
             logger.debug(
                 f"Here are sample 5 company\n{ema_indicator_df.head()}")
-        # if save is True:
-        #     ema_indicator_df.to_csv(
-        #     f"{export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv", index=False)    
-        #     if verbosity > 0:
-        #         logger.debug(
-        #             f"Exported at {export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
-
         return ema_indicator_df
 
     def _exponential_moving_avarage(self, 
@@ -518,6 +459,59 @@ class Indicator:
         logger.info(
             f"Retriving Detail Quote data for {company}")
         return DataRetrive.single_company_quote(f'{company}.NS')
+    
+    def _parallel_ema_indicator_n3(self, company: str,
+                                   ema_canditate: Tuple[int, int] = (5, 13, 26),
+                                   cutoff_date: Union[str,datetime.datetime]='today',
+                                   verbosity: int = 1):
+        logger.info(f"Retriving data for {company}")
+        company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        if company_df['Close'].isnull().sum() != 0:
+            logger.warning(f"{company} have some missing value, fixing it")
+            company_df.dropna(inplace=True)
+        try:
+            ema_A = self._exponential_moving_avarage(
+                data_df=company_df,
+                cutoff_date=cutoff_date,
+                period=ema_canditate[0],
+                verbosity=verbosity
+            )
+            ema_B = self._exponential_moving_avarage(
+                data_df=company_df,
+                cutoff_date=cutoff_date,
+                period=ema_canditate[1],
+                verbosity=verbosity
+            )
+            ema_C = self._exponential_moving_avarage(
+                data_df=company_df,
+                cutoff_date=cutoff_date,
+                period=ema_canditate[2],
+                verbosity=verbosity
+            )
+            
+            percentage_diff_CB = self._percentage_diff_analysis(ema_C, ema_B)
+            percentage_diff_CA = self._percentage_diff_analysis(ema_C, ema_A)
+            percentage_diff_BA = self._percentage_diff_analysis(ema_B, ema_A)
         
+            if (percentage_diff_CB < 1) and (percentage_diff_CA < 1) and (percentage_diff_BA < 1):
+                action = 'buy'
+            else:
+                action = 'sell'
+                
+        except Exception as e:
+            logger.warning(
+                f"{company} has less record than minimum required")
+            
+            ema_A, ema_B, ema_C,action = pd.NA, pd.NA, pd.NA, pd.NA
+            
+        return {'company': company,
+                'ema_date': now_strting if cutoff_date == 'today' else cutoff_date.strftime('%d-%m-%Y'),
+                f'ema{str(ema_canditate[0])}': ema_A,
+                f'ema{str(ema_canditate[1])}': ema_B,
+                f'ema{str(ema_canditate[2])}': ema_C,
+                # 'percentage_diffCB': percentage_diff_CB, 
+                # 'percentage_diffCA': percentage_diff_CA, 
+                # 'percentage_diffBA': percentage_diff_BA,
+                'action': action}
 
         
