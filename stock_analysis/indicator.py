@@ -169,11 +169,10 @@ class Indicator:
         
         logger.info("Extarcting detail company quote data")
         batch_company_quote = pd.DataFrame()
-        for idx,company in enumerate(ema_short['company']):
-            logger.info(
-                f"Retriving Detail Quote data {idx + 1} out of {len(ema_short['company'])} for {company}")
-            company_quote = DataRetrive.single_company_quote(f'{company}.NS')
-            batch_company_quote = batch_company_quote.append(company_quote)
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            company_quote = pool.map(self._parallel_quote_retrive, ema_short['company'])
+        for single_company_quote in company_quote:
+            batch_company_quote = batch_company_quote.append(single_company_quote)
             
         batch_company_quote = batch_company_quote.reset_index().rename(columns={'index':'company'})
         batch_company_quote = batch_company_quote[['company','longName','price','regularMarketVolume','marketCap',
@@ -514,5 +513,11 @@ class Indicator:
                 f'ema{str(ema_canditate[0])}': ema_A,
                 f'ema{str(ema_canditate[1])}': ema_B,
                 'action': action}
+    
+    def _parallel_quote_retrive(self, company: str)->pd.DataFrame:
+        logger.info(
+            f"Retriving Detail Quote data for {company}")
+        return DataRetrive.single_company_quote(f'{company}.NS')
+        
 
         
