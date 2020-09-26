@@ -195,6 +195,7 @@ class UnitStrategy:
 
     @staticmethod
     def _get_appropriate_date(company_df: pd.DataFrame,
+                              company,
                               duration: Tuple[int, int] = (0, 1),
                               verbosity: int = 1) -> Tuple[datetime.datetime, float]:
         """
@@ -232,7 +233,7 @@ class UnitStrategy:
 
         if verbosity > 0:
             logger.debug(
-                f"Your desired date for monthly return is {desired_date.strftime('%d-%m-%Y')}")
+                f"Your desired date for monthly return  for {company} is {desired_date.strftime('%d-%m-%Y')}")
 
         if len(company_df.loc[company_df['Date'] == desired_date]) != 0:
             desired_close = company_df.loc[company_df['Date'] == desired_date]
@@ -269,9 +270,9 @@ class UnitStrategy:
                                                         start_date=company_df.iloc[0].Close,
                                                         duration=1)  # (company_df.iloc[-30,0] - company_df.iloc[0,0]).days/365)
             ar_monthly = self._annualized_rate_of_return(end_date=company_df.iloc[-1].Close,
-                                                            start_date=self._get_appropriate_date(company_df, verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
+                                                            start_date=self._get_appropriate_date(company_df, company,verbosity=verbosity)[1],  # company_df.iloc[-30].Close,
                 duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30)
-            monthly_start_date = self._get_appropriate_date(company_df, verbosity=verbosity)[0].strftime('%d-%m-%Y')
+            monthly_start_date = self._get_appropriate_date(company_df, company, verbosity=0)[0].strftime('%d-%m-%Y')
         except:
             if verbosity > 0:
                 logger.debug(

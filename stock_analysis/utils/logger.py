@@ -29,7 +29,7 @@ class CustomFormatter(logging.Formatter):
 
 
 def logger(level: str = 'debug'):
-    # create logger with 'spam_application'
+    
     logger = logging.getLogger(__name__)
 
     if level == 'debug':
@@ -45,7 +45,7 @@ def logger(level: str = 'debug'):
 
     # create console handler with a higher log level
     ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    # ch.setLevel(logging.DEBUG)
 
     ch.setFormatter(CustomFormatter())
 
