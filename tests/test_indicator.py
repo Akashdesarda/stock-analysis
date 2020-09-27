@@ -1,6 +1,6 @@
 from stock_analysis.indicator import Indicator
 
-company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL']
+company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL','BAJAJ','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
 
 ind = Indicator(company_name=company_list)
 
