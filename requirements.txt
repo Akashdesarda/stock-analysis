@@ -1,6 +1,8 @@
-pandas_datareader==0.9.0
 sphinx_rtd_theme==0.4.3
-pandas==1.1.1
 yfinance==0.1.54
+pandas>=1.0.5
+pandas_datareader==0.9.0
+dataclasses==0.7
 python_dateutil==2.8.1
+PyYAML==5.3.1
 pytest
