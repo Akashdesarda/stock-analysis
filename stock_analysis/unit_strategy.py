@@ -90,6 +90,7 @@ class UnitStrategy:
                 [(company, start, end, verbosity) for company in self.data['company']]
             )
         momentum_df = pd.DataFrame(result)
+        momentum_df.dropna(inplace=True)
         momentum_df.sort_values(by=['return_yearly'],
                                 ascending=False,
                                 inplace=True)
