@@ -1,43 +1,46 @@
-import yfinance as yf
-import multiprocessing
 import os
 import yaml
 import datetime
 import dateutil
 import pandas as pd
+import yfinance as yf
+import multiprocessing
+from dataclasses import dataclass
 from stock_analysis.utils.logger import logger
 from stock_analysis.data_retrive import DataRetrive
 from typing import Dict, List, Tuple, Union
-now_strting = datetime.datetime.now().strftime('%d-%m-%Y')
 
+now_strting = datetime.datetime.now().strftime('%d-%m-%Y')
 yf.pdr_override()
 logger = logger()
 pd.options.display.float_format = '{:,.2f}'.format
 
 
+@dataclass
 class Indicator:
-    """Perform all variety of Indicator operation
     """
+    Perform all variety of Indicator operation
+    
+    Parameters
+    ----------
+    path : str, optional
+        Path to company yaml/json. Either path or
+        company_name can be used, by default None
+    company_name : List, optional
+        List of company name. If path is used then this is obsolete
+        as 'path' preside over 'company_name', by default None
 
-    def __init__(self, path: str = None, company_name: List = None):
-        """
-        Parameters
-        ----------
-        path : str, optional
-            Path to company yaml/json. Either path or company_name
-            can be used, by default None
-        company_name : List, optional
-            List of company name. If path is used then this is obsolete
-             as 'path' preside over 'company_name', by default None
-        """
+    Eg:
+    >>>from stock_analysis.unit_strategy import UnitStrategy
+    >>>sa = UnitStrategy('./data/company_list.yaml')
+    """    
+    path: str = None
+    company_name: List = None
 
-        self.path = path
-        self.company_name = company_name
-
-        if path is not None:
-            if 'yaml' in os.path.split(self.path)[-1]:
-                with open(self.path, 'r') as f:
-                    self.data = yaml.load(f, Loader=yaml.FullLoader)
+    def __post_init__(self):
+        if self.path is not None:
+            with open(self.path, 'r') as f:
+                self.data = yaml.load(f, Loader=yaml.FullLoader)
         else:
             self.data = {'company': self.company_name}
 
