@@ -1,6 +1,6 @@
 from stock_analysis.unit_strategy import UnitStrategy
 
-company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL']
+company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL','BAJAJ','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
 
 ut = UnitStrategy(company_name=company_list)
 
