@@ -4,11 +4,13 @@ import dateutil
 import pandas as pd
 import yfinance as yf
 import multiprocessing
-from dataclasses import dataclass
 from typing import List, Tuple
+from dataclasses import dataclass
 from stock_analysis.indicator import Indicator
-from stock_analysis.utils.logger import logger
 from stock_analysis.data_retrive import DataRetrive
+from stock_analysis.utils.logger import logger
+from stock_analysis.utils.helpers import get_appropriate_date_momentum
+from stock_analysis.utils.formula_helpers import annualized_rate_of_return
 
 yf.pdr_override()
 logger = logger()
@@ -188,88 +190,8 @@ class UnitStrategy:
         else:
             return momentum_ema_df
 
-    @staticmethod
-    def _annualized_rate_of_return(end_date: int,
-                                   start_date: int,
-                                   duration: float) -> float:
-        """
-        Calculate annulized rate of return
-
-        Parameters
-        ----------
-        end_date : int
-            Close value Current date or most present date.
-            Consider it as going from bottom to top.
-        start_date : int
-            Close value on Start date or first record.
-            Consider it as going from bottom to top.
-        duration : float
-            Total duration wrt to year
-
-        Returns
-        -------
-        float
-            Annulized return
-        """
-        return (((end_date / start_date) ** (1/duration)) - 1) * 100
-
-    @staticmethod
-    def _get_appropriate_date(company_df: pd.DataFrame,
-                              company,
-                              duration: Tuple[int, int] = (0, 1),
-                              verbosity: int = 1) -> Tuple[datetime.datetime, float]:
-        """
-        Return appropriate date which is present in data record.
-
-        Parameters
-        ----------
-        company_df : pd.DataFrame
-            Company dataframe
-        duration : Tuple[year,month], optional
-            Desired duration to go back to retrive record, by default (0,1)
-        verbosity : int, optional
-            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
-
-        Returns
-        -------
-        Tuple[datetime.datetime,float]
-            Date,Close value on date retrived
-
-        Raises
-        ------
-        ValueError
-            If desired old is older than first record
-        """
-
-        current_date = company_df.iloc[-1].Date
-        desired_date = current_date - \
-            dateutil.relativedelta.relativedelta(
-                years=duration[0], months=duration[1])
-        if desired_date < company_df.iloc[0].Date:
-            logger.error(
-                f"Given desired date {desired_date.strftime('%d-%m-%Y')} is older than first recorded date {company_df.iloc[0].Date.strftime('%d-%m-%Y')}")
-            raise ValueError
-        dd_copy = desired_date
-
-        if verbosity > 0:
-            logger.debug(
-                f"Your desired date for monthly return  for {company} is {desired_date.strftime('%d-%m-%Y')}")
-
-        if len(company_df.loc[company_df['Date'] == desired_date]) != 0:
-            desired_close = company_df.loc[company_df['Date'] == desired_date]
-        else:
-            for i in range(1, 100):
-                if len(company_df.loc[company_df['Date'] == desired_date]) == 0:
-                    desired_date = desired_date - \
-                        dateutil.relativedelta.relativedelta(days=i)
-                    desired_close = company_df.loc[company_df['Date'] == desired_date]
-                break
-            if verbosity > 0:
-                logger.warning(
-                    f"Desired date: {dd_copy.strftime('%d-%m-%Y')} not found going for next possible date: {desired_date.strftime('%d-%m-%Y')}")
-        return desired_date, desired_close.iloc[-1].Close
-
-    def _parallel_momentum(self, company: str,
+    def _parallel_momentum(self, 
+                           company: str,
                            start,
                            end,
                            verbosity: int = 1):
@@ -280,18 +202,18 @@ class UnitStrategy:
             company_df = DataRetrive.single_company_specific(
                 company_name=f"{company}.NS", start_date=start, end_date=end)
             company_df.reset_index(inplace=True)
-            ar_yearly = self._annualized_rate_of_return(
+            ar_yearly = annualized_rate_of_return(
                 end_date=company_df.iloc[-1].Close,
                 start_date=company_df.iloc[0].Close,
                 duration=1
             )  # (company_df.iloc[-30,0] - company_df.iloc[0,0]).days/365)
-            ar_monthly = self._annualized_rate_of_return(
+            ar_monthly = annualized_rate_of_return(
                 end_date=company_df.iloc[-1].Close,
-                start_date=self._get_appropriate_date(
+                start_date=get_appropriate_date_momentum(
                     company_df, company, verbosity=verbosity)[1],
                 duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30
             )
-            monthly_start_date = self._get_appropriate_date(
+            monthly_start_date = get_appropriate_date_momentum(
                 company_df, company, verbosity=0)[0].strftime('%d-%m-%Y')
         except (IndexError, KeyError, ValueError):
             if verbosity > 0:

@@ -1,17 +1,16 @@
-import os
 import yaml
-import datetime
 import dateutil
+import datetime
 import pandas as pd
-import yfinance as yf
 import multiprocessing
 from dataclasses import dataclass
-from stock_analysis.utils.logger import logger
-from stock_analysis.data_retrive import DataRetrive
 from typing import Dict, List, Tuple, Union
+from stock_analysis.data_retrive import DataRetrive
+from stock_analysis.utils.logger import logger
+from stock_analysis.utils.formula_helpers import exponential_moving_avarage,\
+                                    percentage_diff_analysis, outcome_analysis
 
 now_strting = datetime.datetime.now().strftime('%d-%m-%Y')
-yf.pdr_override()
 logger = logger()
 pd.options.display.float_format = '{:,.2f}'.format
 
@@ -117,13 +116,13 @@ class Indicator:
         ema_indicator_df = pd.DataFrame(result)
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df['percentage_diff'] = ema_indicator_df.apply(
-            lambda x: self._percentage_diff_analysis(
+            lambda x: percentage_diff_analysis(
                 x[f'ema{str(ema_canditate[0])}'],
                 x[f'ema{str(ema_canditate[1])}']),
             axis=1
         )
         ema_indicator_df['outcome'] = ema_indicator_df.apply(
-            lambda x: self._outcome_analysis(x['percentage_diff']),
+            lambda x: outcome_analysis(x['percentage_diff']),
             axis=1
         )
 
@@ -293,9 +292,11 @@ class Indicator:
         else:
             return ema_quote
 
-    def _ema_indicator_n3(self, ema_canditate: Tuple[int, int] = (5, 13, 26),
+    
+    def _ema_indicator_n3(self,
+                          ema_canditate: Tuple[int, int] = (5, 13, 26),
                          cutoff_date: Union[str, datetime.datetime] = 'today',
-                          verbosity: int = 1):
+                          verbosity: int = 1)->pd.DataFrame:
 
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
             result = pool.starmap(self._parallel_ema_indicator_n3,
@@ -307,124 +308,6 @@ class Indicator:
             logger.debug(
                 f"Here are sample 5 company\n{ema_indicator_df.head()}")
         return ema_indicator_df
-
-    def _exponential_moving_avarage(self,
-                                    data_df: Union[pd.Series, List],
-                                    period: int,
-                                    cutoff_date: Union[str, datetime.datetime] = 'today',
-                                    smoothing_factor: int = 2,
-                                    verbosity: int = 1) -> float:
-        """Calculate exponential moving avarage based on given period
-
-        Parameters
-        ----------
-        data : Union[pd.Series,List]
-            Data to calculate ema
-        period : int
-            Period for which ema has to be calculated
-        smoothing_factor : int, optional
-            Smoothing factor which will be used to calculate
-            Multiplying factor, by default 2
-
-        Returns
-        -------
-        float
-            ema value
-        """
-        ema_list = []
-        # Calculating multiplying factor
-        mf = smoothing_factor/(1 + period)
-
-        # Calculating first SMA
-        sma0 = (sum(data_df['Close'][:period])) / period
-
-        # Calculating first EMA
-        ema0 = (data_df['Close'][period] * mf) + (sma0 * (1 - mf))
-
-        # Calculating latest EMA
-        ema_pre = ema0
-
-        for idx in range(1, len(data_df)-50):
-            ema = (data_df['Close'][idx + 50] * mf) + (ema_pre * (1 - mf))
-            ema_pre = ema
-            ema_list.append(ema)
-            # if cutoff_date is not None:
-            if idx == (len(data_df) - 50):
-                break
-        data_df['ema'] = [pd.NA] * (len(data_df) - len(ema_list)) + ema_list
-        if cutoff_date == 'today':
-            date = data_df.index[-1]
-        else:
-            date = self._get_appropriate_date(
-                company_df=data_df,
-                desired_date=cutoff_date,
-                verbosity=verbosity
-            )
-
-        return float(data_df[data_df.index == date]['ema'])
-
-    def _get_appropriate_date(self,
-                              company_df: pd.DataFrame,
-                              desired_date: datetime.datetime,
-                              verbosity: int = 1) -> Tuple[datetime.datetime, float]:
-        """
-        Return appropriate date which is present in data record.
-
-        Parameters
-        ----------
-        company_df : pd.DataFrame
-            Company dataframe
-        duration : datetime.datetime
-            Desired date cut-off to calculate ema
-        verbosity : int, optional
-            Level of detail logging, by default 1
-
-        Returns
-        -------
-        Tuple[datetime.datetime,float]
-            Date,Close value on date retrived
-
-        Raises
-        ------
-        ValueError
-            If desired old is older than first record
-        """
-        if desired_date < company_df.index[0]:
-            logger.error(
-                f"Given desired date {desired_date.strftime('%d-%m-%Y')} is older than first recorded date {company_df.index[0].strftime('%d-%m-%Y')}")
-
-        if verbosity > 0:
-            logger.debug(
-                f"Your desired EMA cut-off date is {desired_date.strftime('%d-%m-%Y')}")
-
-        for day_idx in range(1, 100):
-            if desired_date not in company_df.index:
-                date = desired_date - \
-                    dateutil.relativedelta.relativedelta(days=day_idx)
-            else:
-                date = desired_date
-            if date in company_df.index:
-                break
-        if verbosity > 0 and desired_date != date:
-            logger.warning(
-                f"Desired date: {desired_date.strftime('%d-%m-%Y')} not found going for next possible date: {date.strftime('%d-%m-%Y')}")
-
-        return date
-
-    def _percentage_diff_analysis(self,
-                                  ema_a,
-                                  ema_b):
-        """
-        Used to calculate Percentage difference
-        """
-        return abs((ema_b - ema_a)/((ema_a + ema_b) / 2) * 100)
-
-    def _outcome_analysis(self, percentage_diff):
-        if 5 < percentage_diff < 5:
-            outcome = 'close by'
-        else:
-            outcome = 'far away'
-        return outcome
 
     # TODO: Add all parallel executor function here
     def _parallel_vol_indicator_n_days(self,
@@ -463,13 +346,13 @@ class Indicator:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
-            EMA_A = self._exponential_moving_avarage(
+            EMA_A = exponential_moving_avarage(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[0],
                 verbosity=verbosity
             )
-            EMA_B = self._exponential_moving_avarage(
+            EMA_B = exponential_moving_avarage(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[1],
@@ -505,28 +388,28 @@ class Indicator:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
-            EMA_A = self._exponential_moving_avarage(
+            EMA_A = exponential_moving_avarage(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[0],
                 verbosity=verbosity
             )
-            EMA_B = self._exponential_moving_avarage(
+            EMA_B = exponential_moving_avarage(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[1],
                 verbosity=verbosity
             )
-            EMA_C = self._exponential_moving_avarage(
+            EMA_C = exponential_moving_avarage(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[2],
                 verbosity=verbosity
             )
 
-            percentage_diff_cb = self._percentage_diff_analysis(EMA_C, EMA_B)
-            percentage_diff_ca = self._percentage_diff_analysis(EMA_C, EMA_A)
-            percentage_diff_ba = self._percentage_diff_analysis(EMA_B, EMA_A)
+            percentage_diff_cb = percentage_diff_analysis(EMA_C, EMA_B)
+            percentage_diff_ca = percentage_diff_analysis(EMA_C, EMA_A)
+            percentage_diff_ba = percentage_diff_analysis(EMA_B, EMA_A)
 
             if (percentage_diff_cb < 1) and (percentage_diff_ca < 1) and (percentage_diff_ba < 1):
                 action = 'buy'
