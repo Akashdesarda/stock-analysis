@@ -12,3 +12,4 @@ Stock_analysis.egg-info
 multi.ipynb
 results/momentum_ema50-200_27-09-2020_top_20.csv
 .pytest_cache
+profile_prog.py
