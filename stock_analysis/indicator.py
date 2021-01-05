@@ -102,7 +102,7 @@ class Indicator:
         export_path : str, optional
             Path to save, to be used only if 'save' is true, by default '.'
         verbosity : int, optional
-            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+            Level of detail logging,1=< Detail, 0=Less detail , by default 1
 
         Returns
         -------
@@ -182,8 +182,9 @@ class Indicator:
             company_quote = pool.map(
                 self._parallel_quote_retrive, ema_short['company'])
         for single_company_quote in company_quote:
-            batch_company_quote = batch_company_quote.append(
-                single_company_quote)
+            if isinstance(single_company_quote, pd.DataFrame):
+                batch_company_quote = batch_company_quote.append(
+                    single_company_quote)
 
         batch_company_quote = batch_company_quote.reset_index().rename(columns={
             'index': 'company'})
@@ -255,8 +256,9 @@ class Indicator:
             company_quote = pool.map(
                 self._parallel_quote_retrive, ema_short['company'])
         for single_company_quote in company_quote:
-            batch_company_quote = batch_company_quote.append(
-                single_company_quote)
+            if isinstance(single_company_quote, pd.DataFrame):
+                batch_company_quote = batch_company_quote.append(
+                    single_company_quote)
 
         batch_company_quote = batch_company_quote.reset_index().rename(columns={
             'index': 'company'})
@@ -283,11 +285,11 @@ class Indicator:
                 f"Here are sample 5 company\n{ema_quote.head()}")
         if save is not False:
             ema_quote.to_csv(
-                f"{export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv",
+                f"{export_path}/ema_crossover_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}-{str(ema_canditate[2])}_{len(self.data['company'])}company_{now_strting}.csv",
                 index=False)
             if verbosity > 0:
                 logger.debug(
-                    f"Exported at {export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv")
+                    f"Exported at {export_path}/ema_crossover_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}-{str(ema_canditate[2])}_{len(self.data['company'])}company_{now_strting}.csv")
 
         else:
             return ema_quote
@@ -373,9 +375,12 @@ class Indicator:
                 'action': action}
 
     def _parallel_quote_retrive(self, company: str) -> pd.DataFrame:
-        logger.info(
-            f"Retriving Detail Quote data for {company}")
-        return DataRetrive.single_company_quote(f'{company}.NS')
+        logger.info(f"Retriving Detail Quote data for {company}")
+        try:
+            return DataRetrive.single_company_quote(f'{company}.NS')
+        except (KeyError, IndexError, ValueError):
+            logger.warning(f"Cannot retrive data for {company}")
+            return 'Invalid'
 
     def _parallel_ema_indicator_n3(self, company: str,
                                    ema_canditate: Tuple[int, int] = (5, 13, 26),
