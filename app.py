@@ -60,11 +60,12 @@ if task == 'Unit strategy':
     - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
-                sa.momentum_strategy()
-                result = st.dataframe(
+                with st.spinner("Running the query"):
+                    sa.momentum_strategy()
+                st.dataframe(
                     pd.read_csv(newest_file('./momentum_result_*.csv'))
                 )
-                st.write(
+                st.success(
                     f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/momentum_result_*.csv")}""")
         
         elif sub_task_mode == 'Manual mode':
@@ -93,16 +94,17 @@ if task == 'Unit strategy':
     - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
-                    sa.momentum_strategy(
-                        end_date=sub_task_para_date,
-                        top_company_count=int(sub_task_para_count),
-                        export_path=sub_task_para_export,
-                        verbosity=int(sub_task_para_verbosity)
-                    )
-                    result = st.dataframe(
+                    with st.spinner("Running the query"):
+                        sa.momentum_strategy(
+                            end_date=sub_task_para_date,
+                            top_company_count=int(sub_task_para_count),
+                            export_path=sub_task_para_export,
+                            verbosity=int(sub_task_para_verbosity)
+                        )
+                    st.dataframe(
                     pd.read_csv(newest_file(f'{sub_task_para_export}/momentum_result_*.csv'))
                 )
-                    st.write(
+                    st.success(
                         f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/momentum_result_*.csv")}""")
 
     elif sub_task == "Momentum with EMA":
@@ -120,11 +122,12 @@ if task == 'Unit strategy':
     - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
-                sa.momentum_with_ema_strategy()
-                result = st.dataframe(
+                with st.spinner("Running the query"):
+                    sa.momentum_with_ema_strategy()
+                st.dataframe(
                         pd.read_csv(newest_file('./momentum_ema*.csv'))
                     )
-                st.write(
+                st.success(
                     f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/momentum_ema*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_date = st.date_input(
@@ -161,16 +164,18 @@ if task == 'Unit strategy':
     - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
-                    sa.momentum_with_ema_strategy(
-                        end_date=sub_task_para_date,
-                        top_company_count=sub_task_para_count,
-                        ema_canditate=(sub_task_para_emacandidate1,sub_task_para_emacandidate2),
-                        export_path=sub_task_para_export,
-                        verbosity=sub_task_para_verbosity)
-                    result = st.dataframe(
+                    with st.spinner("Running the query"):
+                        sa.momentum_with_ema_strategy(
+                            end_date=sub_task_para_date,
+                            top_company_count=sub_task_para_count,
+                            ema_canditate=(sub_task_para_emacandidate1,sub_task_para_emacandidate2),
+                            export_path=sub_task_para_export,
+                            verbosity=sub_task_para_verbosity
+                        )
+                    st.dataframe(
                     pd.read_csv(newest_file(f'{sub_task_para_export}/momentum_ema*.csv'))
                 )
-                    st.write(
+                    st.success(
                         f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/momentum_ema*.csv")}""")
 
 # Task for Indicator
@@ -202,11 +207,12 @@ elif task == 'Indicator':
     - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
-                ind.volume_indicator_n_days()
-                result = st.dataframe(
+                with st.spinner("Running the query"):
+                    ind.volume_indicator_n_days()
+                st.dataframe(
                     pd.read_csv(newest_file('./VolumeIndicator90Days_detailed_*.csv'))
                 )
-                st.write(
+                st.success(
                     f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/VolumeIndicator90Days_detailed_*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_duration = st.number_input(
@@ -231,16 +237,17 @@ elif task == 'Indicator':
     - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
-                    ind.volume_indicator_n_days(
-                        duration=sub_task_para_duration,
-                        export_path=sub_task_para_export,
-                        verbosity=sub_task_para_verbosity
-                    )
-                    result = st.dataframe(
+                    with st.spinner("Running the query"):
+                        ind.volume_indicator_n_days(
+                            duration=sub_task_para_duration,
+                            export_path=sub_task_para_export,
+                            verbosity=sub_task_para_verbosity
+                        )
+                    st.dataframe(
                     pd.read_csv(newest_file(f'{sub_task_para_export}/VolumeIndicator90Days_detailed_*.csv'))
                 )
-                st.write(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/VolumeIndicator90Days_detailed_*.csv")}""")
+                    st.success(
+                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/VolumeIndicator90Days_detailed_*.csv")}""")
                     
     elif sub_task == 'Exponential moving average (short)':
         st.markdown('**Please continue and provide input parameters**')
@@ -255,11 +262,12 @@ elif task == 'Indicator':
     - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
-                ind.ema_indicator()
-                result = st.dataframe(
+                with st.spinner("Running the query"):
+                    ind.ema_indicator()
+                st.dataframe(
                     pd.read_csv(newest_file('./ema_indicator*.csv'))
                 )
-                st.write(
+                st.success(
                     f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_indicator*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_emacandidate1 = st.number_input(
@@ -289,15 +297,16 @@ elif task == 'Indicator':
     - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
-                    ind.ema_indicator(
-                        ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
-                        export_path=sub_task_para_export,
-                        verbosity=sub_task_para_verbosity
-                    )
-                    result = st.dataframe(
+                    with st.spinner("Running the query"):
+                        ind.ema_indicator(
+                            ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
+                            export_path=sub_task_para_export,
+                            verbosity=sub_task_para_verbosity
+                        )
+                    st.dataframe(
                     pd.read_csv(newest_file(f'{sub_task_para_export}/ema_indicator*.csv'))
-                )
-                    st.write(
+                    )
+                    st.success(
                         f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_indicator*.csv")}""")
                     
     elif sub_task == 'Exponential moving average (detailed)':
@@ -313,11 +322,12 @@ elif task == 'Indicator':
     - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
-                ind.ema_indicator_detail()
-                result = st.dataframe(
+                with st.spinner("Running the query"):
+                    ind.ema_indicator_detail()
+                st.dataframe(
                     pd.read_csv(newest_file('./ema_indicator_detail*.csv'))
                 )
-                st.write(
+                st.success(
                     f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_indicator_detail*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_emacandidate1 = st.number_input(
@@ -347,15 +357,16 @@ elif task == 'Indicator':
     - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
-                    ind.ema_indicator_detail(
+                    with st.spinner("Running the query"):    
+                        ind.ema_indicator_detail(
                         ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
                         export_path=sub_task_para_export,
                         verbosity=sub_task_para_verbosity
                 )
-                    result = st.dataframe(
+                    st.dataframe(
                     pd.read_csv(newest_file(f'{sub_task_para_export}/ema_indicator_detail*.csv'))
                 )
-                    st.write(
+                    st.success(
                         f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_indicator_detail*.csv")}""")
     
     elif sub_task == 'Exponential moving average crossover':
@@ -371,11 +382,12 @@ elif task == 'Indicator':
             - **Export path**: Same folder
             - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
-                ind.ema_crossover_indicator_detail()
-                result = st.dataframe(
+                with st.spinner("Running the query"):
+                    ind.ema_crossover_indicator_detail()
+                st.dataframe(
                     pd.read_csv(newest_file('./ema_crossover_indicator_detail*.csv'))
                 )
-                st.write(
+                st.success(
                     f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_crossover_indicator_detail*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_emacandidate1 = st.number_input(
@@ -410,13 +422,14 @@ elif task == 'Indicator':
                 - **Export path**: {sub_task_para_export}
                 - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
-                    ind.ema_crossover_indicator_detail(
-                        ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2, sub_task_para_emacandidate3),
-                        export_path=sub_task_para_export,
-                        verbosity=sub_task_para_verbosity
-                )
-                    result = st.dataframe(
+                    with st.spinner("Running the query"):
+                        ind.ema_crossover_indicator_detail(
+                            ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2, sub_task_para_emacandidate3),
+                            export_path=sub_task_para_export,
+                            verbosity=sub_task_para_verbosity
+                    )
+                    st.dataframe(
                     pd.read_csv(newest_file(f'{sub_task_para_export}/ema_crossover_indicator_detail*.csv'))
                 )
-                    st.write(
+                    st.success(
                         f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_crossover_indicator_detail*.csv")}""")
