@@ -1,5 +1,5 @@
 import warnings
-from stock_analysis.unit_strategy import UnitStrategy
+from stock_analysis.unit_strategy import MomentumStrategy
 from stock_analysis.indicator import Indicator
 from stock_analysis.utils.logger import logger
 
@@ -12,7 +12,7 @@ task = int(
 # Tasks for Unit Strategy
 if task == 1:
     yaml_path = input("Enter Company name yaml file location: ")
-    sa = UnitStrategy(path=yaml_path)
+    sa = MomentumStrategy(path=yaml_path)
 
     sub_task = int(
         input("Choose sub task to perform: \n1.Momentum Strategy\n2.Momentum with EMA \nChoice: "))

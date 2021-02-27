@@ -1,8 +1,8 @@
-from stock_analysis.unit_strategy import UnitStrategy
+from stock_analysis.unit_strategy import MomentumStrategy
 
 company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL','BAJAJ','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
 
-ut = UnitStrategy(company_name=company_list)
+ut = MomentumStrategy(company_name=company_list)
 
 def test_momentum_strategy():
     

@@ -30,8 +30,8 @@ class Indicator:
         as 'path' preside over 'company_name', by default None
 
     Eg:
-    >>>from stock_analysis.unit_strategy import UnitStrategy
-    >>>sa = UnitStrategy('./data/company_list.yaml')
+    >>>from stock_analysis.unit_strategy import MomentumStrategy
+    >>>sa = MomentumStrategy('./data/company_list.yaml')
     """    
     path: str = None
     company_name: List = None

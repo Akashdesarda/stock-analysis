@@ -18,7 +18,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 
 
 @dataclass
-class UnitStrategy:
+class MomentumStrategy:
     """
     Perform general strategy which are indpendant on Unit in nature
     
@@ -32,8 +32,8 @@ class UnitStrategy:
         as 'path' preside over 'company_name', by default None
 
     Eg:
-    >>>from stock_analysis.unit_strategy import UnitStrategy
-    >>>sa = UnitStrategy('./data/company_list.yaml')
+    >>>from stock_analysis.unit_strategy import MomentumStrategy
+    >>>sa = MomentumStrategy('./data/company_list.yaml')
     """    
     path: str = None
     company_name: List = None
@@ -56,8 +56,8 @@ class UnitStrategy:
         based on desired 'return' duration
 
         eg
-        >>>from stock_analysis import UnitStrategy
-        >>>sa = UnitStrategy('./data/company_list.yaml')
+        >>>from stock_analysis import MomentumStrategy
+        >>>sa = MomentumStrategy('./data/company_list.yaml')
         >>>sa.momentum_strategy(end_date='01/06/2020')
 
         Parameters

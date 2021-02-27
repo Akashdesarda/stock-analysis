@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 from stock_analysis.indicator import Indicator
 from stock_analysis.utils.logger import logger
-from stock_analysis.unit_strategy import UnitStrategy
+from stock_analysis.unit_strategy import MomentumStrategy
 
 def newest_file(path: str)-> str:
     file_list = glob.glob(path)
@@ -14,8 +14,8 @@ def newest_file(path: str)-> str:
 default_intro = """
 # Welcome to Stock Analysis
 """
-unit_intro = """
-### This is used to perform Unit strategy
+momentum_intro = """
+### This is used to perform Momentum strategy
 """
 ind_intro = """
 ### This is used to perform Indicator
@@ -23,23 +23,23 @@ ind_intro = """
 st.set_page_config('Stock Analysis')
 task = st.sidebar.selectbox(
     "Please select the task to start Stock Analysis",
-    ("Home", "Unit strategy", "Indicator")
+    ("Home", "Momentum strategy", "Indicator")
 )
 st.sidebar.info("Select a task above")
 # st.title("Stock Analysis")
 if task == 'Home':
     st.markdown(default_intro)
-elif task == 'Unit strategy':
-    st.markdown(unit_intro)
+elif task == 'Momentum strategy':
+    st.markdown(momentum_intro)
 elif task == 'Indicator':
     st.markdown(ind_intro)
 
-if task == 'Unit strategy':
+if task == 'Momentum strategy':
     #TODO: Add more interaction by adding start/continue button 
     # if st.button('Start'):
     yaml_path = st.text_input(label='Enter Company name yaml file location')
     if yaml_path:
-        sa = UnitStrategy(path=yaml_path)
+        sa = MomentumStrategy(path=yaml_path)
     else:
         st.warning('Yaml file with Company name must be given')
     sub_task = st.selectbox(
