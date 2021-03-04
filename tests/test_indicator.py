@@ -40,3 +40,12 @@ def test_ema_crossover():
     # Check for null value
     for key,val in ema_cross.isna().sum().to_dict().items():
         assert val == 0, f'Found Null value in {key}'
+
+def test_dma():
+    dma_with_per = ind.dma_with_percentage()
+    # Check for correct order of columns
+    c = ['company name','nse symbol','sma_date','current price','sma','ideal buy','ideal sell','turnover in','action']
+    assert c == list(dma_with_per.columns), 'Either less or misplaced columns'
+    # Check for null value
+    for key,val in dma_with_per.isna().sum().to_dict().items():
+        assert val == 0, f'Found Null value in {key}'

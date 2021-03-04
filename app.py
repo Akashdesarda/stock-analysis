@@ -70,7 +70,7 @@ if task == 'Momentum strategy':
         
         elif sub_task_mode == 'Manual mode':
             sub_task_para_date = st.date_input(
-                label="Input desired")
+                label="Input desire date")
             sub_task_para_date = sub_task_para_date.strftime('%d/%m/%Y')
             sub_task_para_count = st.number_input(
                 label='Input top company count',
@@ -191,7 +191,8 @@ elif task == 'Indicator':
             'Volume Indicator for [n] days',
             'Exponential moving average (short)',
             'Exponential moving average (detailed)',
-            'Exponential moving average crossover'
+            'Exponential moving average crossover',
+            'Daily moving average (absolute)'
         )
     )
     if sub_task == 'Volume Indicator for [n] days':
@@ -433,3 +434,60 @@ elif task == 'Indicator':
                 )
                     st.success(
                         f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_crossover_indicator_detail*.csv")}""")
+                
+    elif sub_task == 'Daily moving average (absolute)':
+        st.markdown('**Please continue and provide input parameters**')
+        sub_task_mode = st.selectbox(
+            f'Select the mode to perform {sub_task}',
+            ('Default mode', 'Manual mode')
+        )
+        if sub_task_mode == 'Default mode':
+            st.markdown("""
+    **Following are the Default Parameters**
+    - **End date**: today
+    - **Cutoff Percentage**: 5%
+    - **Export path**: Same folder
+    - **Verbosity** (level of detail loging): detail """)
+            if st.button('Continue'):
+                with st.spinner("Running the query"):
+                    ind.dma_with_percentage(save=True)
+                st.dataframe(
+                pd.read_csv(newest_file('./dma_action_cutoff_*.csv'))
+                )
+                st.success(
+                f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/dma_action_cutoff_*.csv")}""")
+        elif sub_task_mode == 'Manual mode':
+            sub_task_para_end_date = st.date_input(
+                label="Input desire date")
+            sub_task_para_end_date = sub_task_para_end_date.strftime('%d/%m/%Y')
+            sub_task_para_cutoff = st.number_input(
+                label='Input Cuttoff percentage',
+                value=5
+            )
+            sub_task_para_export = st.text_input(
+                label='Enter path to save result',
+                value='.'
+            )
+            if (sub_task_para_end_date) and (sub_task_para_cutoff) and (sub_task_para_export) is not None:
+                st.markdown(f"""
+    **Following Parameters are given:**
+    - **End date**: {sub_task_para_end_date}
+    - **Cutoff Percentage**: {sub_task_para_cutoff}
+    - **Export path**: {sub_task_para_export}""")
+                if st.button('Continue'):
+                    with st.spinner("Running the query"):
+                        ind.dma_with_percentage(
+                            end_date=sub_task_para_end_date,
+                            cutoff=int(sub_task_para_cutoff),
+                            save=True,
+                            export_path=sub_task_para_export
+                        )
+                    st.dataframe(
+                    pd.read_csv(newest_file('./dma_action_cutoff_*.csv'))
+                    )
+                    st.success(
+                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/dma_action_cutoff_*.csv")}""")
+
+                    
+                    
+

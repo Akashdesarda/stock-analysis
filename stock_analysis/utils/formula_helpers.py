@@ -4,9 +4,7 @@ from typing import List, Union
 from stock_analysis.utils.helpers import get_appropriate_date_ema
 
 
-def annualized_rate_of_return(end_date: int,
-                              start_date: int,
-                              duration: float) -> float:
+def annualized_rate_of_return(end_date: int, start_date: int, duration: float) -> float:
     """
     Calculate annulized rate of return
 
@@ -26,15 +24,34 @@ def annualized_rate_of_return(end_date: int,
     float
         Annulized return
     """
-    return (((end_date / start_date) ** (1/duration)) - 1) * 100
+    return (((end_date / start_date) ** (1 / duration)) - 1) * 100
 
 
-def exponential_moving_avarage(data_df: Union[pd.Series, List],
-                               period: int,
-                               cutoff_date: Union[str,
-                                                  datetime.datetime] = 'today',
-                               smoothing_factor: int = 2,
-                               verbosity: int = 1) -> float:
+def simple_moving_average(data: Union[pd.Series, List], period: int):
+    """Calculate SMA
+
+    Parameters
+    ----------
+    data : Union[pd.Series, List]
+        data on which SMA have to be calculate
+    period : int
+        [description]
+
+    Returns
+    -------
+    float
+        SMA for given
+    """
+    return (sum(data[:period])) / period
+
+
+def exponential_moving_avarage(
+    data_df: Union[pd.Series, List],
+    period: int,
+    cutoff_date: Union[str, datetime.datetime] = "today",
+    smoothing_factor: int = 2,
+    verbosity: int = 1,
+) -> float:
     """Calculate exponential moving avarage based on given period
 
     Parameters
@@ -54,52 +71,73 @@ def exponential_moving_avarage(data_df: Union[pd.Series, List],
     """
     ema_list = []
     # Calculating multiplying factor
-    mf = smoothing_factor/(1 + period)
+    mf = smoothing_factor / (1 + period)
 
     # Calculating first SMA
-    sma0 = (sum(data_df['Close'][:period])) / period
+    sma0 = simple_moving_average(data_df["Close"], period)
 
     # Calculating first EMA
-    ema0 = (data_df['Close'][period] * mf) + (sma0 * (1 - mf))
+    ema0 = (data_df["Close"][period] * mf) + (sma0 * (1 - mf))
 
     # Calculating latest EMA
     ema_pre = ema0
 
-    for idx in range(1, len(data_df)-50):
-        ema = (data_df['Close'][idx + 50] * mf) + (ema_pre * (1 - mf))
+    for idx in range(1, len(data_df) - 50):
+        ema = (data_df["Close"][idx + 50] * mf) + (ema_pre * (1 - mf))
         ema_pre = ema
         ema_list.append(ema)
         # if cutoff_date is not None:
         if idx == (len(data_df) - 50):
             break
-    data_df['ema'] = [pd.NA] * (len(data_df) - len(ema_list)) + ema_list
-    if cutoff_date == 'today':
+    data_df["ema"] = [pd.NA] * (len(data_df) - len(ema_list)) + ema_list
+    if cutoff_date == "today":
         date = data_df.index[-1]
     else:
         date = get_appropriate_date_ema(
-            company_df=data_df,
-            desired_date=cutoff_date,
-            verbosity=verbosity
+            company_df=data_df, desired_date=cutoff_date, verbosity=verbosity
         )
 
-    return float(data_df[data_df.index == date]['ema'])
+    return float(data_df[data_df.index == date]["ema"])
 
 
-def percentage_diff_analysis(value_a: float,
-                             value_b: float):
+def abs_percentage_diff(value_a: float, value_b: float):
     """
     Used to calculate Percentage difference of Value of B wrt to A
     """
-    return abs((value_b - value_a)/((value_a + value_b) / 2) * 100)
+    return abs((value_b - value_a) / ((value_a + value_b) / 2) * 100)
+
+
+def percentage_diff(value_a: float, value_b: float):
+    """
+    Used to calculate Percentage difference of Value of B wrt to A
+    """
+    return (value_b - value_a) / ((value_a + value_b) / 2) * 100
 
 
 def outcome_analysis(ratio: float):
     """
-    Used to determine closeness based on any given ratio analysis 
-    like percentage difference 
+    Used to determine closeness based on any given ratio analysis
+    like percentage difference
     """
     if 5 < ratio < 5:
-        outcome = 'close by'
+        outcome = "close by"
     else:
-        outcome = 'far away'
+        outcome = "far away"
     return outcome
+
+
+def turnover(volume: Union[pd.Series, List], price: float)-> float:
+    """Calculate given Stock's batch turnover over specified time
+
+    Parameters
+    ----------
+    volume : Union[pd.Series, List]
+        batch volume data
+    price : float
+        price of respective stock
+
+    Returns
+    -------
+    float
+    """    
+    return (sum(volume) / len(volume)) * price
