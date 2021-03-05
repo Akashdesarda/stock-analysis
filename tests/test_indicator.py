@@ -1,6 +1,6 @@
 from stock_analysis.indicator import Indicator
 
-company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL','BAJAJ','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
+company_list = ['BAJAJ', 'ADANIGREEN','HDFCAMC','WHIRLPOOL','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
 
 ind = Indicator(company_name=company_list)
 
@@ -44,7 +44,7 @@ def test_ema_crossover():
 def test_dma():
     dma_with_per = ind.dma_absolute_indicator()
     # Check for correct order of columns
-    c = ['company name','nse symbol','sma_date','current price','sma','ideal buy','ideal sell','turnover in','action']
+    c = ['company name','nse symbol','sma_date','current price','sma','ideal buy','ideal sell','turnover in cr.','action']
     assert c == list(dma_with_per.columns), 'Either less or misplaced columns'
     # Check for null value
     for key,val in dma_with_per.isna().sum().to_dict().items():
