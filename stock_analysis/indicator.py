@@ -13,7 +13,7 @@ from stock_analysis.utils.formula_helpers import (
     percentage_diff,
     outcome_analysis,
     simple_moving_average,
-    turnover
+    turnover,
 )
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
@@ -76,8 +76,10 @@ class Indicator:
             All Volume based indicator
         """
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(self._parallel_vol_indicator_n_days,
-                                  [(company, duration) for company in self.data['company']])
+            result = pool.starmap(
+                self._parallel_vol_indicator_n_days,
+                [(company, duration) for company in self.data["company"]],
+            )
 
         vol_ind_df = pd.DataFrame(result)
         if verbosity > 0:
@@ -125,8 +127,13 @@ class Indicator:
         """
 
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(self._parallel_ema_indicator,
-                                  [(company, ema_canditate, cutoff_date, verbosity) for company in self.data['company']])
+            result = pool.starmap(
+                self._parallel_ema_indicator,
+                [
+                    (company, ema_canditate, cutoff_date, verbosity)
+                    for company in self.data["company"]
+                ],
+            )
         ema_indicator_df = pd.DataFrame(result)
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
@@ -332,7 +339,7 @@ class Indicator:
 
         else:
             return ema_quote
-    
+
     def dma_absolute_indicator(
         self,
         end_date: str = "today",
@@ -340,7 +347,7 @@ class Indicator:
         cutoff: int = 5,
         save: bool = False,
         export_path: str = ".",
-    )-> Dict:
+    ) -> Dict:
         """Action determination based SMA, Turnover
 
         Parameters
@@ -362,21 +369,25 @@ class Indicator:
         Dict
         """
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(self._parallel_dma_absolute,
-            [(company, end_date, period, cutoff) for company in self.data['company']])
+            result = pool.starmap(
+                self._parallel_dma_absolute,
+                [
+                    (company, end_date, period, cutoff)
+                    for company in self.data["company"]
+                ],
+            )
         dma_compile = pd.DataFrame(result)
         if save is True:
-            if end_date == 'today':
+            if end_date == "today":
                 end_date = now_strting
             else:
-                end_date = end_date.replace('/','-')
+                end_date = end_date.replace("/", "-")
             dma_compile.to_csv(
                 f"{export_path}/dma_action_cutoff_{str(cutoff)}_{end_date}.csv",
                 index=False,
             )
         else:
             return dma_compile
-
 
     def _ema_indicator_n3(
         self,
@@ -477,7 +488,7 @@ class Indicator:
         ema_canditate: Tuple[int, int] = (5, 13, 26),
         cutoff_date: Union[str, datetime.datetime] = "today",
         verbosity: int = 1,
-    )-> Dict:
+    ) -> Dict:
         logger.info(f"Retriving data for {company}")
         company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
         if company_df["Close"].isnull().sum() != 0:
@@ -541,47 +552,68 @@ class Indicator:
         end_date: Union[str, datetime.datetime] = "today",
         period: int = 200,
         cutoff: int = 5,
-    )-> Dict:  
+    ) -> Dict:
         logger.info(f"Retriving data for {company}")
-        if end_date == 'today':
+        if end_date == "today":
             cutoff_date = datetime.datetime.today()
         else:
-            cutoff_date = datetime.datetime.strptime(end_date, '%d/%m/%Y').date()
+            cutoff_date = datetime.datetime.strptime(end_date, "%d/%m/%Y").date()
         start_date = cutoff_date - dateutil.relativedelta.relativedelta(months=18)
         try:
             company_df = DataRetrive.single_company_specific(
-                company_name=f"{company}.NS", start_date=start_date, end_date=cutoff_date
+                company_name=f"{company}.NS",
+                start_date=start_date,
+                end_date=cutoff_date,
             )
             if company_df["Close"].isnull().sum() != 0:
                 logger.warning(f"{company} have some missing value, fixing it")
                 company_df.dropna(inplace=True)
         except (KeyError, ValueError, IndexError):
-            company_df = pd.DataFrame({'Open':pd.NA, 'High':pd.NA, 'Low':pd.NA, 'Close':pd.NA, 'Adj Close':pd.NA, 'Volume':pd.NA},
-                                        index=['Date'])
+            company_df = pd.DataFrame(
+                {
+                    "Open": pd.NA,
+                    "High": pd.NA,
+                    "Low": pd.NA,
+                    "Close": pd.NA,
+                    "Adj Close": pd.NA,
+                    "Volume": pd.NA,
+                },
+                index=["Date"],
+            )
 
         try:
-            sma = simple_moving_average(company_df["Close"][-(period-1):], period)
+            sma = simple_moving_average(company_df["Close"][-(period - 1) :], period)
             buy = sma + (sma * (cutoff / 100))
             sell = sma - (sma * (cutoff / 100))
-            if buy < company_df['Close'][-1]:
+            if buy < company_df["Close"][-1]:
                 action = "buy"
-            elif sell > company_df['Close'][-1]:
+            elif sell > company_df["Close"][-1]:
                 action = "sell"
-            elif sell < company_df['Close'][-1] < buy:
-                action = 'no action'
-        except (KeyError, IndexError, ValueError):
+            elif sell < company_df["Close"][-1] < buy:
+                action = "no action"
+            long_name = self._parallel_quote_retrive(company)["longName"][0]
+            current_price = company_df["Close"][-1]
+            turnover_value = turnover(company_df["Volume"][-period:], sma) / 10000000
+        except (KeyError, IndexError, ValueError, TypeError):
             logger.warning(f"{company} has less record than minimum rexquired")
-            sma, action = pd.NA, pd.NA
+            long_name, sma, current_price, action, turnover_value = (
+                "Invalid",
+                "Invalid",
+                "Invalid",
+                "Invalid",
+                "Invalid",
+            )
+            company = f"Problem with {company}"
         return {
-            # "company name":DataRetrive.single_company_quote(f'{company}.NS')['longName'][0],
-            "company name":self._parallel_quote_retrive(company)['longName'][0],
+            "company name": long_name,
             "nse symbol": company,
-            "sma_date": now_strting if cutoff_date == "today" else cutoff_date.strftime("%d-%m-%Y"),
-            "current price": company_df["Close"][-1],
+            "sma_date": now_strting
+            if cutoff_date == "today"
+            else cutoff_date.strftime("%d-%m-%Y"),
+            "current price": current_price,
             "sma": sma,
             "ideal buy": buy,
             "ideal sell": sell,
-            "turnover in cr.": turnover(company_df['Volume'][-period:], sma) / 10000000,
-            "action": action
+            "turnover in cr.": turnover_value,
+            "action": action,
         }
-
