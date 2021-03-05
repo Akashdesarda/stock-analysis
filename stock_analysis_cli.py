@@ -92,7 +92,7 @@ elif task == 2:
 ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
 \n2.Manual \nChoice: "))
         if sub_task_para == 1:
-            ind.volume_indicator_n_days()
+            ind.volume_n_days_indicator()
         elif sub_task_para == 2:
             logger.info(
                 "In Manual mode whereever you see 'default' then presing enter key will take default value")
@@ -102,7 +102,7 @@ ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
                 'Enter path to save result (eg: ./some_folder) (default: .  (to save in current working directory): ') or '.')
             sub_task_para_verbosity = int(
                 input('Input Verbosity [level 0: Minimal, 1: Detail (default: 1)]: ') or 1)
-            ind.volume_indicator_n_days(duration=sub_task_para_duration,
+            ind.volume_n_days_indicator(duration=sub_task_para_duration,
                                         export_path=sub_task_para_export,
                                         verbosity=sub_task_para_verbosity)
 
@@ -132,7 +132,7 @@ ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
 ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
 \n2.Manual \nChoice: "))
         if sub_task_para == 1:
-            ind.ema_indicator_detail()
+            ind.ema_detail_indicator()
         elif sub_task_para == 2:
             logger.info(
                 "In Manual mode whereever you see 'default' then presing enter key will take default value")
@@ -144,7 +144,7 @@ ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
                 'Enter path to save result (eg: ./some_folder) (default: .  (to save in current working directory): ') or '.')
             sub_task_para_verbosity = int(
                 input('Input Verbosity [level 0: Minimal, 1: Detail (default: 1)]: ') or 1)
-            ind.ema_indicator_detail(
+            ind.ema_detail_indicator(
                 ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
                 export_path=sub_task_para_export,
                 verbosity=sub_task_para_verbosity
@@ -155,7 +155,7 @@ ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
 ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
 \n2.Manual \nChoice: "))
         if sub_task_para == 1:
-            ind.ema_crossover_indicator_detail()
+            ind.ema_crossover_detail_indicator()
         elif sub_task_para == 2:
             logger.info(
                 "In Manual mode whereever you see 'default' then presing enter key will take default value")
@@ -169,7 +169,7 @@ ii)Export path = Same folder iii)Verbosity (level of detail logging): Detail\
                 'Enter path to save result (eg: ./some_folder) (default: .  (to save in current working directory): ') or '.')
             sub_task_para_verbosity = int(
                 input('Input Verbosity [level 0: Minimal, 1: Detail (default: 1)]: ') or 1)
-            ind.ema_crossover_indicator_detail(
+            ind.ema_crossover_detail_indicator(
                 ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2, sub_task_para_emacandidate3),
                 export_path=sub_task_para_export,
                 verbosity=sub_task_para_verbosity

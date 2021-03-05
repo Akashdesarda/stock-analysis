@@ -17,9 +17,9 @@ def test_ema_indicator():
     for key,val in ema.isna().sum().to_dict().items():
         assert val == 0, f'Found Null value in {key}'
 
-def test_ema_indicator_detail():
+def test_ema_detail_indicator():
     
-    ema_detail = ind.ema_indicator_detail(
+    ema_detail = ind.ema_detail_indicator(
         save=False,
         verbosity=0
     )
@@ -32,7 +32,7 @@ def test_ema_indicator_detail():
 
 def test_ema_crossover():
     
-    ema_cross = ind.ema_crossover_indicator_detail(save=False, verbosity=0)
+    ema_cross = ind.ema_crossover_detail_indicator(save=False, verbosity=0)
     
     # Check for correct order of columns
     c = ['company', 'ema_date','ema5', 'ema13', 'ema26', 'action', 'longName', 'price', 'regularMarketVolume', 'marketCap', 'bookValue', 'priceToBook', 'averageDailyVolume3Month', 'averageDailyVolume10Day', 'fiftyTwoWeekLowChange', 'fiftyTwoWeekLowChangePercent', 'fiftyTwoWeekRange', 'fiftyTwoWeekHighChange', 'fiftyTwoWeekHighChangePercent', 'fiftyTwoWeekLow', 'fiftyTwoWeekHigh']
@@ -42,7 +42,7 @@ def test_ema_crossover():
         assert val == 0, f'Found Null value in {key}'
 
 def test_dma():
-    dma_with_per = ind.dma_with_percentage()
+    dma_with_per = ind.dma_absolute_indicator()
     # Check for correct order of columns
     c = ['company name','nse symbol','sma_date','current price','sma','ideal buy','ideal sell','turnover in','action']
     assert c == list(dma_with_per.columns), 'Either less or misplaced columns'

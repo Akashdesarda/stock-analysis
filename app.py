@@ -209,7 +209,7 @@ elif task == 'Indicator':
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
                 with st.spinner("Running the query"):
-                    ind.volume_indicator_n_days()
+                    ind.volume_n_days_indicator()
                 st.dataframe(
                     pd.read_csv(newest_file('./VolumeIndicator90Days_detailed_*.csv'))
                 )
@@ -239,7 +239,7 @@ elif task == 'Indicator':
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
                     with st.spinner("Running the query"):
-                        ind.volume_indicator_n_days(
+                        ind.volume_n_days_indicator(
                             duration=sub_task_para_duration,
                             export_path=sub_task_para_export,
                             verbosity=sub_task_para_verbosity
@@ -324,12 +324,12 @@ elif task == 'Indicator':
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
                 with st.spinner("Running the query"):
-                    ind.ema_indicator_detail()
+                    ind.ema_detail_indicator()
                 st.dataframe(
-                    pd.read_csv(newest_file('./ema_indicator_detail*.csv'))
+                    pd.read_csv(newest_file('./ema_detail_indicator*.csv'))
                 )
                 st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_indicator_detail*.csv")}""")
+                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_detail_indicator*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_emacandidate1 = st.number_input(
                 label='Input desired first EMA candidate',
@@ -359,16 +359,16 @@ elif task == 'Indicator':
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
                     with st.spinner("Running the query"):    
-                        ind.ema_indicator_detail(
+                        ind.ema_detail_indicator(
                         ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2),
                         export_path=sub_task_para_export,
                         verbosity=sub_task_para_verbosity
                 )
                     st.dataframe(
-                    pd.read_csv(newest_file(f'{sub_task_para_export}/ema_indicator_detail*.csv'))
+                    pd.read_csv(newest_file(f'{sub_task_para_export}/ema_detail_indicator*.csv'))
                 )
                     st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_indicator_detail*.csv")}""")
+                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_detail_indicator*.csv")}""")
     
     elif sub_task == 'Exponential moving average crossover':
         st.markdown('**Please continue and provide input parameters**')
@@ -384,12 +384,12 @@ elif task == 'Indicator':
             - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
                 with st.spinner("Running the query"):
-                    ind.ema_crossover_indicator_detail()
+                    ind.ema_crossover_detail_indicator()
                 st.dataframe(
-                    pd.read_csv(newest_file('./ema_crossover_indicator_detail*.csv'))
+                    pd.read_csv(newest_file('./ema_crossover_detail_indicator*.csv'))
                 )
                 st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_crossover_indicator_detail*.csv")}""")
+                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_crossover_detail_indicator*.csv")}""")
         elif sub_task_mode == 'Manual mode':
             sub_task_para_emacandidate1 = st.number_input(
                 label='Input desired first EMA candidate',
@@ -424,16 +424,16 @@ elif task == 'Indicator':
                 - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
                     with st.spinner("Running the query"):
-                        ind.ema_crossover_indicator_detail(
+                        ind.ema_crossover_detail_indicator(
                             ema_canditate=(sub_task_para_emacandidate1, sub_task_para_emacandidate2, sub_task_para_emacandidate3),
                             export_path=sub_task_para_export,
                             verbosity=sub_task_para_verbosity
                     )
                     st.dataframe(
-                    pd.read_csv(newest_file(f'{sub_task_para_export}/ema_crossover_indicator_detail*.csv'))
+                    pd.read_csv(newest_file(f'{sub_task_para_export}/ema_crossover_detail_indicator*.csv'))
                 )
                     st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_crossover_indicator_detail*.csv")}""")
+                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_crossover_detail_indicator*.csv")}""")
                 
     elif sub_task == 'Daily moving average (absolute)':
         st.markdown('**Please continue and provide input parameters**')
@@ -450,7 +450,7 @@ elif task == 'Indicator':
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
                 with st.spinner("Running the query"):
-                    ind.dma_with_percentage(save=True)
+                    ind.dma_absolute_indicator(save=True)
                 st.dataframe(
                 pd.read_csv(newest_file('./dma_action_cutoff_*.csv'))
                 )
@@ -476,7 +476,7 @@ elif task == 'Indicator':
     - **Export path**: {sub_task_para_export}""")
                 if st.button('Continue'):
                     with st.spinner("Running the query"):
-                        ind.dma_with_percentage(
+                        ind.dma_absolute_indicator(
                             end_date=sub_task_para_end_date,
                             cutoff=int(sub_task_para_cutoff),
                             save=True,

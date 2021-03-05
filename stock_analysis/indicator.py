@@ -50,7 +50,7 @@ class Indicator:
         else:
             self.data = {"company": self.company_name}
 
-    def volume_indicator_n_days(
+    def volume_n_days_indicator(
         self,
         duration: int = 90,
         save: bool = True,
@@ -166,7 +166,7 @@ class Indicator:
         else:
             return ema_indicator_df
 
-    def ema_indicator_detail(
+    def ema_detail_indicator(
         self,
         ema_canditate: Tuple[int, int] = (50, 200),
         save: bool = True,
@@ -238,18 +238,18 @@ class Indicator:
             logger.debug(f"Here are sample 5 company\n{ema_quote.head()}")
         if save is not False:
             ema_quote.to_csv(
-                f"{export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv",
+                f"{export_path}/ema_detail_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv",
                 index=False,
             )
             if verbosity > 0:
                 logger.debug(
-                    f"Exported at {export_path}/ema_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv"
+                    f"Exported at {export_path}/ema_detail_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv"
                 )
 
         else:
             return ema_quote
 
-    def ema_crossover_indicator_detail(
+    def ema_crossover_detail_indicator(
         self,
         ema_canditate: Tuple[int, int, int] = (5, 13, 26),
         save: bool = True,
@@ -322,18 +322,18 @@ class Indicator:
             logger.debug(f"Here are sample 5 company\n{ema_quote.head()}")
         if save is not False:
             ema_quote.to_csv(
-                f"{export_path}/ema_crossover_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}-{str(ema_canditate[2])}_{len(self.data['company'])}company_{now_strting}.csv",
+                f"{export_path}/ema_crossover_detail_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}-{str(ema_canditate[2])}_{len(self.data['company'])}company_{now_strting}.csv",
                 index=False,
             )
             if verbosity > 0:
                 logger.debug(
-                    f"Exported at {export_path}/ema_crossover_indicator_detail{str(ema_canditate[0])}-{str(ema_canditate[1])}-{str(ema_canditate[2])}_{len(self.data['company'])}company_{now_strting}.csv"
+                    f"Exported at {export_path}/ema_crossover_detail_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}-{str(ema_canditate[2])}_{len(self.data['company'])}company_{now_strting}.csv"
                 )
 
         else:
             return ema_quote
     
-    def dma_with_percentage(
+    def dma_absolute_indicator(
         self,
         end_date: str = "today",
         period: int = 200,
@@ -362,7 +362,7 @@ class Indicator:
         Dict
         """
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(self._parallel_dma_with_percentage,
+            result = pool.starmap(self._parallel_dma_absolute,
             [(company, end_date, period, cutoff) for company in self.data['company']])
         dma_compile = pd.DataFrame(result)
         if save is True:
@@ -535,7 +535,7 @@ class Indicator:
             "action": action,
         }
 
-    def _parallel_dma_with_percentage(
+    def _parallel_dma_absolute(
         self,
         company: str = None,
         end_date: Union[str, datetime.datetime] = "today",
@@ -548,12 +548,17 @@ class Indicator:
         else:
             cutoff_date = datetime.datetime.strptime(end_date, '%d/%m/%Y').date()
         start_date = cutoff_date - dateutil.relativedelta.relativedelta(months=18)
-        company_df = DataRetrive.single_company_specific(
-            company_name=f"{company}.NS", start_date=start_date, end_date=cutoff_date
-        )
-        if company_df["Close"].isnull().sum() != 0:
-            logger.warning(f"{company} have some missing value, fixing it")
-            company_df.dropna(inplace=True)
+        try:
+            company_df = DataRetrive.single_company_specific(
+                company_name=f"{company}.NS", start_date=start_date, end_date=cutoff_date
+            )
+            if company_df["Close"].isnull().sum() != 0:
+                logger.warning(f"{company} have some missing value, fixing it")
+                company_df.dropna(inplace=True)
+        except (KeyError, ValueError, IndexError):
+            company_df = pd.DataFrame({'Open':pd.NA, 'High':pd.NA, 'Low':pd.NA, 'Close':pd.NA, 'Adj Close':pd.NA, 'Volume':pd.NA},
+                                        index=['Date'])
+
         try:
             sma = simple_moving_average(company_df["Close"][-(period-1):], period)
             buy = sma + (sma * (cutoff / 100))
@@ -568,7 +573,8 @@ class Indicator:
             logger.warning(f"{company} has less record than minimum rexquired")
             sma, action = pd.NA, pd.NA
         return {
-            "company name":DataRetrive.single_company_quote(f'{company}.NS')['longName'][0],
+            # "company name":DataRetrive.single_company_quote(f'{company}.NS')['longName'][0],
+            "company name":self._parallel_quote_retrive(company)['longName'][0],
             "nse symbol": company,
             "sma_date": now_strting if cutoff_date == "today" else cutoff_date.strftime("%d-%m-%Y"),
             "current price": company_df["Close"][-1],
