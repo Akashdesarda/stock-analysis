@@ -1,10 +1,8 @@
 import os
 import glob
-import datetime
 import pandas as pd
 import streamlit as st
 from stock_analysis.indicator import Indicator
-from stock_analysis.utils.logger import logger
 from stock_analysis.momentum_strategy import MomentumStrategy
 
 def newest_file(path: str)-> str:
@@ -483,11 +481,7 @@ elif task == 'Indicator':
                             export_path=sub_task_para_export
                         )
                     st.dataframe(
-                    pd.read_csv(newest_file('./dma_action_cutoff_*.csv'))
+                    pd.read_csv(newest_file(f'{sub_task_para_export}/dma_action_cutoff_*.csv'))
                     )
                     st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/dma_action_cutoff_*.csv")}""")
-
-                    
-                    
-
+                    f"""Result have been saved to {newest_file(f"{os.path.abspath(sub_task_para_export)}/dma_action_cutoff_*.csv")}""")
