@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 from stock_analysis.indicator import Indicator
 from stock_analysis.utils.logger import logger
-from stock_analysis.unit_strategy import MomentumStrategy
+from stock_analysis.momentum_strategy import MomentumStrategy
 
 def newest_file(path: str)-> str:
     file_list = glob.glob(path)

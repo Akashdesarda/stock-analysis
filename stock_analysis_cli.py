@@ -1,5 +1,5 @@
 import warnings
-from stock_analysis.unit_strategy import MomentumStrategy
+from stock_analysis.momentum_strategy import MomentumStrategy
 from stock_analysis.indicator import Indicator
 from stock_analysis.utils.logger import logger
 
