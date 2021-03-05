@@ -5,20 +5,28 @@ from dataclasses import dataclass
 from typing import Dict, List, Tuple, Union
 from stock_analysis.data_retrive import DataRetrive
 from stock_analysis.utils.logger import logger
+from stock_analysis.utils.helpers import get_appropriate_date_momentum
 from stock_analysis.utils.formula_helpers import (
-    exponential_moving_avarage,
+    turnover,
     abs_percentage_diff,
     simple_moving_average,
-    turnover,
+    annualized_rate_of_return,
+    exponential_moving_avarage,
 )
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 logger = logger()
 pd.options.display.float_format = "{:,.2f}".format
 
+
 @dataclass
 class UnitExecutor:
+    """UnitExecutor class packs all the different strategies, indicators, etc. which
+    can be used to execute on unit (single) data. This can be inhereted into other
+    class and consumed into multiprocessing iterator used for batch of data.
+    """
 
+    # TODO: Add all parallel executor function here
     def unit_vol_indicator_n_days(self, company: str = None, duration: int = 90):
         end = datetime.datetime.now()
         start = end - dateutil.relativedelta.relativedelta(days=duration)
@@ -223,4 +231,49 @@ class UnitExecutor:
             "ideal sell": sell,
             "turnover in cr.": turnover_value,
             "action": action,
+        }
+
+    def unit_momentum(self, company: str, start, end, verbosity: int = 1):
+
+        logger.info(f"Retriving data for {company}")
+        try:
+            company_df = DataRetrive.single_company_specific(
+                company_name=f"{company}.NS", start_date=start, end_date=end
+            )
+            company_df.reset_index(inplace=True)
+            ar_yearly = annualized_rate_of_return(
+                end_date=company_df.iloc[-1].Close,
+                start_date=company_df.iloc[0].Close,
+                duration=1,
+            )  # (company_df.iloc[-30,0] - company_df.iloc[0,0]).days/365)
+            ar_monthly = annualized_rate_of_return(
+                end_date=company_df.iloc[-1].Close,
+                start_date=get_appropriate_date_momentum(
+                    company_df, company, verbosity=verbosity
+                )[1],
+                duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days / 30,
+            )
+            monthly_start_date = get_appropriate_date_momentum(
+                company_df, company, verbosity=0
+            )[0].strftime("%d-%m-%Y")
+        except (IndexError, KeyError, ValueError):
+            if verbosity > 0:
+                logger.debug(f"Data is not available for: {company}")
+            company_df = pd.DataFrame(
+                {"Date": [datetime.datetime(1000, 1, 1)] * 30, "Close": [pd.NA] * 30}
+            )
+            ar_yearly, ar_monthly, monthly_start_date = pd.NA, pd.NA, pd.NA
+
+        return {
+            "company": company,
+            "yearly_start_date": company_df.iloc[0].Date.strftime("%d-%m-%Y"),
+            "yearly_start_date_close": company_df.iloc[0].Close,
+            "yearly_end_date": company_df.iloc[-1].Date.strftime("%d-%m-%Y"),
+            "yearly_end_date_close": company_df.iloc[-1].Close,
+            "return_yearly": ar_yearly,
+            "monthly_start_date": monthly_start_date,
+            "monthly_start_date_close": company_df.iloc[-30].Close,
+            "monthly_end_date": company_df.iloc[-1].Date.strftime("%d-%m-%Y"),
+            "monthly_end_date_close": company_df.iloc[-1].Close,
+            "return_monthly": ar_monthly,
         }
