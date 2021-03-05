@@ -6,11 +6,9 @@ import yfinance as yf
 import multiprocessing
 from typing import List, Tuple
 from dataclasses import dataclass
-from stock_analysis.indicator import Indicator
-from stock_analysis.data_retrive import DataRetrive
 from stock_analysis.utils.logger import logger
-from stock_analysis.utils.helpers import get_appropriate_date_momentum
-from stock_analysis.utils.formula_helpers import annualized_rate_of_return
+from stock_analysis.indicator import Indicator
+from stock_analysis.executors.parallel import UnitExecutor
 
 yf.pdr_override()
 logger = logger()
@@ -18,7 +16,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 
 
 @dataclass
-class MomentumStrategy:
+class MomentumStrategy(UnitExecutor):
     """
     Perform general strategy which are indpendant on Unit in nature
     
@@ -89,7 +87,7 @@ class MomentumStrategy:
 
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
             result = pool.starmap(
-                self._parallel_momentum,
+                self.unit_momentum,
                 [(company, start, end, verbosity) for company in self.data['company']]
             )
         momentum_df = pd.DataFrame(result)
@@ -189,48 +187,3 @@ class MomentumStrategy:
                     f"Sample output:\n{momentum_ema_df.head()}")
         else:
             return momentum_ema_df
-
-    def _parallel_momentum(self, 
-                           company: str,
-                           start,
-                           end,
-                           verbosity: int = 1):
-
-        logger.info(
-            f"Retriving data for {company}")
-        try:
-            company_df = DataRetrive.single_company_specific(
-                company_name=f"{company}.NS", start_date=start, end_date=end)
-            company_df.reset_index(inplace=True)
-            ar_yearly = annualized_rate_of_return(
-                end_date=company_df.iloc[-1].Close,
-                start_date=company_df.iloc[0].Close,
-                duration=1
-            )  # (company_df.iloc[-30,0] - company_df.iloc[0,0]).days/365)
-            ar_monthly = annualized_rate_of_return(
-                end_date=company_df.iloc[-1].Close,
-                start_date=get_appropriate_date_momentum(
-                    company_df, company, verbosity=verbosity)[1],
-                duration=(company_df.iloc[-1, 0] - company_df.iloc[-30, 0]).days/30
-            )
-            monthly_start_date = get_appropriate_date_momentum(
-                company_df, company, verbosity=0)[0].strftime('%d-%m-%Y')
-        except (IndexError, KeyError, ValueError):
-            if verbosity > 0:
-                logger.debug(
-                    f"Data is not available for: {company}")
-            company_df = pd.DataFrame({'Date': [datetime.datetime(1000, 1, 1)] * 30,
-                                       'Close': [pd.NA] * 30})
-            ar_yearly, ar_monthly, monthly_start_date = pd.NA, pd.NA, pd.NA
-
-        return {'company': company,
-                'yearly_start_date': company_df.iloc[0].Date.strftime('%d-%m-%Y'),
-                'yearly_start_date_close': company_df.iloc[0].Close,
-                'yearly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
-                'yearly_end_date_close': company_df.iloc[-1].Close,
-                'return_yearly': ar_yearly,
-                'monthly_start_date': monthly_start_date,
-                'monthly_start_date_close': company_df.iloc[-30].Close,
-                'monthly_end_date': company_df.iloc[-1].Date.strftime('%d-%m-%Y'),
-                'monthly_end_date_close': company_df.iloc[-1].Close,
-                'return_monthly': ar_monthly}
