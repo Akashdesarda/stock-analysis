@@ -5,6 +5,7 @@ import multiprocessing
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Union
 from stock_analysis.utils.logger import logger
+from stock_analysis.utils.helpers import new_folder
 from stock_analysis.executors.parallel import UnitExecutor
 from stock_analysis.utils.formula_helpers import (
     abs_percentage_diff,
@@ -80,6 +81,7 @@ class Indicator(UnitExecutor):
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{vol_ind_df.head()}")
         if save is True:
+            new_folder(export_path)
             vol_ind_df.to_csv(
                 f"{export_path}/VolumeIndicator90Days_detailed_{now_strting}.csv",
                 index=False,
@@ -156,6 +158,7 @@ class Indicator(UnitExecutor):
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{ema_indicator_df.head()}")
         if save is True:
+            new_folder(export_path)
             ema_indicator_df.to_csv(
                 f"{export_path}/ema_indicator{str(ema_canditate[0])}-{str(ema_canditate[1])}_{len(self.data['company'])}company_{now_strting}.csv",
                 index=False,
@@ -373,6 +376,7 @@ class Indicator(UnitExecutor):
             )
         dma_compile = pd.DataFrame(result)
         if save is True:
+            new_folder(export_path)
             if end_date == "today":
                 end_date = now_strting
             else:

@@ -1,3 +1,4 @@
+import os
 import datetime
 import dateutil
 import pandas as pd
@@ -108,3 +109,15 @@ def get_appropriate_date_momentum(company_df: pd.DataFrame,
             logger.warning(
                 f"Desired date: {dd_copy.strftime('%d-%m-%Y')} not found going for next possible date: {desired_date.strftime('%d-%m-%Y')}")
     return desired_date, desired_close.iloc[-1].Close
+
+def new_folder(path: str):
+    """Create a folder if not present
+
+    Parameters
+    ----------
+    path : str
+        path to create a new folder
+    """
+    if not os.path.exists(path):
+        logger.warning(f"Given {path} mot present, so creating ")
+        os.mkdir(path)

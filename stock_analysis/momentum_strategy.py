@@ -8,6 +8,7 @@ from typing import List, Tuple
 from dataclasses import dataclass
 from stock_analysis.utils.logger import logger
 from stock_analysis.indicator import Indicator
+from stock_analysis.utils.helpers import new_folder
 from stock_analysis.executors.parallel import UnitExecutor
 
 yf.pdr_override()
@@ -102,6 +103,7 @@ class MomentumStrategy(UnitExecutor):
             logger.debug(
                 f"Sample output:\n{momentum_df.head(top_company_count)}")
         if save is True:
+            new_folder(export_path)
             momentum_df.head(top_company_count).to_csv(
                 f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv",
                 index=False)
@@ -176,6 +178,7 @@ class MomentumStrategy(UnitExecutor):
             validate='1:1'
         )
         if save is True:
+            new_folder(export_path)
             momentum_ema_df.reset_index(drop=True, inplace=True)
             momentum_ema_df.to_csv(
                 f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv",
