@@ -338,26 +338,6 @@
     absolute_momentum_with_dma()
   </a>
   
-    <nav class="md-nav" aria-label="absolute_momentum_with_dma()">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--parameters" class="md-nav__link">
-    Parameters
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--returns" class="md-nav__link">
-    Returns
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -494,26 +474,6 @@
     absolute_momentum_with_dma()
   </a>
   
-    <nav class="md-nav" aria-label="absolute_momentum_with_dma()">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--parameters" class="md-nav__link">
-    Parameters
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--returns" class="md-nav__link">
-    Returns
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -622,19 +582,63 @@ wave. The strategy are combinations of several metrics to determine momentum.</p
     <div class="doc doc-contents ">
 
       <p>Action determination based SMA, Turnover</p>
-<h5 id="stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--parameters">Parameters</h5>
-<p>end_date : Union[str, datetime.datetime], optional
-    Latest date to retrive data, by default "today"
-period : int, optional
-    Desired period (in days) for batch SMA calculation, by default 200
-cutoff : int, optional
-    Desired cutoff to determine action, by default 5
-save : bool, optional
-    Save to hard disk, by default True
-export_path : str, optional
-    Path to save, to be used only if 'save' is true, by default '.'</p>
-<h5 id="stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--returns">Returns</h5>
-<p>Dict</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>str</code></td>
+        <td><p>Latest date to retrive data. Default to "today"</p></td>
+        <td><code>&#39;today&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>period</code></td>
+        <td><code>int</code></td>
+        <td><p>Desired period (in days) for batch SMA calculation. Default to 200</p></td>
+        <td><code>200</code></td>
+      </tr>
+      <tr>
+        <td><code>cutoff</code></td>
+        <td><code>int</code></td>
+        <td><p>Desired cutoff to determine action. Default 5</p></td>
+        <td><code>5</code></td>
+      </tr>
+      <tr>
+        <td><code>save</code></td>
+        <td><code>bool</code></td>
+        <td><p>Save to hard disk. Default is True</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>export(t_path</code></td>
+        <td><code></code></td>
+        <td><p>str, optional): Path to save, to be used only if 'save' is true. By default loo '.'</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Examples:</strong></p>
+    
+      <p>```from stock_analysis import MomentumStrategy</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>sa = MomentumStrategy('./data/company_list.yaml')
+mes = sa.absolute_momentum_with_dma('01/06/2020', 30)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Returns
+    pd.Dataframe</p>
 
         <details class="quote">
           <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
@@ -648,23 +652,22 @@ export_path : str, optional
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Action determination based SMA, Turnover</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    end_date : Union[str, datetime.datetime], optional</span>
-<span class="sd">        Latest date to retrive data, by default &quot;today&quot;</span>
-<span class="sd">    period : int, optional</span>
-<span class="sd">        Desired period (in days) for batch SMA calculation, by default 200</span>
-<span class="sd">    cutoff : int, optional</span>
-<span class="sd">        Desired cutoff to determine action, by default 5</span>
-<span class="sd">    save : bool, optional</span>
-<span class="sd">        Save to hard disk, by default True</span>
-<span class="sd">    export_path : str, optional</span>
-<span class="sd">        Path to save, to be used only if &#39;save&#39; is true, by default &#39;.&#39;</span>
+<span class="sd">    Args:</span>
+
+<span class="sd">        end_date (Union[str, datetime.datetime], optional): Latest date to retrive data. Default to &quot;today&quot;</span>
+<span class="sd">        period (int, optional): Desired period (in days) for batch SMA calculation. Default to 200</span>
+<span class="sd">        cutoff (int, optional): Desired cutoff to determine action. Default 5</span>
+<span class="sd">        save (bool, optional): Save to hard disk. Default is True</span>
+<span class="sd">        export(t_path : str, optional): Path to save, to be used only if &#39;save&#39; is true. By default loo &#39;.&#39;</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ```from stock_analysis import MomentumStrategy</span>
+<span class="sd">    &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    &gt;&gt;&gt;mes = sa.absolute_momentum_with_dma(&#39;01/06/2020&#39;, 30)</span>
 
 
 <span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    Dict</span>
+<span class="sd">        pd.Dataframe</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
