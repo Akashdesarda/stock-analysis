@@ -334,15 +334,42 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.momentum_with_ema" class="md-nav__link">
-    momentum_with_ema()
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma" class="md-nav__link">
+    absolute_momentum_with_dma()
+  </a>
+  
+    <nav class="md-nav" aria-label="absolute_momentum_with_dma()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--parameters" class="md-nav__link">
+    Parameters
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.momentum_with_return" class="md-nav__link">
-    momentum_with_return()
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.relative_momentum" class="md-nav__link">
+    relative_momentum()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.relative_momentum_with_ema" class="md-nav__link">
+    relative_momentum_with_ema()
   </a>
   
 </li>
@@ -463,15 +490,42 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.momentum_with_ema" class="md-nav__link">
-    momentum_with_ema()
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma" class="md-nav__link">
+    absolute_momentum_with_dma()
+  </a>
+  
+    <nav class="md-nav" aria-label="absolute_momentum_with_dma()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--parameters" class="md-nav__link">
+    Parameters
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.momentum_with_return" class="md-nav__link">
-    momentum_with_return()
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.relative_momentum" class="md-nav__link">
+    relative_momentum()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.momentum_strategy.MomentumStrategy.relative_momentum_with_ema" class="md-nav__link">
+    relative_momentum_with_ema()
   </a>
   
 </li>
@@ -559,8 +613,242 @@ wave. The strategy are combinations of several metrics to determine momentum.</p
 
 
 
-<h3 id="stock_analysis.momentum_strategy.MomentumStrategy.momentum_with_ema" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">momentum_with_ema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">top_company_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ema_canditate</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+<h3 id="stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">absolute_momentum_with_dma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Action determination based SMA, Turnover</p>
+<h5 id="stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--parameters">Parameters</h5>
+<p>end_date : Union[str, datetime.datetime], optional
+    Latest date to retrive data, by default "today"
+period : int, optional
+    Desired period (in days) for batch SMA calculation, by default 200
+cutoff : int, optional
+    Desired cutoff to determine action, by default 5
+save : bool, optional
+    Save to hard disk, by default True
+export_path : str, optional
+    Path to save, to be used only if 'save' is true, by default '.'</p>
+<h5 id="stock_analysis.momentum_strategy.MomentumStrategy.absolute_momentum_with_dma--returns">Returns</h5>
+<p>Dict</p>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">absolute_momentum_with_dma</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
+    <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="n">cutoff</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Action determination based SMA, Turnover</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    end_date : Union[str, datetime.datetime], optional</span>
+<span class="sd">        Latest date to retrive data, by default &quot;today&quot;</span>
+<span class="sd">    period : int, optional</span>
+<span class="sd">        Desired period (in days) for batch SMA calculation, by default 200</span>
+<span class="sd">    cutoff : int, optional</span>
+<span class="sd">        Desired cutoff to determine action, by default 5</span>
+<span class="sd">    save : bool, optional</span>
+<span class="sd">        Save to hard disk, by default True</span>
+<span class="sd">    export_path : str, optional</span>
+<span class="sd">        Path to save, to be used only if &#39;save&#39; is true, by default &#39;.&#39;</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unit_dma_absolute</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+    <span class="n">dma_compile</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">new_folder</span><span class="p">(</span><span class="n">export_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">end_date</span> <span class="o">==</span> <span class="s2">&quot;today&quot;</span><span class="p">:</span>
+            <span class="n">end_date</span> <span class="o">=</span> <span class="n">now_strting</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">end_date</span> <span class="o">=</span> <span class="n">end_date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+        <span class="n">dma_compile</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/dma_action_cutoff_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">cutoff</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dma_compile</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="stock_analysis.momentum_strategy.MomentumStrategy.relative_momentum" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">relative_momentum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">top_company_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>The strategy is used to identity stocks which had 'good performance'
+based on desired 'return' duration</p>
+
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis import MomentumStrategy
+    &gt;&gt;&gt;sa = MomentumStrategy('./data/company_list.yaml')
+    &gt;&gt;&gt;ms = sa.relative_momentum(end_date='01/06/2020')
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>str</code></td>
+        <td><p>End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to 'today'.</p></td>
+        <td><code>&#39;today&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>top_company_count</code></td>
+        <td><code>int</code></td>
+        <td><p>No of top company to retrieve based on Annualized return. Defaults to 20.</p></td>
+        <td><code>20</code></td>
+      </tr>
+      <tr>
+        <td><code>save</code></td>
+        <td><code>bool</code></td>
+        <td><p>Wether to export to disk. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>export_path</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to export csv.To be used only if 'save' is True. Defaults to '.'.</p></td>
+        <td><code>&#39;.&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DataFrame</code></td>
+      <td><p>pd.DataFrame: Record based on monthly and yearly calculation</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">relative_momentum</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
+    <span class="n">top_company_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The strategy is used to identity stocks which had &#39;good performance&#39;</span>
+<span class="sd">    based on desired &#39;return&#39; duration</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">        &gt;&gt;&gt;from stock_analysis import MomentumStrategy</span>
+<span class="sd">        &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt;ms = sa.relative_momentum(end_date=&#39;01/06/2020&#39;)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to &#39;today&#39;.</span>
+<span class="sd">        top_company_count (int, optional): No of top company to retrieve based on Annualized return. Defaults to 20.</span>
+<span class="sd">        save (bool, optional): Wether to export to disk. Defaults to True.</span>
+<span class="sd">        export_path (str, optional): Path to export csv.To be used only if &#39;save&#39; is True. Defaults to &#39;.&#39;.</span>
+<span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: Record based on monthly and yearly calculation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">end_date</span> <span class="o">==</span> <span class="s2">&quot;today&quot;</span><span class="p">:</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">relativedelta</span><span class="o">.</span><span class="n">relativedelta</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unit_momentum</span><span class="p">,</span>
+            <span class="p">[(</span><span class="n">company</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]],</span>
+        <span class="p">)</span>
+    <span class="n">momentum_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">momentum_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">momentum_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;return_yearly&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample output:</span><span class="se">\n</span><span class="si">{</span><span class="n">momentum_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_company_count</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">new_folder</span><span class="p">(</span><span class="n">export_path</span><span class="p">)</span>
+        <span class="n">momentum_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_company_count</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/momentum_result_</span><span class="si">{</span><span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">_top_</span><span class="si">{</span><span class="n">top_company_count</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Saved at </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/momentum_result_</span><span class="si">{</span><span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">_top_</span><span class="si">{</span><span class="n">top_company_count</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">momentum_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_company_count</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="stock_analysis.momentum_strategy.MomentumStrategy.relative_momentum_with_ema" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">relative_momentum_with_ema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">top_company_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ema_canditate</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 
 </h3>
@@ -574,7 +862,7 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
     
       <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis import MomentumStrategy
     &gt;&gt;&gt;sa = MomentumStrategy('./data/company_list.yaml')
-    &gt;&gt;&gt;mes = sa.momentum_with_ema('01/06/2020', 30)
+    &gt;&gt;&gt;mes = sa.relative_momentum_with_ema('01/06/2020', 30)
 </code></pre>
 
 <p><strong>Parameters:</strong></p>
@@ -643,7 +931,7 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
 </table>
         <details class="quote">
           <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">momentum_with_ema</span><span class="p">(</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">relative_momentum_with_ema</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
     <span class="n">top_company_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
@@ -660,7 +948,7 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
 <span class="sd">    ```python</span>
 <span class="sd">        &gt;&gt;&gt;from stock_analysis import MomentumStrategy</span>
 <span class="sd">        &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;mes = sa.momentum_with_ema(&#39;01/06/2020&#39;, 30)</span>
+<span class="sd">        &gt;&gt;&gt;mes = sa.relative_momentum_with_ema(&#39;01/06/2020&#39;, 30)</span>
 <span class="sd">    ```</span>
 
 <span class="sd">    Args:</span>
@@ -676,7 +964,7 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Performing Momentum Strategy task&quot;</span><span class="p">)</span>
-    <span class="n">momentum_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum_with_return</span><span class="p">(</span>
+    <span class="n">momentum_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_momentum</span><span class="p">(</span>
         <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span>
         <span class="n">top_company_count</span><span class="o">=</span><span class="n">top_company_count</span><span class="p">,</span>
         <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -716,154 +1004,6 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample output:</span><span class="se">\n</span><span class="si">{</span><span class="n">momentum_ema_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">momentum_ema_df</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-method">
-
-
-
-<h3 id="stock_analysis.momentum_strategy.MomentumStrategy.momentum_with_return" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">momentum_with_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">top_company_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
-
-
-</h3>
-
-    <div class="doc doc-contents ">
-
-      <p>The strategy is used to identity stocks which had 'good performance'
-based on desired 'return' duration</p>
-
-<p><strong>Examples:</strong></p>
-    
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis import MomentumStrategy
-    &gt;&gt;&gt;sa = MomentumStrategy('./data/company_list.yaml')
-    &gt;&gt;&gt;ms = sa.momentum_with_return(end_date='01/06/2020')
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><code>end_date</code></td>
-        <td><code>str</code></td>
-        <td><p>End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to 'today'.</p></td>
-        <td><code>&#39;today&#39;</code></td>
-      </tr>
-      <tr>
-        <td><code>top_company_count</code></td>
-        <td><code>int</code></td>
-        <td><p>No of top company to retrieve based on Annualized return. Defaults to 20.</p></td>
-        <td><code>20</code></td>
-      </tr>
-      <tr>
-        <td><code>save</code></td>
-        <td><code>bool</code></td>
-        <td><p>Wether to export to disk. Defaults to True.</p></td>
-        <td><code>True</code></td>
-      </tr>
-      <tr>
-        <td><code>export_path</code></td>
-        <td><code>str</code></td>
-        <td><p>Path to export csv.To be used only if 'save' is True. Defaults to '.'.</p></td>
-        <td><code>&#39;.&#39;</code></td>
-      </tr>
-      <tr>
-        <td><code>verbosity</code></td>
-        <td><code>int</code></td>
-        <td><p>Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</p></td>
-        <td><code>1</code></td>
-      </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame: Record based on monthly and yearly calculation</p></td>
-    </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">momentum_with_return</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
-    <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
-    <span class="n">top_company_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;The strategy is used to identity stocks which had &#39;good performance&#39;</span>
-<span class="sd">    based on desired &#39;return&#39; duration</span>
-
-<span class="sd">    Example:</span>
-
-<span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis import MomentumStrategy</span>
-<span class="sd">        &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;ms = sa.momentum_with_return(end_date=&#39;01/06/2020&#39;)</span>
-<span class="sd">    ```</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to &#39;today&#39;.</span>
-<span class="sd">        top_company_count (int, optional): No of top company to retrieve based on Annualized return. Defaults to 20.</span>
-<span class="sd">        save (bool, optional): Wether to export to disk. Defaults to True.</span>
-<span class="sd">        export_path (str, optional): Path to export csv.To be used only if &#39;save&#39; is True. Defaults to &#39;.&#39;.</span>
-<span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: Record based on monthly and yearly calculation</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">end_date</span> <span class="o">==</span> <span class="s2">&quot;today&quot;</span><span class="p">:</span>
-        <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">relativedelta</span><span class="o">.</span><span class="n">relativedelta</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">unit_momentum</span><span class="p">,</span>
-            <span class="p">[(</span><span class="n">company</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]],</span>
-        <span class="p">)</span>
-    <span class="n">momentum_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    <span class="n">momentum_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">momentum_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;return_yearly&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample output:</span><span class="se">\n</span><span class="si">{</span><span class="n">momentum_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_company_count</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">new_folder</span><span class="p">(</span><span class="n">export_path</span><span class="p">)</span>
-        <span class="n">momentum_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_company_count</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/momentum_result_</span><span class="si">{</span><span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">_top_</span><span class="si">{</span><span class="n">top_company_count</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
-            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Saved at </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/momentum_result_</span><span class="si">{</span><span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">_top_</span><span class="si">{</span><span class="n">top_company_count</span><span class="si">}</span><span class="s2">.csv&quot;</span>
-            <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">momentum_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top_company_count</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
