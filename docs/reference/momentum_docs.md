@@ -4,5 +4,6 @@
     handler: python
     selection:
       members:
-        - momentum_with_return
-        - momentum_with_ema
+        - relative_momentum
+        - relative_momentum_with_ema
+        - absolute_momentum_with_dma
