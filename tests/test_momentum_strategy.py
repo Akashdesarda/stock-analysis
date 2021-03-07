@@ -1,12 +1,12 @@
-from stock_analysis.momentum_strategy import MomentumStrategy
+from stock_analysis.momentum_with_return import MomentumStrategy
 
 company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL','BAJAJ','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
 
 ut = MomentumStrategy(company_name=company_list)
 
-def test_momentum_strategy():
+def test_momentum_with_return():
     
-    mom = ut.momentum_strategy(
+    mom = ut.momentum_with_return(
         top_company_count=3,
         save=False,
         verbosity=0
@@ -19,9 +19,9 @@ def test_momentum_strategy():
     for key,val in mom.isna().sum().to_dict().items():
         assert val == 0, f'Found Null value in {key}'
         
-def test_momentum_strategy_date():
+def test_momentum_with_return_date():
     
-    mom = ut.momentum_strategy(
+    mom = ut.momentum_with_return(
         end_date='01/01/2020',
         top_company_count=3,
         save=False,
@@ -45,7 +45,7 @@ def test_momentum_strategy_date():
     
 def test_momentum_strategy_with_ema():
     
-    mom_ema = ut.momentum_with_ema_strategy(
+    mom_ema = ut.momentum_with_ema(
         top_company_count=3,
         save=False,
         verbosity=0
@@ -59,7 +59,7 @@ def test_momentum_strategy_with_ema():
     
 def test_momentum_strategy_with_date():
     
-    mom_ema = ut.momentum_with_ema_strategy(
+    mom_ema = ut.momentum_with_ema(
         end_date='01/01/2020',
         top_company_count=3,
         save=False,
