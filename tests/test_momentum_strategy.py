@@ -1,4 +1,4 @@
-from stock_analysis.momentum_with_return import MomentumStrategy
+from stock_analysis.momentum_strategy import MomentumStrategy
 
 company_list = ['ADANIGREEN','HDFCAMC','WHIRLPOOL','BAJAJ','ABB','INDIAMART','CENTRALBK','CENTURYPLY']
 
