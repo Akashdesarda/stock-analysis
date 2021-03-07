@@ -1,0 +1,55 @@
+site_name: Stock Analysis
+theme:
+  name: "material"
+  palette:
+    scheme: preference
+    primary: deep orange
+    accent: green
+    features:
+    - navigation.instant
+    - navigation.tabs
+  icon:
+    repo: fontawesome/brands/github
+repo_url: https://github.com/Akashdesarda/stock-analysis
+repo_name: Akashdesarda/stock-analysis
+extra:
+  social:
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:desardaakash@gmail.com
+      name: Contact me
+    - icon: fontawesome/brands/github
+      link: https://github.com/Akashdesarda
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/akashdesarda/
+    - icon: fontawesome/brands/medium
+      link: https://www.medium.com/@desardaakash
+
+# extra:
+#   version:
+#     provider: mike
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          rendering:
+            show_root_heading: false
+            show_source: true
+            show_category_heading: true
+            show_root_toc_entry: false
+          selection:
+            docstring_style: "google"
+      watch:
+        - stock_analysis
+
+nav:
+  - Home: index.md
+  - Concept Reference:
+    - Generic Terminology: theory/generic_term.md
+    - Practical Usage: theory/prac_usage.md
+  - Code Reference:
+    - Momentum Strategy: reference/momentum_docs.md
+    - Indicators: reference/indicators_docs.md
+    - Utilities: reference/utils.md
+  - Web App:
+    - Usage: reference/web_app.md
