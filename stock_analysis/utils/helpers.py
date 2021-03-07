@@ -11,27 +11,18 @@ logger = logger()
 def get_appropriate_date_ema(company_df: pd.DataFrame,
                          desired_date: datetime.datetime,
                          verbosity: int = 1) -> Tuple[datetime.datetime, float]:
-    """
-    Return appropriate date which is present in data record.
+    """Return appropriate date which is present in data record.
 
-    Parameters
-    ----------
-    company_df : pd.DataFrame
-        Company dataframe
-    duration : datetime.datetime
-        Desired date cut-off to calculate ema
-    verbosity : int, optional
-        Level of detail logging, by default 1
+    Args:
+        company_df (pd.DataFrame): Company dataframe
+        duration (datetime.datetime): Desired date cut-off to calculate ema
+        verbosity ([int, optional]): Level of detail logging. Default to 1.
 
-    Returns
-    -------
-    Tuple[datetime.datetime,float]
-        Date,Close value on date retrived
+    Returns:
+        Tuple[datetime.datetime,float]: Date,Close value on date retrived
 
-    Raises
-    ------
-    ValueError
-        If desired old is older than first record
+    Raises:
+        ValueError: If desired old is older than first record
     """
     if desired_date < company_df.index[0]:
         logger.error(
@@ -59,27 +50,18 @@ def get_appropriate_date_momentum(company_df: pd.DataFrame,
                          company,
                          duration: Tuple[int, int] = (0, 1),
                          verbosity: int = 1) -> Tuple[datetime.datetime, float]:
-    """
-    Return appropriate date which is present in data record.
+    """Return appropriate date which is present in data record.
 
-    Parameters
-    ----------
-    company_df : pd.DataFrame
-        Company dataframe
-    duration : Tuple[year,month], optional
-        Desired duration to go back to retrive record, by default (0,1)
-    verbosity : int, optional
-        Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+    Args:
+        company_df (pd.DataFrame): Company dataframe
+        duration (Tuple[year,month], optional): Desired duration to go back to retrive record. Default to (0,1)
+        verbosity (int, optional): Level of detail logging, 1=< Deatil, 0=Less detail. Default to 1
 
     Returns
-    -------
-    Tuple[datetime.datetime,float]
-        Date,Close value on date retrived
+        Tuple(datetime.datetime,float): Date,Close value on date retrived
 
     Raises
-    ------
-    ValueError
-        If desired old is older than first record
+        ValueError: If desired old is older than first record
     """
 
     current_date = company_df.iloc[-1].Date

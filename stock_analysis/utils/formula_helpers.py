@@ -3,49 +3,37 @@ import pandas as pd
 from typing import List, Union
 from stock_analysis.utils.helpers import get_appropriate_date_ema
 
-
 def annualized_rate_of_return(end_date: int, start_date: int, duration: float) -> float:
-    """
-    Calculate annulized rate of return
+    """Calculate annulized rate of return
 
-    Parameters
-    ----------
-    end_date : int
-        Close value Current date or most present date.
-        Consider it as going from bottom to top.
-    start_date : int
-        Close value on Start date or first record.
-        Consider it as going from bottom to top.
-    duration : float
-        Total duration wrt to year
+    Args:
+        end_date (int): Close value Current date or most present date. Consider
+                        it as going from bottom to top.
+        start_date (int): Close value on Start date or first record. Consider 
+                        it as going from bottom to top.
+        duration (float): Total duration wrt to year
 
-    Returns
-    -------
-    float
-        Annulized return
-    """
+    Returns:
+        float: Annulized return
+    """    
+    
     return (((end_date / start_date) ** (1 / duration)) - 1) * 100
 
 
-def simple_moving_average(data: Union[pd.Series, List], period: int):
-    """Calculate SMA
+def simple_moving_average(data: Union[pd.Series, List], period: int) -> float:
+    """Calculate SMA, which is nothing but calculating mean
 
-    Parameters
-    ----------
-    data : Union[pd.Series, List]
-        data on which SMA have to be calculate
-    period : int
-        [description]
+    Args:
+        data (Union[pd.Series, List]): data on which SMA have to be calculate
+        period (int): Total period used to calculate SMA
 
-    Returns
-    -------
-    float
-        SMA for given
-    """
+    Returns:
+        float: SMA calculated over given period
+    """    
     return (sum(data[:period])) / period
 
 
-def exponential_moving_avarage(
+def exponential_moving_average(
     data_df: Union[pd.Series, List],
     period: int,
     cutoff_date: Union[str, datetime.datetime] = "today",
@@ -54,21 +42,17 @@ def exponential_moving_avarage(
 ) -> float:
     """Calculate exponential moving avarage based on given period
 
-    Parameters
-    ----------
-    data : Union[pd.Series,List]
-        Data to calculate ema
-    period : int
-        Period for which ema has to be calculated
-    smoothing_factor : int, optional
-        Smoothing factor which will be used to calculate
-        Multiplying factor, by default 2
+    Args:
+        data_df (Union[pd.Series, List]): Data to calculate ema
+        period (int): Period for which ema has to be calculated
+        cutoff_date (Union[str, datetime.datetime], optional): . Defaults to "today".
+        smoothing_factor (int, optional): Smoothing factor which will be used to calculate 'Multiplying factor'. Defaults to 2.
+        verbosity (int, optional): . Defaults to 1.
 
-    Returns
-    -------
-    float
-        ema value
+    Returns:
+        float: ema value
     """
+
     ema_list = []
     # Calculating multiplying factor
     mf = smoothing_factor / (1 + period)
@@ -100,44 +84,52 @@ def exponential_moving_avarage(
     return float(data_df[data_df.index == date]["ema"])
 
 
-def abs_percentage_diff(value_a: float, value_b: float):
+def percentage_diff(value_a: float, value_b: float, return_absolute: bool=False) -> float:
+    """Used to calculate Percentage difference of Value of B wrt to A. It can be either absolute or not.
+
+    Args:
+        value_a (float): Value a
+        value_b (float): Value b
+        return_absolute (bool): Return absolute percentage difference 
+
+    Returns:
+        float: percentage difference
     """
-    Used to calculate Percentage difference of Value of B wrt to A
-    """
-    return abs((value_b - value_a) / ((value_a + value_b) / 2) * 100)
+    if return_absolute is True:
+        return abs((value_b - value_a) / ((value_a + value_b) / 2) * 100)
+    elif return_absolute is False:
+        return (value_b - value_a) / ((value_a + value_b) / 2) * 100
 
 
-def percentage_diff(value_a: float, value_b: float):
-    """
-    Used to calculate Percentage difference of Value of B wrt to A
-    """
-    return (value_b - value_a) / ((value_a + value_b) / 2) * 100
+def outcome_analysis(ratio: float, cutoff: int=5) -> str:
+    """Used to determine closeness based on any given ratio analysis
+    like percentage difference
 
+    Args:
+        ratio (float): metrics to determine outcome
+        cutoff (int, optional): number to determine outcome. Defaults to 5.
 
-def outcome_analysis(ratio: float):
-    """
+    Returns:
+        str: Outcome of analysis
+    """    """
     Used to determine closeness based on any given ratio analysis
     like percentage difference
     """
-    if 5 < ratio < 5:
+    if cutoff < ratio < cutoff:
         outcome = "close by"
     else:
         outcome = "far away"
     return outcome
 
-
+ 
 def turnover(volume: Union[pd.Series, List], price: float)-> float:
     """Calculate given Stock's batch turnover over specified time
 
-    Parameters
-    ----------
-    volume : Union[pd.Series, List]
-        batch volume data
-    price : float
-        price of respective stock
+    Args:
+        volume (Union[pd.Series, List]): batch volume data
+        price (float): price of respective stock
 
-    Returns
-    -------
-    float
-    """    
+    Returns:
+        float
+    """   
     return (sum(volume) / len(volume)) * price
