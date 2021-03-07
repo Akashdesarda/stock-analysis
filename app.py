@@ -59,7 +59,7 @@ if task == 'Momentum strategy':
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
                 with st.spinner("Running the query"):
-                    sa.momentum_strategy()
+                    sa.momentum_with_return()
                 st.dataframe(
                     pd.read_csv(newest_file('./momentum_result_*.csv'))
                 )
@@ -93,7 +93,7 @@ if task == 'Momentum strategy':
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
                     with st.spinner("Running the query"):
-                        sa.momentum_strategy(
+                        sa.momentum_with_return(
                             end_date=sub_task_para_date,
                             top_company_count=int(sub_task_para_count),
                             export_path=sub_task_para_export,
@@ -121,7 +121,7 @@ if task == 'Momentum strategy':
     - **Verbosity** (level of detail loging): detail """)
             if st.button('Continue'):
                 with st.spinner("Running the query"):
-                    sa.momentum_with_ema_strategy()
+                    sa.momentum_with_ema()
                 st.dataframe(
                         pd.read_csv(newest_file('./momentum_ema*.csv'))
                     )
@@ -163,7 +163,7 @@ if task == 'Momentum strategy':
     - **Verbosity**: {sub_task_para_verbosity}""")
                 if st.button('Continue'):
                     with st.spinner("Running the query"):
-                        sa.momentum_with_ema_strategy(
+                        sa.momentum_with_ema(
                             end_date=sub_task_para_date,
                             top_company_count=sub_task_para_count,
                             ema_canditate=(sub_task_para_emacandidate1,sub_task_para_emacandidate2),

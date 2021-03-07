@@ -8,10 +8,10 @@ from stock_analysis.utils.logger import logger
 from stock_analysis.utils.helpers import get_appropriate_date_momentum
 from stock_analysis.utils.formula_helpers import (
     turnover,
-    abs_percentage_diff,
+    percentage_diff,
     simple_moving_average,
     annualized_rate_of_return,
-    exponential_moving_avarage,
+    exponential_moving_average,
 )
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
@@ -60,13 +60,13 @@ class UnitExecutor:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
-            EMA_A = exponential_moving_avarage(
+            EMA_A = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[0],
                 verbosity=verbosity,
             )
-            EMA_B = exponential_moving_avarage(
+            EMA_B = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[1],
@@ -110,28 +110,28 @@ class UnitExecutor:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
-            EMA_A = exponential_moving_avarage(
+            EMA_A = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[0],
                 verbosity=verbosity,
             )
-            EMA_B = exponential_moving_avarage(
+            EMA_B = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[1],
                 verbosity=verbosity,
             )
-            EMA_C = exponential_moving_avarage(
+            EMA_C = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[2],
                 verbosity=verbosity,
             )
 
-            percentage_diff_cb = abs_percentage_diff(EMA_C, EMA_B)
-            percentage_diff_ca = abs_percentage_diff(EMA_C, EMA_A)
-            percentage_diff_ba = abs_percentage_diff(EMA_B, EMA_A)
+            percentage_diff_cb = percentage_diff(EMA_C, EMA_B, return_absolute=True)
+            percentage_diff_ca = percentage_diff(EMA_C, EMA_A, return_absolute=True)
+            percentage_diff_ba = percentage_diff(EMA_B, EMA_A, return_absolute=True)
 
             if (
                 (percentage_diff_cb < 1)

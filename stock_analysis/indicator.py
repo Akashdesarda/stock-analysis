@@ -8,8 +8,8 @@ from stock_analysis.utils.logger import logger
 from stock_analysis.utils.helpers import new_folder
 from stock_analysis.executors.parallel import UnitExecutor
 from stock_analysis.utils.formula_helpers import (
-    abs_percentage_diff,
     outcome_analysis,
+    percentage_diff,
 )
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
@@ -19,22 +19,20 @@ pd.options.display.float_format = "{:,.2f}".format
 
 @dataclass
 class Indicator(UnitExecutor):
-    """
-    Perform all variety of Indicator operation
+    """Perform Indicator operation which are based on specific metrics used to study the performance 
+    of desired stock/company. 
 
-    Parameters
-    ----------
-    path : str, optional
-        Path to company yaml/json. Either path or
-        company_name can be used, by default None
-    company_name : List, optional
-        List of company name. If path is used then this is obsolete
-        as 'path' preside over 'company_name', by default None
-
-    Eg:
-    >>>from stock_analysis.momentum_strategy import MomentumStrategy
-    >>>sa = MomentumStrategy('./data/company_list.yaml')
-    """
+    Args:
+        path ([str, optional]): Path to company yaml/json. Either path or company_name can be used.
+        company_name ([List, optional]): List of company name. If path is used then this is obsolete 
+        as 'path' preside over 'company_name'
+    
+    Example:
+    ```python
+        >>>from stock_analysis.indicator import Indicator
+        >>>ind = Indicator('./data/company_list.yaml')
+    ```
+    """    
 
     path: str = None
     company_name: List = None
@@ -55,21 +53,21 @@ class Indicator(UnitExecutor):
     ) -> pd.DataFrame:
         """Mean Volume Indicator based on desired days
 
-        Parameters
-        ----------
-        duration : int, optional
-            Total days from current date to retrive data, by default 90
-        save : bool, optional
-            Save to hard disk, by default True
-        export_path : str, optional
-            Path to save, to be used only if 'save' is true, by default '.'
-        verbosity : int, optional
-            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+        Args:
+            duration (int, optional): Total days from current date to retrive data. Defaults to 90.
+            save (bool, optional): Save to hard disk. Defaults to True.
+            export_path (str, optional): Path to save, to be used only if 'save' is true. Defaults to ".".
+            verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
-        Returns
-        -------
-        pd.DataFrame
-            All Volume based indicator
+        Returns:
+            pd.DataFrame: All Volume based indicator
+        
+        Example:
+        ```python
+            >>>from stock_analysis.indicator import Indicator
+            >>>ind = Indicator('./data/company_list.yaml')
+            >>>vol = ind.volume_n_days_indicator(150)
+        ```
         """
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
             result = pool.starmap(
@@ -103,25 +101,23 @@ class Indicator(UnitExecutor):
     ) -> pd.DataFrame:
         """Exponential moving average based on desired two period (or no of days)
 
-        Parameters
-        ----------
-        ema_canditate : Tuple[int, int], optional
-            [description], by default (50, 200)
-        cutoff_date : Union[str,datetime.datetime], optional
-            Desired date till which to calculate ema. 'today' for current day,
-            eg 01/01/2020 for any other date, by default 'today'
-        save : bool, optional
-            Save to hard disk, by default True
-        export_path : str, optional
-            Path to save, to be used only if 'save' is true, by default '.'
-        verbosity : int, optional
-            Level of detail logging,1=< Detail, 0=Less detail , by default 1
+        Args:
+            ema_canditate (Tuple[int, int], optional): Two number used two calculate EMA. Defaults to (50, 200).
+            cutoff_date (Union[str, datetime.datetime], optional): Desired date till which to calculate ema. Defaults to "today".
+            save (bool, optional): Save to hard disk. Defaults to True.
+            export_path (str, optional): Path to save, to be used only if 'save' is true. Defaults to ".".
+            verbosity (int, optional): Level of detail logging,1=< Detail, 0=Less detail. Defaults to 1.
 
-        Returns
-        -------
-        -> pd.DataFrame
-            EMA and indicators based on it
-        """
+        Returns:
+            pd.DataFrame: EMA and indicators based on it
+        
+        Example:
+        ```python
+            >>>from stock_analysis.indicator import Indicator
+            >>>ind = Indicator('./data/company_list.yaml')
+            >>>ema = ind.ema_indicator((50,200), '01/06/2020')
+        ```
+        """        
 
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
             result = pool.starmap(
@@ -134,8 +130,8 @@ class Indicator(UnitExecutor):
         ema_indicator_df = pd.DataFrame(result)
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
-            lambda x: abs_percentage_diff(
-                x[f"ema{str(ema_canditate[0])}"], x[f"ema{str(ema_canditate[1])}"]
+            lambda x: percentage_diff(
+                x[f"ema{str(ema_canditate[0])}"], x[f"ema{str(ema_canditate[1])}"], return_absolute=True
             ),
             axis=1,
         )
@@ -174,31 +170,38 @@ class Indicator(UnitExecutor):
     def ema_detail_indicator(
         self,
         ema_canditate: Tuple[int, int] = (50, 200),
+        cutoff_date: Union[str, datetime.datetime] = "today",
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
     ) -> pd.DataFrame:
-        """EMA indicator with detail or wide variety of indicators
+        """Exponential moving average based on desired two period (or no of days) with additional info
+        which include: 
+        > regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month, 
+        averageDailyVolume10Day, fiftyTwoWeekLowChange, fiftyTwoWeekLowChangePercent, fiftyTwoWeekRange,
+        fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwoWeekHigh
 
-        Parameters
-        ----------
-        ema_canditate : Tuple[int, int], optional
-            Period (or days) to calculate EMA, by default (50, 200)
-        save : bool, optional
-            Save to hard disk, by default True
-        export_path : str, optional
-            Path to save, to be used only if 'save' is true, by default '.'
-        verbosity : int, optional
-            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+        Args:
+            ema_canditate (Tuple[int, int], optional): Two number used two calculate EMA. Defaults to (50, 200).
+            cutoff_date (Union[str, datetime.datetime], optional): Desired date till which to calculate ema. Defaults to "today".
+            save (bool, optional): Save to hard disk. Defaults to True.
+            export_path (str, optional): Path to save, to be used only if 'save' is true. Defaults to ".".
+            verbosity (int, optional): Level of detail logging,1=< Detail, 0=Less detail. Defaults to 1.
 
-        Returns
-        -------
-        pd.DataFrame
+        Returns:
+            pd.DataFrame: EMA and indicators based on it
+        
+        Example:
+        ```python
+            >>>from stock_analysis.indicator import Indicator
+            >>>ind = Indicator('./data/company_list.yaml')
+            >>>ema = ind.ema_detail_indicator((50,200), '01/06/2020')
+        ```
         """
 
         logger.info("Performing EMA Indicator Task")
         ema_short = self.ema_indicator(
-            ema_canditate=ema_canditate, save=False, verbosity=verbosity
+            ema_canditate=ema_canditate, cutoff_date=cutoff_date, save=False, verbosity=verbosity
         )
 
         logger.info("Extarcting detail company quote data")
@@ -263,22 +266,22 @@ class Indicator(UnitExecutor):
     ) -> pd.DataFrame:
         """Exponential moving average for crossover triple period technique
 
-        Parameters
-        ----------
-        ema_canditate : Tuple[int, int, int], optional
-            Three Period (or days) to calculate EMA, by default (5,13,26)
-        save : bool, optional
-            Save to hard disk, by default True
-        export_path : str, optional
-            Path to save, to be used only if 'save' is true, by default '.'
-        verbosity : int, optional
-            Level of detail logging,1=< Deatil, 0=Less detail , by default 1
+        Args:
+            ema_canditate (Tuple[int, int, int], optional): Three Period (or days) to calculate EMA. Defaults to (5, 13, 26).
+            save (bool, optional): Save to hard disk. Defaults to True.
+            export_path (str, optional): Path to save, to be used only if 'save' is true. Defaults to ".".
+            verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
-        Returns
-        -------
-        pd.DataFrame
+        Returns:
+            pd.DataFrame:
 
-        """
+        Example:
+        ```python
+            >>>from stock_analysis.indicator import Indicator
+            >>>ind = Indicator('./data/company_list.yaml')
+            >>>ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
+        ```
+        """        
 
         logger.info("Performing EMA Indicator Task")
         ema_short = self._ema_indicator_n3(
