@@ -341,56 +341,6 @@ class Indicator(UnitExecutor):
         else:
             return ema_quote
 
-    def dma_absolute_indicator(
-        self,
-        end_date: str = "today",
-        period: int = 200,
-        cutoff: int = 5,
-        save: bool = False,
-        export_path: str = ".",
-    ) -> Dict:
-        """Action determination based SMA, Turnover
-
-        Parameters
-        ----------
-        end_date : Union[str, datetime.datetime], optional
-            Latest date to retrive data, by default "today"
-        period : int, optional
-            Desired period (in days) for batch SMA calculation, by default 200
-        cutoff : int, optional
-            Desired cutoff to determine action, by default 5
-        save : bool, optional
-            Save to hard disk, by default True
-        export_path : str, optional
-            Path to save, to be used only if 'save' is true, by default '.'
-
-
-        Returns
-        -------
-        Dict
-        """
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(
-                self.unit_dma_absolute,
-                [
-                    (company, end_date, period, cutoff)
-                    for company in self.data["company"]
-                ],
-            )
-        dma_compile = pd.DataFrame(result)
-        if save is True:
-            new_folder(export_path)
-            if end_date == "today":
-                end_date = now_strting
-            else:
-                end_date = end_date.replace("/", "-")
-            dma_compile.to_csv(
-                f"{export_path}/dma_action_cutoff_{str(cutoff)}_{end_date}.csv",
-                index=False,
-            )
-        else:
-            return dma_compile
-
     def _ema_indicator_n3(
         self,
         ema_canditate: Tuple[int, int] = (5, 13, 26),

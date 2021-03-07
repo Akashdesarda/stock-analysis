@@ -14,6 +14,7 @@ from stock_analysis.executors.parallel import UnitExecutor
 yf.pdr_override()
 logger = logger()
 pd.options.display.float_format = "{:,.2f}".format
+now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 
 
 @dataclass
@@ -43,7 +44,7 @@ class MomentumStrategy(UnitExecutor):
         else:
             self.data = {"company": self.company_name}
 
-    def momentum_with_return(
+    def relative_momentum(
         self,
         end_date: str = "today",
         top_company_count: int = 20,
@@ -59,7 +60,7 @@ class MomentumStrategy(UnitExecutor):
         ```python
             >>>from stock_analysis import MomentumStrategy
             >>>sa = MomentumStrategy('./data/company_list.yaml')
-            >>>ms = sa.momentum_with_return(end_date='01/06/2020')
+            >>>ms = sa.relative_momentum(end_date='01/06/2020')
         ```
 
         Args:
@@ -102,7 +103,7 @@ class MomentumStrategy(UnitExecutor):
         else:
             return momentum_df.head(top_company_count)
 
-    def momentum_with_ema(
+    def relative_momentum_with_ema(
         self,
         end_date: str = "today",
         top_company_count: int = 20,
@@ -119,7 +120,7 @@ class MomentumStrategy(UnitExecutor):
         ```python
             >>>from stock_analysis import MomentumStrategy
             >>>sa = MomentumStrategy('./data/company_list.yaml')
-            >>>mes = sa.momentum_with_ema('01/06/2020', 30)
+            >>>mes = sa.relative_momentum_with_ema('01/06/2020', 30)
         ```
 
         Args:
@@ -135,7 +136,7 @@ class MomentumStrategy(UnitExecutor):
         """
 
         logger.info("Performing Momentum Strategy task")
-        momentum_df = self.momentum_with_return(
+        momentum_df = self.relative_momentum(
             end_date=end_date,
             top_company_count=top_company_count,
             save=False,
@@ -175,3 +176,53 @@ class MomentumStrategy(UnitExecutor):
                 logger.debug(f"Sample output:\n{momentum_ema_df.head()}")
         else:
             return momentum_ema_df
+
+    def absolute_momentum_with_dma(
+        self,
+        end_date: str = "today",
+        period: int = 200,
+        cutoff: int = 5,
+        save: bool = False,
+        export_path: str = ".",
+    ) -> pd.DataFrame:
+        """Action determination based SMA, Turnover
+
+        Parameters
+        ----------
+        end_date : Union[str, datetime.datetime], optional
+            Latest date to retrive data, by default "today"
+        period : int, optional
+            Desired period (in days) for batch SMA calculation, by default 200
+        cutoff : int, optional
+            Desired cutoff to determine action, by default 5
+        save : bool, optional
+            Save to hard disk, by default True
+        export_path : str, optional
+            Path to save, to be used only if 'save' is true, by default '.'
+
+
+        Returns
+        -------
+        Dict
+        """
+        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+            result = pool.starmap(
+                self.unit_dma_absolute,
+                [
+                    (company, end_date, period, cutoff)
+                    for company in self.data["company"]
+                ],
+            )
+        dma_compile = pd.DataFrame(result)
+        if save is True:
+            new_folder(export_path)
+            if end_date == "today":
+                end_date = now_strting
+            else:
+                end_date = end_date.replace("/", "-")
+            dma_compile.to_csv(
+                f"{export_path}/dma_action_cutoff_{str(cutoff)}_{end_date}.csv",
+                index=False,
+            )
+        else:
+            return dma_compile
