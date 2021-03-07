@@ -1,0 +1,1581 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
+    
+    
+      
+        <title>Utilities - Stock Analysis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ff6e42">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="deep-orange" data-md-color-accent="green">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#utilities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Stock Analysis" class="md-header__button md-logo" aria-label="Stock Analysis">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Stock Analysis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Utilities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/Akashdesarda/stock-analysis/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Akashdesarda/stock-analysis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Stock Analysis" class="md-nav__button md-logo" aria-label="Stock Analysis">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Stock Analysis
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/Akashdesarda/stock-analysis/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Akashdesarda/stock-analysis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Concept Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Concept Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concept Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/generic_term/" class="md-nav__link">
+        Generic Terminology
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/prac_usage/" class="md-nav__link">
+        Practical Usage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Code Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Code Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../momentum_docs/" class="md-nav__link">
+        Momentum Strategy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../indicators_docs/" class="md-nav__link">
+        Indicators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Utilities
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Utilities
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#formula" class="md-nav__link">
+    Formula
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers-functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.annualized_rate_of_return" class="md-nav__link">
+    annualized_rate_of_return()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.exponential_moving_average" class="md-nav__link">
+    exponential_moving_average()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.outcome_analysis" class="md-nav__link">
+    outcome_analysis()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.percentage_diff" class="md-nav__link">
+    percentage_diff()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.simple_moving_average" class="md-nav__link">
+    simple_moving_average()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.turnover" class="md-nav__link">
+    turnover()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-helpers" class="md-nav__link">
+    General helpers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock_analysis.utils.helpers-functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.helpers.get_appropriate_date_ema" class="md-nav__link">
+    get_appropriate_date_ema()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.helpers.get_appropriate_date_momentum" class="md-nav__link">
+    get_appropriate_date_momentum()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Web App
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Web App" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Web App
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_app/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#formula" class="md-nav__link">
+    Formula
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers-functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.annualized_rate_of_return" class="md-nav__link">
+    annualized_rate_of_return()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.exponential_moving_average" class="md-nav__link">
+    exponential_moving_average()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.outcome_analysis" class="md-nav__link">
+    outcome_analysis()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.percentage_diff" class="md-nav__link">
+    percentage_diff()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.simple_moving_average" class="md-nav__link">
+    simple_moving_average()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.formula_helpers.turnover" class="md-nav__link">
+    turnover()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-helpers" class="md-nav__link">
+    General helpers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock_analysis.utils.helpers-functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.helpers.get_appropriate_date_ema" class="md-nav__link">
+    get_appropriate_date_ema()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.utils.helpers.get_appropriate_date_momentum" class="md-nav__link">
+    get_appropriate_date_momentum()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Akashdesarda/stock-analysis/edit/master/docs/reference/utils.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="utilities">Utilities</h1>
+<p>This are all the utilities functions that are needed at various steps</p>
+<h2 id="formula">Formula</h2>
+<p>Here are all the maths formula needed any stage.</p>
+
+
+  <div class="doc doc-object doc-module">
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+<h2 id="stock_analysis.utils.formula_helpers-functions">Functions</h2>
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.formula_helpers.annualized_rate_of_return" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">annualized_rate_of_return</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Calculate annulized rate of return</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>int</code></td>
+        <td><p>Close value Current date or most present date. Consider
+            it as going from bottom to top.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>start_date</code></td>
+        <td><code>int</code></td>
+        <td><p>Close value on Start date or first record. Consider 
+            it as going from bottom to top.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>duration</code></td>
+        <td><code>float</code></td>
+        <td><p>Total duration wrt to year</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>float: Annulized return</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/formula_helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">annualized_rate_of_return</span><span class="p">(</span><span class="n">end_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Calculate annulized rate of return</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        end_date (int): Close value Current date or most present date. Consider</span>
+<span class="sd">                        it as going from bottom to top.</span>
+<span class="sd">        start_date (int): Close value on Start date or first record. Consider </span>
+<span class="sd">                        it as going from bottom to top.</span>
+<span class="sd">        duration (float): Total duration wrt to year</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Annulized return</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+
+    <span class="k">return</span> <span class="p">(((</span><span class="n">end_date</span> <span class="o">/</span> <span class="n">start_date</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">duration</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.formula_helpers.exponential_moving_average" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">exponential_moving_average</span><span class="p">(</span><span class="n">data_df</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cutoff_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">smoothing_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Calculate exponential moving avarage based on given period</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>data_df</code></td>
+        <td><code>Union[pandas.core.series.Series, List]</code></td>
+        <td><p>Data to calculate ema</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>period</code></td>
+        <td><code>int</code></td>
+        <td><p>Period for which ema has to be calculated</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>cutoff_date</code></td>
+        <td><code>Union[str, datetime.datetime]</code></td>
+        <td><p>. Defaults to "today".</p></td>
+        <td><code>&#39;today&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>smoothing_factor</code></td>
+        <td><code>int</code></td>
+        <td><p>Smoothing factor which will be used to calculate 'Multiplying factor'. Defaults to 2.</p></td>
+        <td><code>2</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>float: ema value</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/formula_helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">exponential_moving_average</span><span class="p">(</span>
+    <span class="n">data_df</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">List</span><span class="p">],</span>
+    <span class="n">period</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">cutoff_date</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
+    <span class="n">smoothing_factor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Calculate exponential moving avarage based on given period</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data_df (Union[pd.Series, List]): Data to calculate ema</span>
+<span class="sd">        period (int): Period for which ema has to be calculated</span>
+<span class="sd">        cutoff_date (Union[str, datetime.datetime], optional): . Defaults to &quot;today&quot;.</span>
+<span class="sd">        smoothing_factor (int, optional): Smoothing factor which will be used to calculate &#39;Multiplying factor&#39;. Defaults to 2.</span>
+<span class="sd">        verbosity (int, optional): . Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: ema value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ema_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Calculating multiplying factor</span>
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">smoothing_factor</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">period</span><span class="p">)</span>
+
+    <span class="c1"># Calculating first SMA</span>
+    <span class="n">sma0</span> <span class="o">=</span> <span class="n">simple_moving_average</span><span class="p">(</span><span class="n">data_df</span><span class="p">[</span><span class="s2">&quot;Close&quot;</span><span class="p">],</span> <span class="n">period</span><span class="p">)</span>
+
+    <span class="c1"># Calculating first EMA</span>
+    <span class="n">ema0</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_df</span><span class="p">[</span><span class="s2">&quot;Close&quot;</span><span class="p">][</span><span class="n">period</span><span class="p">]</span> <span class="o">*</span> <span class="n">mf</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">sma0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mf</span><span class="p">))</span>
+
+    <span class="c1"># Calculating latest EMA</span>
+    <span class="n">ema_pre</span> <span class="o">=</span> <span class="n">ema0</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">50</span><span class="p">):</span>
+        <span class="n">ema</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_df</span><span class="p">[</span><span class="s2">&quot;Close&quot;</span><span class="p">][</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">50</span><span class="p">]</span> <span class="o">*</span> <span class="n">mf</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ema_pre</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mf</span><span class="p">))</span>
+        <span class="n">ema_pre</span> <span class="o">=</span> <span class="n">ema</span>
+        <span class="n">ema_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ema</span><span class="p">)</span>
+        <span class="c1"># if cutoff_date is not None:</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">50</span><span class="p">):</span>
+            <span class="k">break</span>
+    <span class="n">data_df</span><span class="p">[</span><span class="s2">&quot;ema&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">ema_list</span><span class="p">))</span> <span class="o">+</span> <span class="n">ema_list</span>
+    <span class="k">if</span> <span class="n">cutoff_date</span> <span class="o">==</span> <span class="s2">&quot;today&quot;</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">get_appropriate_date_ema</span><span class="p">(</span>
+            <span class="n">company_df</span><span class="o">=</span><span class="n">data_df</span><span class="p">,</span> <span class="n">desired_date</span><span class="o">=</span><span class="n">cutoff_date</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data_df</span><span class="p">[</span><span class="n">data_df</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">date</span><span class="p">][</span><span class="s2">&quot;ema&quot;</span><span class="p">])</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.formula_helpers.outcome_analysis" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">outcome_analysis</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Used to determine closeness based on any given ratio analysis
+like percentage difference</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ratio</code></td>
+        <td><code>float</code></td>
+        <td><p>metrics to determine outcome</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>cutoff</code></td>
+        <td><code>int</code></td>
+        <td><p>number to determine outcome. Defaults to 5.</p></td>
+        <td><code>5</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>str</code></td>
+      <td><p>str: Outcome of analysis</p></td>
+    </tr>
+  </tbody>
+</table>      <p>Used to determine closeness based on any given ratio analysis
+like percentage difference</p>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/formula_helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">outcome_analysis</span><span class="p">(</span><span class="n">ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Used to determine closeness based on any given ratio analysis</span>
+<span class="sd">    like percentage difference</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ratio (float): metrics to determine outcome</span>
+<span class="sd">        cutoff (int, optional): number to determine outcome. Defaults to 5.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Outcome of analysis</span>
+<span class="sd">    &quot;&quot;&quot;</span>    <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Used to determine closeness based on any given ratio analysis</span>
+<span class="s2">    like percentage difference</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cutoff</span> <span class="o">&lt;</span> <span class="n">ratio</span> <span class="o">&lt;</span> <span class="n">cutoff</span><span class="p">:</span>
+        <span class="n">outcome</span> <span class="o">=</span> <span class="s2">&quot;close by&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">outcome</span> <span class="o">=</span> <span class="s2">&quot;far away&quot;</span>
+    <span class="k">return</span> <span class="n">outcome</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.formula_helpers.percentage_diff" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">percentage_diff</span><span class="p">(</span><span class="n">value_a</span><span class="p">,</span> <span class="n">value_b</span><span class="p">,</span> <span class="n">return_absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Used to calculate Percentage difference of Value of B wrt to A. It can be either absolute or not.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>value_a</code></td>
+        <td><code>float</code></td>
+        <td><p>Value a</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>value_b</code></td>
+        <td><code>float</code></td>
+        <td><p>Value b</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>return_absolute</code></td>
+        <td><code>bool</code></td>
+        <td><p>Return absolute percentage difference </p></td>
+        <td><code>False</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>float: percentage difference</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/formula_helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">percentage_diff</span><span class="p">(</span><span class="n">value_a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">value_b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">return_absolute</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Used to calculate Percentage difference of Value of B wrt to A. It can be either absolute or not.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value_a (float): Value a</span>
+<span class="sd">        value_b (float): Value b</span>
+<span class="sd">        return_absolute (bool): Return absolute percentage difference </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: percentage difference</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">return_absolute</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">((</span><span class="n">value_b</span> <span class="o">-</span> <span class="n">value_a</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">value_a</span> <span class="o">+</span> <span class="n">value_b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">return_absolute</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">value_b</span> <span class="o">-</span> <span class="n">value_a</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">value_a</span> <span class="o">+</span> <span class="n">value_b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.formula_helpers.simple_moving_average" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">simple_moving_average</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Calculate SMA, which is nothing but calculating mean</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>data</code></td>
+        <td><code>Union[pandas.core.series.Series, List]</code></td>
+        <td><p>data on which SMA have to be calculate</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>period</code></td>
+        <td><code>int</code></td>
+        <td><p>Total period used to calculate SMA</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>float: SMA calculated over given period</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/formula_helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">simple_moving_average</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">List</span><span class="p">],</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Calculate SMA, which is nothing but calculating mean</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (Union[pd.Series, List]): data on which SMA have to be calculate</span>
+<span class="sd">        period (int): Total period used to calculate SMA</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: SMA calculated over given period</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">return</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="n">period</span><span class="p">]))</span> <span class="o">/</span> <span class="n">period</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.formula_helpers.turnover" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">turnover</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Calculate given Stock's batch turnover over specified time</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>volume</code></td>
+        <td><code>Union[pandas.core.series.Series, List]</code></td>
+        <td><p>batch volume data</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>price</code></td>
+        <td><code>float</code></td>
+        <td><p>price of respective stock</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>float</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/formula_helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">turnover</span><span class="p">(</span><span class="n">volume</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">List</span><span class="p">],</span> <span class="n">price</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Calculate given Stock&#39;s batch turnover over specified time</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        volume (Union[pd.Series, List]): batch volume data</span>
+<span class="sd">        price (float): price of respective stock</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float</span>
+<span class="sd">    &quot;&quot;&quot;</span>   
+    <span class="k">return</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">volume</span><span class="p">))</span> <span class="o">*</span> <span class="n">price</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+<h2 id="general-helpers">General helpers</h2>
+<p>This are general helper functions</p>
+
+
+  <div class="doc doc-object doc-module">
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+<h2 id="stock_analysis.utils.helpers-functions">Functions</h2>
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.helpers.get_appropriate_date_ema" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_appropriate_date_ema</span><span class="p">(</span><span class="n">company_df</span><span class="p">,</span> <span class="n">desired_date</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Return appropriate date which is present in data record.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>company_df</code></td>
+        <td><code>DataFrame</code></td>
+        <td><p>Company dataframe</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>duration</code></td>
+        <td><code>datetime.datetime</code></td>
+        <td><p>Desired date cut-off to calculate ema</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging. Default to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Tuple[datetime.datetime, float]</code></td>
+      <td><p>Tuple[datetime.datetime,float]: Date,Close value on date retrived</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ValueError</code></td>
+        <td><p>If desired old is older than first record</p></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_appropriate_date_ema</span><span class="p">(</span><span class="n">company_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+                         <span class="n">desired_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span>
+                         <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Return appropriate date which is present in data record.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        company_df (pd.DataFrame): Company dataframe</span>
+<span class="sd">        duration (datetime.datetime): Desired date cut-off to calculate ema</span>
+<span class="sd">        verbosity ([int, optional]): Level of detail logging. Default to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple[datetime.datetime,float]: Date,Close value on date retrived</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If desired old is older than first record</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">desired_date</span> <span class="o">&lt;</span> <span class="n">company_df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Given desired date </span><span class="si">{</span><span class="n">desired_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> is older than first recorded date </span><span class="si">{</span><span class="n">company_df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Your desired EMA cut-off date is </span><span class="si">{</span><span class="n">desired_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">day_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">desired_date</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">company_df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">desired_date</span> <span class="o">-</span> \
+                <span class="n">dateutil</span><span class="o">.</span><span class="n">relativedelta</span><span class="o">.</span><span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">day_idx</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">desired_date</span>
+        <span class="k">if</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">company_df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">desired_date</span> <span class="o">!=</span> <span class="n">date</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Desired date: </span><span class="si">{</span><span class="n">desired_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> not found going for next possible date: </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">date</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="stock_analysis.utils.helpers.get_appropriate_date_momentum" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_appropriate_date_momentum</span><span class="p">(</span><span class="n">company_df</span><span class="p">,</span> <span class="n">company</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Return appropriate date which is present in data record.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>company_df</code></td>
+        <td><code>DataFrame</code></td>
+        <td><p>Company dataframe</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>duration</code></td>
+        <td><code>Tuple[int, int]</code></td>
+        <td><p>Desired duration to go back to retrive record. Default to (0,1)</p></td>
+        <td><code>(0, 1)</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging, 1=&lt; Deatil, 0=Less detail. Default to 1</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>      <p>Returns
+    Tuple(datetime.datetime,float): Date,Close value on date retrived</p>
+<p>Raises
+    ValueError: If desired old is older than first record</p>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/utils/helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_appropriate_date_momentum</span><span class="p">(</span><span class="n">company_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+                         <span class="n">company</span><span class="p">,</span>
+                         <span class="n">duration</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                         <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Return appropriate date which is present in data record.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        company_df (pd.DataFrame): Company dataframe</span>
+<span class="sd">        duration (Tuple[year,month], optional): Desired duration to go back to retrive record. Default to (0,1)</span>
+<span class="sd">        verbosity (int, optional): Level of detail logging, 1=&lt; Deatil, 0=Less detail. Default to 1</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        Tuple(datetime.datetime,float): Date,Close value on date retrived</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">        ValueError: If desired old is older than first record</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">current_date</span> <span class="o">=</span> <span class="n">company_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Date</span>
+    <span class="n">desired_date</span> <span class="o">=</span> <span class="n">current_date</span> <span class="o">-</span> \
+        <span class="n">dateutil</span><span class="o">.</span><span class="n">relativedelta</span><span class="o">.</span><span class="n">relativedelta</span><span class="p">(</span>
+            <span class="n">years</span><span class="o">=</span><span class="n">duration</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">months</span><span class="o">=</span><span class="n">duration</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">desired_date</span> <span class="o">&lt;</span> <span class="n">company_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Date</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Given desired date </span><span class="si">{</span><span class="n">desired_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> is older than first recorded date </span><span class="si">{</span><span class="n">company_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+    <span class="n">dd_copy</span> <span class="o">=</span> <span class="n">desired_date</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Your desired date for monthly return  for </span><span class="si">{</span><span class="n">company</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">desired_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">company_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">company_df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">desired_date</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">desired_close</span> <span class="o">=</span> <span class="n">company_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">company_df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">desired_date</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">company_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">company_df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">desired_date</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">desired_date</span> <span class="o">=</span> <span class="n">desired_date</span> <span class="o">-</span> \
+                    <span class="n">dateutil</span><span class="o">.</span><span class="n">relativedelta</span><span class="o">.</span><span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">desired_close</span> <span class="o">=</span> <span class="n">company_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">company_df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">desired_date</span><span class="p">]</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Desired date: </span><span class="si">{</span><span class="n">dd_copy</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> not found going for next possible date: </span><span class="si">{</span><span class="n">desired_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">desired_date</span><span class="p">,</span> <span class="n">desired_close</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Close</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../indicators_docs/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Indicators
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../web_app/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Usage
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:desardaakash@gmail.com" target="_blank" rel="noopener" title="Contact me" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/Akashdesarda" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.linkedin.com/in/akashdesarda/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.medium.com/@desardaakash" target="_blank" rel="noopener" title="www.medium.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 32v448h448V32H0zm372.2 106.1l-24 23c-2.1 1.6-3.1 4.2-2.7 6.7v169.3c-.4 2.6.6 5.2 2.7 6.7l23.5 23v5.1h-118V367l24.3-23.6c2.4-2.4 2.4-3.1 2.4-6.7V199.8l-67.6 171.6h-9.1L125 199.8v115c-.7 4.8 1 9.7 4.4 13.2l31.6 38.3v5.1H71.2v-5.1l31.6-38.3c3.4-3.5 4.9-8.4 4.1-13.2v-133c.4-3.7-1-7.3-3.8-9.8L75 138.1V133h87.3l67.4 148L289 133.1h83.2v5z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9b151c6a.min.js"></script>
+      
+    
+  </body>
+</html>

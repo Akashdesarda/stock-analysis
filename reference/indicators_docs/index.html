@@ -1,0 +1,1343 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
+    
+    
+      
+        <title>Indicators - Stock Analysis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ff6e42">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="deep-orange" data-md-color-accent="green">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stock_analysis.indicator.Indicator-methods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Stock Analysis" class="md-header__button md-logo" aria-label="Stock Analysis">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Stock Analysis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Indicators
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/Akashdesarda/stock-analysis/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Akashdesarda/stock-analysis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Stock Analysis" class="md-nav__button md-logo" aria-label="Stock Analysis">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Stock Analysis
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/Akashdesarda/stock-analysis/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Akashdesarda/stock-analysis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Concept Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Concept Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concept Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/generic_term/" class="md-nav__link">
+        Generic Terminology
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/prac_usage/" class="md-nav__link">
+        Practical Usage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Code Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Code Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../momentum_docs/" class="md-nav__link">
+        Momentum Strategy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Indicators
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Indicators
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator-methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.ema_crossover_detail_indicator" class="md-nav__link">
+    ema_crossover_detail_indicator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.ema_detail_indicator" class="md-nav__link">
+    ema_detail_indicator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.ema_indicator" class="md-nav__link">
+    ema_indicator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.volume_n_days_indicator" class="md-nav__link">
+    volume_n_days_indicator()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utils/" class="md-nav__link">
+        Utilities
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Web App
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Web App" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Web App
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_app/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator-methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.ema_crossover_detail_indicator" class="md-nav__link">
+    ema_crossover_detail_indicator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.ema_detail_indicator" class="md-nav__link">
+    ema_detail_indicator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.ema_indicator" class="md-nav__link">
+    ema_indicator()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock_analysis.indicator.Indicator.volume_n_days_indicator" class="md-nav__link">
+    volume_n_days_indicator()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Akashdesarda/stock-analysis/edit/master/docs/reference/indicators_docs.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Indicators</h1>
+                
+                <div class="doc doc-object doc-class">
+
+
+    <div class="doc doc-contents first">
+
+      <p>Perform Indicator operation which are based on specific metrics used to study the performance 
+of desired stock/company. </p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>path</code></td>
+        <td><code>[str, optional]</code></td>
+        <td><p>Path to company yaml/json. Either path or company_name can be used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>company_name</code></td>
+        <td><code>[List, optional]</code></td>
+        <td><p>List of company name. If path is used then this is obsolete </p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
+    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
+</code></pre>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<h2 id="stock_analysis.indicator.Indicator-methods">Methods</h2>
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="stock_analysis.indicator.Indicator.ema_crossover_detail_indicator" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ema_crossover_detail_indicator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ema_canditate</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Exponential moving average for crossover triple period technique</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ema_canditate</code></td>
+        <td><code>Tuple[int, int, int]</code></td>
+        <td><p>Three Period (or days) to calculate EMA. Defaults to (5, 13, 26).</p></td>
+        <td><code>(5, 13, 26)</code></td>
+      </tr>
+      <tr>
+        <td><code>save</code></td>
+        <td><code>bool</code></td>
+        <td><p>Save to hard disk. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>export_path</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to save, to be used only if 'save' is true. Defaults to ".".</p></td>
+        <td><code>&#39;.&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DataFrame</code></td>
+      <td><p>pd.DataFrame:</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
+    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
+    &gt;&gt;&gt;ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
+</code></pre>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/indicator.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ema_crossover_detail_indicator</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">ema_canditate</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Exponential moving average for crossover triple period technique</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ema_canditate (Tuple[int, int, int], optional): Three Period (or days) to calculate EMA. Defaults to (5, 13, 26).</span>
+<span class="sd">        save (bool, optional): Save to hard disk. Defaults to True.</span>
+<span class="sd">        export_path (str, optional): Path to save, to be used only if &#39;save&#39; is true. Defaults to &quot;.&quot;.</span>
+<span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame:</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
+<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
+<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt;ema = ind.ema_crossover_detail_indicator((5,10,020), &#39;01/06/2020&#39;) </span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>        
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Performing EMA Indicator Task&quot;</span><span class="p">)</span>
+    <span class="n">ema_short</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ema_indicator_n3</span><span class="p">(</span>
+        <span class="n">ema_canditate</span><span class="o">=</span><span class="n">ema_canditate</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span>
+    <span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Extarcting detail company quote data&quot;</span><span class="p">)</span>
+    <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">company_quote</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unit_quote_retrive</span><span class="p">,</span> <span class="n">ema_short</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">single_company_quote</span> <span class="ow">in</span> <span class="n">company_quote</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">single_company_quote</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_company_quote</span><span class="p">)</span>
+
+    <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;company&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;company&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;longName&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;regularMarketVolume&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;marketCap&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;bookValue&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;priceToBook&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;averageDailyVolume3Month&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;averageDailyVolume10Day&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekLowChange&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekLowChangePercent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekRange&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekHighChange&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekHighChangePercent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekLow&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekHigh&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="n">batch_company_quote</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+        <span class="s2">&quot;.NS&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">ema_quote</span> <span class="o">=</span> <span class="n">ema_short</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">batch_company_quote</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;company&quot;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&quot;1:1&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Here are sample 5 company</span><span class="se">\n</span><span class="si">{</span><span class="n">ema_quote</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">ema_quote</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/ema_crossover_detail_indicator</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">company_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Exported at </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/ema_crossover_detail_indicator</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">company_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ema_quote</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="stock_analysis.indicator.Indicator.ema_detail_indicator" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ema_detail_indicator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ema_canditate</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">cutoff_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Exponential moving average based on desired two period (or no of days) with additional info
+which include: </p>
+<blockquote>
+<p>regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month, 
+averageDailyVolume10Day, fiftyTwoWeekLowChange, fiftyTwoWeekLowChangePercent, fiftyTwoWeekRange,
+fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwoWeekHigh</p>
+</blockquote>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ema_canditate</code></td>
+        <td><code>Tuple[int, int]</code></td>
+        <td><p>Two number used two calculate EMA. Defaults to (50, 200).</p></td>
+        <td><code>(50, 200)</code></td>
+      </tr>
+      <tr>
+        <td><code>cutoff_date</code></td>
+        <td><code>Union[str, datetime.datetime]</code></td>
+        <td><p>Desired date till which to calculate ema. Defaults to "today".</p></td>
+        <td><code>&#39;today&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>save</code></td>
+        <td><code>bool</code></td>
+        <td><p>Save to hard disk. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>export_path</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to save, to be used only if 'save' is true. Defaults to ".".</p></td>
+        <td><code>&#39;.&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging,1=&lt; Detail, 0=Less detail. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DataFrame</code></td>
+      <td><p>pd.DataFrame: EMA and indicators based on it</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
+    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
+    &gt;&gt;&gt;ema = ind.ema_detail_indicator((50,200), '01/06/2020')
+</code></pre>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/indicator.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ema_detail_indicator</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">ema_canditate</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+    <span class="n">cutoff_date</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Exponential moving average based on desired two period (or no of days) with additional info</span>
+<span class="sd">    which include: </span>
+<span class="sd">    &gt; regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month, </span>
+<span class="sd">    averageDailyVolume10Day, fiftyTwoWeekLowChange, fiftyTwoWeekLowChangePercent, fiftyTwoWeekRange,</span>
+<span class="sd">    fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwoWeekHigh</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ema_canditate (Tuple[int, int], optional): Two number used two calculate EMA. Defaults to (50, 200).</span>
+<span class="sd">        cutoff_date (Union[str, datetime.datetime], optional): Desired date till which to calculate ema. Defaults to &quot;today&quot;.</span>
+<span class="sd">        save (bool, optional): Save to hard disk. Defaults to True.</span>
+<span class="sd">        export_path (str, optional): Path to save, to be used only if &#39;save&#39; is true. Defaults to &quot;.&quot;.</span>
+<span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Detail, 0=Less detail. Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: EMA and indicators based on it</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
+<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
+<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt;ema = ind.ema_detail_indicator((50,200), &#39;01/06/2020&#39;)</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Performing EMA Indicator Task&quot;</span><span class="p">)</span>
+    <span class="n">ema_short</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ema_indicator</span><span class="p">(</span>
+        <span class="n">ema_canditate</span><span class="o">=</span><span class="n">ema_canditate</span><span class="p">,</span> <span class="n">cutoff_date</span><span class="o">=</span><span class="n">cutoff_date</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span>
+    <span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Extarcting detail company quote data&quot;</span><span class="p">)</span>
+    <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">company_quote</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unit_quote_retrive</span><span class="p">,</span> <span class="n">ema_short</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">single_company_quote</span> <span class="ow">in</span> <span class="n">company_quote</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">single_company_quote</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_company_quote</span><span class="p">)</span>
+
+    <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;company&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">batch_company_quote</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;company&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;longName&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;regularMarketVolume&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;marketCap&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;bookValue&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;priceToBook&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;averageDailyVolume3Month&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;averageDailyVolume10Day&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekLowChange&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekLowChangePercent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekRange&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekHighChange&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekHighChangePercent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekLow&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fiftyTwoWeekHigh&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="n">batch_company_quote</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_company_quote</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+        <span class="s2">&quot;.NS&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">ema_quote</span> <span class="o">=</span> <span class="n">ema_short</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">batch_company_quote</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;company&quot;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&quot;1:1&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Here are sample 5 company</span><span class="se">\n</span><span class="si">{</span><span class="n">ema_quote</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">ema_quote</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/ema_detail_indicator</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">company_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Exported at </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/ema_detail_indicator</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">company_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ema_quote</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="stock_analysis.indicator.Indicator.ema_indicator" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ema_indicator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ema_canditate</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">cutoff_date</span><span class="o">=</span><span class="s1">&#39;today&#39;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Exponential moving average based on desired two period (or no of days)</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ema_canditate</code></td>
+        <td><code>Tuple[int, int]</code></td>
+        <td><p>Two number used two calculate EMA. Defaults to (50, 200).</p></td>
+        <td><code>(50, 200)</code></td>
+      </tr>
+      <tr>
+        <td><code>cutoff_date</code></td>
+        <td><code>Union[str, datetime.datetime]</code></td>
+        <td><p>Desired date till which to calculate ema. Defaults to "today".</p></td>
+        <td><code>&#39;today&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>save</code></td>
+        <td><code>bool</code></td>
+        <td><p>Save to hard disk. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>export_path</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to save, to be used only if 'save' is true. Defaults to ".".</p></td>
+        <td><code>&#39;.&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging,1=&lt; Detail, 0=Less detail. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DataFrame</code></td>
+      <td><p>pd.DataFrame: EMA and indicators based on it</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
+    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
+    &gt;&gt;&gt;ema = ind.ema_indicator((50,200), '01/06/2020')
+</code></pre>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/indicator.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ema_indicator</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">ema_canditate</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+    <span class="n">cutoff_date</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Exponential moving average based on desired two period (or no of days)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ema_canditate (Tuple[int, int], optional): Two number used two calculate EMA. Defaults to (50, 200).</span>
+<span class="sd">        cutoff_date (Union[str, datetime.datetime], optional): Desired date till which to calculate ema. Defaults to &quot;today&quot;.</span>
+<span class="sd">        save (bool, optional): Save to hard disk. Defaults to True.</span>
+<span class="sd">        export_path (str, optional): Path to save, to be used only if &#39;save&#39; is true. Defaults to &quot;.&quot;.</span>
+<span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Detail, 0=Less detail. Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: EMA and indicators based on it</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
+<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
+<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt;ema = ind.ema_indicator((50,200), &#39;01/06/2020&#39;)</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>        
+
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unit_ema_indicator</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">ema_canditate</span><span class="p">,</span> <span class="n">cutoff_date</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+    <span class="n">ema_indicator_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">ema_indicator_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ema_indicator_df</span><span class="p">[</span><span class="s2">&quot;percentage_diff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ema_indicator_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">percentage_diff</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;ema</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;ema</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span> <span class="n">return_absolute</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">),</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ema_indicator_df</span><span class="p">[</span><span class="s2">&quot;outcome&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ema_indicator_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">outcome_analysis</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;percentage_diff&quot;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+
+    <span class="n">ema_indicator_df</span> <span class="o">=</span> <span class="n">ema_indicator_df</span><span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;company&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ema_date&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;ema</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;ema</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;percentage_diff&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;outcome&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;action&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Here are sample 5 company</span><span class="se">\n</span><span class="si">{</span><span class="n">ema_indicator_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">new_folder</span><span class="p">(</span><span class="n">export_path</span><span class="p">)</span>
+        <span class="n">ema_indicator_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/ema_indicator</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">company_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Exported at </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/ema_indicator</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ema_canditate</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;company&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">company_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ema_indicator_df</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="stock_analysis.indicator.Indicator.volume_n_days_indicator" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">volume_n_days_indicator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Mean Volume Indicator based on desired days</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>duration</code></td>
+        <td><code>int</code></td>
+        <td><p>Total days from current date to retrive data. Defaults to 90.</p></td>
+        <td><code>90</code></td>
+      </tr>
+      <tr>
+        <td><code>save</code></td>
+        <td><code>bool</code></td>
+        <td><p>Save to hard disk. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>export_path</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to save, to be used only if 'save' is true. Defaults to ".".</p></td>
+        <td><code>&#39;.&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>verbosity</code></td>
+        <td><code>int</code></td>
+        <td><p>Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DataFrame</code></td>
+      <td><p>pd.DataFrame: All Volume based indicator</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
+    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
+    &gt;&gt;&gt;vol = ind.volume_n_days_indicator(150)
+</code></pre>
+
+        <details class="quote">
+          <summary>Source code in <code>stock_analysis/indicator.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">volume_n_days_indicator</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Mean Volume Indicator based on desired days</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        duration (int, optional): Total days from current date to retrive data. Defaults to 90.</span>
+<span class="sd">        save (bool, optional): Save to hard disk. Defaults to True.</span>
+<span class="sd">        export_path (str, optional): Path to save, to be used only if &#39;save&#39; is true. Defaults to &quot;.&quot;.</span>
+<span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: All Volume based indicator</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
+<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
+<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt;vol = ind.volume_n_days_indicator(150)</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unit_vol_indicator_n_days</span><span class="p">,</span>
+            <span class="p">[(</span><span class="n">company</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;company&quot;</span><span class="p">]],</span>
+        <span class="p">)</span>
+
+    <span class="n">vol_ind_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Here are sample 5 company</span><span class="se">\n</span><span class="si">{</span><span class="n">vol_ind_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">new_folder</span><span class="p">(</span><span class="n">export_path</span><span class="p">)</span>
+        <span class="n">vol_ind_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/VolumeIndicator90Days_detailed_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Save at </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">/VolumeIndicator90Days_detailed_</span><span class="si">{</span><span class="n">now_strting</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">vol_ind_df</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../momentum_docs/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Momentum Strategy
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../utils/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Utilities
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:desardaakash@gmail.com" target="_blank" rel="noopener" title="Contact me" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/Akashdesarda" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.linkedin.com/in/akashdesarda/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.medium.com/@desardaakash" target="_blank" rel="noopener" title="www.medium.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 32v448h448V32H0zm372.2 106.1l-24 23c-2.1 1.6-3.1 4.2-2.7 6.7v169.3c-.4 2.6.6 5.2 2.7 6.7l23.5 23v5.1h-118V367l24.3-23.6c2.4-2.4 2.4-3.1 2.4-6.7V199.8l-67.6 171.6h-9.1L125 199.8v115c-.7 4.8 1 9.7 4.4 13.2l31.6 38.3v5.1H71.2v-5.1l31.6-38.3c3.4-3.5 4.9-8.4 4.1-13.2v-133c.4-3.7-1-7.3-3.8-9.8L75 138.1V133h87.3l67.4 148L289 133.1h83.2v5z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9b151c6a.min.js"></script>
+      
+    
+  </body>
+</html>
