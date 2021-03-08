@@ -19,14 +19,14 @@ now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 
 @dataclass
 class MomentumStrategy(UnitExecutor):
-    """Traders measure momentum in many different ways to identify opportunity pockets. 
-    The core idea across all these strategies remains the same i.e to identify momentum and ride the 
+    """Traders measure momentum in many different ways to identify opportunity pockets.
+    The core idea across all these strategies remains the same i.e to identify momentum and ride the
     wave. The strategy are combinations of several metrics to determine momentum.
 
     Usage:
     ```python
-        >>>from stock_analysis.momentum_strategy import MomentumStrategy
-        >>>ma = MomentumStrategy('./data/company_list.yaml')
+    from stock_analysis.momentum_strategy import MomentumStrategy
+    ma = MomentumStrategy('./data/company_list.yaml')
     ```
 
     Args:
@@ -55,13 +55,6 @@ class MomentumStrategy(UnitExecutor):
         """The strategy is used to identity stocks which had 'good performance'
         based on desired 'return' duration
 
-        Example:
-
-        ```python
-            >>>from stock_analysis import MomentumStrategy
-            >>>sa = MomentumStrategy('./data/company_list.yaml')
-            >>>ms = sa.relative_momentum(end_date='01/06/2020')
-        ```
 
         Args:
             end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to 'today'.
@@ -71,7 +64,15 @@ class MomentumStrategy(UnitExecutor):
             verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
         Returns:
-            pd.DataFrame: Record based on monthly and yearly calculation
+            Record based on monthly and yearly calculation
+
+        Example:
+
+        ```python
+        from stock_analysis import MomentumStrategy
+        sa = MomentumStrategy('./data/company_list.yaml')
+        ms = sa.relative_momentum(end_date='01/06/2020')
+        ```
         """
         if end_date == "today":
             end = datetime.datetime.now()
@@ -115,14 +116,6 @@ class MomentumStrategy(UnitExecutor):
         """The strategy is used to identity stocks with 'good performance'
         based on desired 'return' duration and 'exponential moving avg'.
 
-        Example:
-
-        ```python
-            >>>from stock_analysis import MomentumStrategy
-            >>>sa = MomentumStrategy('./data/company_list.yaml')
-            >>>mes = sa.relative_momentum_with_ema('01/06/2020', 30)
-        ```
-
         Args:
             end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to 'today'.
             top_company_count (int, optional): No of top company to retrieve based on Annualized return. Defaults to 20.
@@ -132,7 +125,15 @@ class MomentumStrategy(UnitExecutor):
             verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
         Returns:
-            pd.DataFrame: Record based on monthly and yearly calculation and EMA calculation
+            Record based on monthly and yearly calculation and EMA calculation
+
+         Example:
+
+        ```python
+        from stock_analysis import MomentumStrategy
+        sa = MomentumStrategy('./data/company_list.yaml')
+        mes = sa.relative_momentum_with_ema('01/06/2020', 30)
+        ```
         """
 
         logger.info("Performing Momentum Strategy task")
@@ -185,25 +186,25 @@ class MomentumStrategy(UnitExecutor):
         save: bool = False,
         export_path: str = ".",
     ) -> pd.DataFrame:
-        """Action determination based SMA, Turnover
+        """Action determination based on Daily moving average and Turnover
 
-        Parameters
-        ----------
-        end_date : Union[str, datetime.datetime], optional
-            Latest date to retrive data, by default "today"
-        period : int, optional
-            Desired period (in days) for batch SMA calculation, by default 200
-        cutoff : int, optional
-            Desired cutoff to determine action, by default 5
-        save : bool, optional
-            Save to hard disk, by default True
-        export_path : str, optional
-            Path to save, to be used only if 'save' is true, by default '.'
+        Args:
+            end_date (str, optional): Latest date to retrive data. Defaults to "today".
+            period (int, optional): Desired period (in days) for batch SMA calculation. Defaults to 200.
+            cutoff (int, optional): Desired cutoff to determine action. Defaults to 5.
+            save (bool, optional): Save to hard disk. Defaults to False.
+            export_path (str, optional): Path to save, to be used only if 'save' is true. Defaults to ".".
 
+        Returns:
+            Results with action (buy, sell, or no action) including DMA and turnover
 
-        Returns
-        -------
-        Dict
+         Example:
+
+        ```
+        from stock_analysis import MomentumStrategy
+        sa = MomentumStrategy('./data/company_list.yaml')
+        mes = sa.absolute_momentum_with_dma('01/06/2020', 30)
+        ```
         """
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
             result = pool.starmap(

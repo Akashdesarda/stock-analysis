@@ -29,8 +29,8 @@ class Indicator(UnitExecutor):
     
     Example:
     ```python
-        >>>from stock_analysis.indicator import Indicator
-        >>>ind = Indicator('./data/company_list.yaml')
+    from stock_analysis.indicator import Indicator
+    ind = Indicator('./data/company_list.yaml')
     ```
     """    
 
@@ -60,13 +60,13 @@ class Indicator(UnitExecutor):
             verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
         Returns:
-            pd.DataFrame: All Volume based indicator
+            All Volume based indicator
         
         Example:
         ```python
-            >>>from stock_analysis.indicator import Indicator
-            >>>ind = Indicator('./data/company_list.yaml')
-            >>>vol = ind.volume_n_days_indicator(150)
+        from stock_analysis.indicator import Indicator
+        ind = Indicator('./data/company_list.yaml')
+        vol = ind.volume_n_days_indicator(150)
         ```
         """
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
@@ -109,13 +109,13 @@ class Indicator(UnitExecutor):
             verbosity (int, optional): Level of detail logging,1=< Detail, 0=Less detail. Defaults to 1.
 
         Returns:
-            pd.DataFrame: EMA and indicators based on it
+            EMA and indicators based on it
         
         Example:
         ```python
-            >>>from stock_analysis.indicator import Indicator
-            >>>ind = Indicator('./data/company_list.yaml')
-            >>>ema = ind.ema_indicator((50,200), '01/06/2020')
+        from stock_analysis.indicator import Indicator
+        ind = Indicator('./data/company_list.yaml')
+        ema = ind.ema_indicator((50,200), '01/06/2020')
         ```
         """        
 
@@ -189,13 +189,13 @@ class Indicator(UnitExecutor):
             verbosity (int, optional): Level of detail logging,1=< Detail, 0=Less detail. Defaults to 1.
 
         Returns:
-            pd.DataFrame: EMA and indicators based on it
+            EMA and detailed metrics for indicators
         
         Example:
         ```python
-            >>>from stock_analysis.indicator import Indicator
-            >>>ind = Indicator('./data/company_list.yaml')
-            >>>ema = ind.ema_detail_indicator((50,200), '01/06/2020')
+        from stock_analysis.indicator import Indicator
+        ind = Indicator('./data/company_list.yaml')
+        ema = ind.ema_detail_indicator((50,200), '01/06/2020')
         ```
         """
 
@@ -273,13 +273,13 @@ class Indicator(UnitExecutor):
             verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
         Returns:
-            pd.DataFrame:
+            Results is based on crossover ema and detailed metrics
 
         Example:
         ```python
-            >>>from stock_analysis.indicator import Indicator
-            >>>ind = Indicator('./data/company_list.yaml')
-            >>>ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
+        from stock_analysis.indicator import Indicator
+        ind = Indicator('./data/company_list.yaml')
+        ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
         ```
         """        
 
