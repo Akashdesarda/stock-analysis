@@ -15,7 +15,7 @@ def get_appropriate_date_ema(company_df: pd.DataFrame,
 
     Args:
         company_df (pd.DataFrame): Company dataframe
-        duration (datetime.datetime): Desired date cut-off to calculate ema
+        desired_date (datetime.datetime): Desired date cut-off to calculate ema
         verbosity ([int, optional]): Level of detail logging. Default to 1.
 
     Returns:
