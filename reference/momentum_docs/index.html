@@ -523,12 +523,12 @@
 
     <div class="doc doc-contents first">
 
-      <p>Traders measure momentum in many different ways to identify opportunity pockets. 
-The core idea across all these strategies remains the same i.e to identify momentum and ride the 
+      <p>Traders measure momentum in many different ways to identify opportunity pockets.
+The core idea across all these strategies remains the same i.e to identify momentum and ride the
 wave. The strategy are combinations of several metrics to determine momentum.</p>
 <p>Usage:</p>
-<pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.momentum_strategy import MomentumStrategy
-    &gt;&gt;&gt;ma = MomentumStrategy('./data/company_list.yaml')
+<pre><code class="language-python">from stock_analysis.momentum_strategy import MomentumStrategy
+ma = MomentumStrategy('./data/company_list.yaml')
 </code></pre>
 
 <p><strong>Parameters:</strong></p>
@@ -581,7 +581,7 @@ wave. The strategy are combinations of several metrics to determine momentum.</p
 
     <div class="doc doc-contents ">
 
-      <p>Action determination based SMA, Turnover</p>
+      <p>Action determination based on Daily moving average and Turnover</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -597,48 +597,54 @@ wave. The strategy are combinations of several metrics to determine momentum.</p
       <tr>
         <td><code>end_date</code></td>
         <td><code>str</code></td>
-        <td><p>Latest date to retrive data. Default to "today"</p></td>
+        <td><p>Latest date to retrive data. Defaults to "today".</p></td>
         <td><code>&#39;today&#39;</code></td>
       </tr>
       <tr>
         <td><code>period</code></td>
         <td><code>int</code></td>
-        <td><p>Desired period (in days) for batch SMA calculation. Default to 200</p></td>
+        <td><p>Desired period (in days) for batch SMA calculation. Defaults to 200.</p></td>
         <td><code>200</code></td>
       </tr>
       <tr>
         <td><code>cutoff</code></td>
         <td><code>int</code></td>
-        <td><p>Desired cutoff to determine action. Default 5</p></td>
+        <td><p>Desired cutoff to determine action. Defaults to 5.</p></td>
         <td><code>5</code></td>
       </tr>
       <tr>
         <td><code>save</code></td>
         <td><code>bool</code></td>
-        <td><p>Save to hard disk. Default is True</p></td>
+        <td><p>Save to hard disk. Defaults to False.</p></td>
         <td><code>False</code></td>
       </tr>
       <tr>
-        <td><code>export(t_path</code></td>
-        <td><code></code></td>
-        <td><p>str, optional): Path to save, to be used only if 'save' is true. By default loo '.'</p></td>
-        <td><em>required</em></td>
+        <td><code>export_path</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to save, to be used only if 'save' is true. Defaults to ".".</p></td>
+        <td><code>&#39;.&#39;</code></td>
       </tr>
   </tbody>
 </table>
-<p><strong>Examples:</strong></p>
-    
-      <p>```from stock_analysis import MomentumStrategy</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>sa = MomentumStrategy('./data/company_list.yaml')
-mes = sa.absolute_momentum_with_dma('01/06/2020', 30)</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>Returns
-    pd.Dataframe</p>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DataFrame</code></td>
+      <td><p>Results with action (buy, sell, or no action) including DMA and turnover</p></td>
+    </tr>
+  </tbody>
+</table>      <p>Example:</p>
+<pre><code>from stock_analysis import MomentumStrategy
+sa = MomentumStrategy('./data/company_list.yaml')
+mes = sa.absolute_momentum_with_dma('01/06/2020', 30)
+</code></pre>
 
         <details class="quote">
           <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
@@ -650,24 +656,25 @@ mes = sa.absolute_momentum_with_dma('01/06/2020', 30)</p>
     <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">export_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Action determination based SMA, Turnover</span>
+    <span class="sd">&quot;&quot;&quot;Action determination based on Daily moving average and Turnover</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        end_date (str, optional): Latest date to retrive data. Defaults to &quot;today&quot;.</span>
+<span class="sd">        period (int, optional): Desired period (in days) for batch SMA calculation. Defaults to 200.</span>
+<span class="sd">        cutoff (int, optional): Desired cutoff to determine action. Defaults to 5.</span>
+<span class="sd">        save (bool, optional): Save to hard disk. Defaults to False.</span>
+<span class="sd">        export_path (str, optional): Path to save, to be used only if &#39;save&#39; is true. Defaults to &quot;.&quot;.</span>
 
-<span class="sd">        end_date (Union[str, datetime.datetime], optional): Latest date to retrive data. Default to &quot;today&quot;</span>
-<span class="sd">        period (int, optional): Desired period (in days) for batch SMA calculation. Default to 200</span>
-<span class="sd">        cutoff (int, optional): Desired cutoff to determine action. Default 5</span>
-<span class="sd">        save (bool, optional): Save to hard disk. Default is True</span>
-<span class="sd">        export(t_path : str, optional): Path to save, to be used only if &#39;save&#39; is true. By default loo &#39;.&#39;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Results with action (buy, sell, or no action) including DMA and turnover</span>
 
-<span class="sd">    Example:</span>
-<span class="sd">    ```from stock_analysis import MomentumStrategy</span>
-<span class="sd">    &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">    &gt;&gt;&gt;mes = sa.absolute_momentum_with_dma(&#39;01/06/2020&#39;, 30)</span>
+<span class="sd">     Example:</span>
 
-
-<span class="sd">    Returns</span>
-<span class="sd">        pd.Dataframe</span>
+<span class="sd">    ```</span>
+<span class="sd">    from stock_analysis import MomentumStrategy</span>
+<span class="sd">    sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    mes = sa.absolute_momentum_with_dma(&#39;01/06/2020&#39;, 30)</span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span>
@@ -712,13 +719,6 @@ mes = sa.absolute_momentum_with_dma('01/06/2020', 30)</p>
 
       <p>The strategy is used to identity stocks which had 'good performance'
 based on desired 'return' duration</p>
-
-<p><strong>Examples:</strong></p>
-    
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis import MomentumStrategy
-    &gt;&gt;&gt;sa = MomentumStrategy('./data/company_list.yaml')
-    &gt;&gt;&gt;ms = sa.relative_momentum(end_date='01/06/2020')
-</code></pre>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -774,10 +774,17 @@ based on desired 'return' duration</p>
   <tbody>
     <tr>
       <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame: Record based on monthly and yearly calculation</p></td>
+      <td><p>Record based on monthly and yearly calculation</p></td>
     </tr>
   </tbody>
 </table>
+<p><strong>Examples:</strong></p>
+    
+      <pre><code class="language-python">from stock_analysis import MomentumStrategy
+sa = MomentumStrategy('./data/company_list.yaml')
+ms = sa.relative_momentum(end_date='01/06/2020')
+</code></pre>
+
         <details class="quote">
           <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">relative_momentum</span><span class="p">(</span>
@@ -791,13 +798,6 @@ based on desired 'return' duration</p>
     <span class="sd">&quot;&quot;&quot;The strategy is used to identity stocks which had &#39;good performance&#39;</span>
 <span class="sd">    based on desired &#39;return&#39; duration</span>
 
-<span class="sd">    Example:</span>
-
-<span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis import MomentumStrategy</span>
-<span class="sd">        &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;ms = sa.relative_momentum(end_date=&#39;01/06/2020&#39;)</span>
-<span class="sd">    ```</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to &#39;today&#39;.</span>
@@ -807,7 +807,15 @@ based on desired 'return' duration</p>
 <span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: Record based on monthly and yearly calculation</span>
+<span class="sd">        Record based on monthly and yearly calculation</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    from stock_analysis import MomentumStrategy</span>
+<span class="sd">    sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    ms = sa.relative_momentum(end_date=&#39;01/06/2020&#39;)</span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">end_date</span> <span class="o">==</span> <span class="s2">&quot;today&quot;</span><span class="p">:</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -860,13 +868,6 @@ based on desired 'return' duration</p>
 
       <p>The strategy is used to identity stocks with 'good performance'
 based on desired 'return' duration and 'exponential moving avg'.</p>
-
-<p><strong>Examples:</strong></p>
-    
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis import MomentumStrategy
-    &gt;&gt;&gt;sa = MomentumStrategy('./data/company_list.yaml')
-    &gt;&gt;&gt;mes = sa.relative_momentum_with_ema('01/06/2020', 30)
-</code></pre>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -928,10 +929,15 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
   <tbody>
     <tr>
       <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame: Record based on monthly and yearly calculation and EMA calculation</p></td>
+      <td><p>Record based on monthly and yearly calculation and EMA calculation</p></td>
     </tr>
   </tbody>
-</table>
+</table>      <p>Example:</p>
+<pre><code class="language-python">from stock_analysis import MomentumStrategy
+sa = MomentumStrategy('./data/company_list.yaml')
+mes = sa.relative_momentum_with_ema('01/06/2020', 30)
+</code></pre>
+
         <details class="quote">
           <summary>Source code in <code>stock_analysis/momentum_strategy.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">relative_momentum_with_ema</span><span class="p">(</span>
@@ -946,14 +952,6 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
     <span class="sd">&quot;&quot;&quot;The strategy is used to identity stocks with &#39;good performance&#39;</span>
 <span class="sd">    based on desired &#39;return&#39; duration and &#39;exponential moving avg&#39;.</span>
 
-<span class="sd">    Example:</span>
-
-<span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis import MomentumStrategy</span>
-<span class="sd">        &gt;&gt;&gt;sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;mes = sa.relative_momentum_with_ema(&#39;01/06/2020&#39;, 30)</span>
-<span class="sd">    ```</span>
-
 <span class="sd">    Args:</span>
 <span class="sd">        end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to &#39;today&#39;.</span>
 <span class="sd">        top_company_count (int, optional): No of top company to retrieve based on Annualized return. Defaults to 20.</span>
@@ -963,7 +961,15 @@ based on desired 'return' duration and 'exponential moving avg'.</p>
 <span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: Record based on monthly and yearly calculation and EMA calculation</span>
+<span class="sd">        Record based on monthly and yearly calculation and EMA calculation</span>
+
+<span class="sd">     Example:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    from stock_analysis import MomentumStrategy</span>
+<span class="sd">    sa = MomentumStrategy(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    mes = sa.relative_momentum_with_ema(&#39;01/06/2020&#39;, 30)</span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Performing Momentum Strategy task&quot;</span><span class="p">)</span>

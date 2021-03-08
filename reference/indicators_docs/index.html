@@ -563,8 +563,8 @@ of desired stock/company. </p>
 </table>
 <p><strong>Examples:</strong></p>
     
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
-    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
+      <pre><code class="language-python">from stock_analysis.indicator import Indicator
+ind = Indicator('./data/company_list.yaml')
 </code></pre>
 
 
@@ -642,15 +642,15 @@ of desired stock/company. </p>
   <tbody>
     <tr>
       <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame:</p></td>
+      <td><p>Results is based on crossover ema and detailed metrics</p></td>
     </tr>
   </tbody>
 </table>
 <p><strong>Examples:</strong></p>
     
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
-    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
-    &gt;&gt;&gt;ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
+      <pre><code class="language-python">from stock_analysis.indicator import Indicator
+ind = Indicator('./data/company_list.yaml')
+ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
 </code></pre>
 
         <details class="quote">
@@ -671,13 +671,13 @@ of desired stock/company. </p>
 <span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame:</span>
+<span class="sd">        Results is based on crossover ema and detailed metrics</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
-<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;ema = ind.ema_crossover_detail_indicator((5,10,020), &#39;01/06/2020&#39;) </span>
+<span class="sd">    from stock_analysis.indicator import Indicator</span>
+<span class="sd">    ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    ema = ind.ema_crossover_detail_indicator((5,10,020), &#39;01/06/2020&#39;) </span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>        
 
@@ -820,15 +820,15 @@ fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwo
   <tbody>
     <tr>
       <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame: EMA and indicators based on it</p></td>
+      <td><p>EMA and detailed metrics for indicators</p></td>
     </tr>
   </tbody>
 </table>
 <p><strong>Examples:</strong></p>
     
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
-    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
-    &gt;&gt;&gt;ema = ind.ema_detail_indicator((50,200), '01/06/2020')
+      <pre><code class="language-python">from stock_analysis.indicator import Indicator
+ind = Indicator('./data/company_list.yaml')
+ema = ind.ema_detail_indicator((50,200), '01/06/2020')
 </code></pre>
 
         <details class="quote">
@@ -855,13 +855,13 @@ fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwo
 <span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Detail, 0=Less detail. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: EMA and indicators based on it</span>
+<span class="sd">        EMA and detailed metrics for indicators</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
-<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;ema = ind.ema_detail_indicator((50,200), &#39;01/06/2020&#39;)</span>
+<span class="sd">    from stock_analysis.indicator import Indicator</span>
+<span class="sd">    ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    ema = ind.ema_detail_indicator((50,200), &#39;01/06/2020&#39;)</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -998,15 +998,15 @@ fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwo
   <tbody>
     <tr>
       <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame: EMA and indicators based on it</p></td>
+      <td><p>EMA and indicators based on it</p></td>
     </tr>
   </tbody>
 </table>
 <p><strong>Examples:</strong></p>
     
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
-    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
-    &gt;&gt;&gt;ema = ind.ema_indicator((50,200), '01/06/2020')
+      <pre><code class="language-python">from stock_analysis.indicator import Indicator
+ind = Indicator('./data/company_list.yaml')
+ema = ind.ema_indicator((50,200), '01/06/2020')
 </code></pre>
 
         <details class="quote">
@@ -1029,13 +1029,13 @@ fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwo
 <span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Detail, 0=Less detail. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: EMA and indicators based on it</span>
+<span class="sd">        EMA and indicators based on it</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
-<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;ema = ind.ema_indicator((50,200), &#39;01/06/2020&#39;)</span>
+<span class="sd">    from stock_analysis.indicator import Indicator</span>
+<span class="sd">    ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    ema = ind.ema_indicator((50,200), &#39;01/06/2020&#39;)</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>        
 
@@ -1156,15 +1156,15 @@ fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwo
   <tbody>
     <tr>
       <td><code>DataFrame</code></td>
-      <td><p>pd.DataFrame: All Volume based indicator</p></td>
+      <td><p>All Volume based indicator</p></td>
     </tr>
   </tbody>
 </table>
 <p><strong>Examples:</strong></p>
     
-      <pre><code class="language-python">    &gt;&gt;&gt;from stock_analysis.indicator import Indicator
-    &gt;&gt;&gt;ind = Indicator('./data/company_list.yaml')
-    &gt;&gt;&gt;vol = ind.volume_n_days_indicator(150)
+      <pre><code class="language-python">from stock_analysis.indicator import Indicator
+ind = Indicator('./data/company_list.yaml')
+vol = ind.volume_n_days_indicator(150)
 </code></pre>
 
         <details class="quote">
@@ -1185,13 +1185,13 @@ fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwo
 <span class="sd">        verbosity (int, optional): Level of detail logging,1=&lt; Deatil, 0=Less detail. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: All Volume based indicator</span>
+<span class="sd">        All Volume based indicator</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">    ```python</span>
-<span class="sd">        &gt;&gt;&gt;from stock_analysis.indicator import Indicator</span>
-<span class="sd">        &gt;&gt;&gt;ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
-<span class="sd">        &gt;&gt;&gt;vol = ind.volume_n_days_indicator(150)</span>
+<span class="sd">    from stock_analysis.indicator import Indicator</span>
+<span class="sd">    ind = Indicator(&#39;./data/company_list.yaml&#39;)</span>
+<span class="sd">    vol = ind.volume_n_days_indicator(150)</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
