@@ -1266,8 +1266,8 @@ like percentage difference</p>
         <td><em>required</em></td>
       </tr>
       <tr>
-        <td><code>duration</code></td>
-        <td><code>datetime.datetime</code></td>
+        <td><code>desired_date</code></td>
+        <td><code>datetime</code></td>
         <td><p>Desired date cut-off to calculate ema</p></td>
         <td><em>required</em></td>
       </tr>
@@ -1318,7 +1318,7 @@ like percentage difference</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        company_df (pd.DataFrame): Company dataframe</span>
-<span class="sd">        duration (datetime.datetime): Desired date cut-off to calculate ema</span>
+<span class="sd">        desired_date (datetime.datetime): Desired date cut-off to calculate ema</span>
 <span class="sd">        verbosity ([int, optional]): Level of detail logging. Default to 1.</span>
 
 <span class="sd">    Returns:</span>
