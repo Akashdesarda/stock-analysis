@@ -198,21 +198,21 @@ class UnitExecutor:
 
         try:
             sma = simple_moving_average(company_df["Close"][-(period - 1) :], period)
+            turnover_value = turnover(company_df["Volume"][-period:], sma) / 10000000
             buy = sma + (sma * (cutoff / 100))
             sell = sma - (sma * (cutoff / 100))
-            if buy < company_df["Close"][-1]:
+            if (buy < company_df["Close"][-1]) and (turnover_value > 1):
                 action = "buy"
-            elif sell > company_df["Close"][-1]:
+            elif (sell > company_df["Close"][-1]) and (turnover_value > 1):
                 action = "sell"
-            elif sell < company_df["Close"][-1] < buy:
+            elif (sell < company_df["Close"][-1] < buy) and (turnover_value < 1):
                 action = "no action"
             long_name = self.unit_quote_retrive(company)["longName"][0]
             current_price = company_df["Close"][-1]
-            turnover_value = turnover(company_df["Volume"][-period:], sma) / 10000000
         except (KeyError, IndexError, ValueError, TypeError):
             logger.warning(f"{company} has less record than minimum rexquired")
             long_name, sma, current_price, action, turnover_value = (
-                "Invalid",
+                f"Invalid {company}",
                 "Invalid",
                 "Invalid",
                 "Invalid",
