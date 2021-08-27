@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 import multiprocessing
 from dataclasses import dataclass
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 from stock_analysis.utils.logger import logger
 from stock_analysis.utils.helpers import new_folder
 from stock_analysis.executors.parallel import UnitExecutor
@@ -19,23 +19,23 @@ pd.options.display.float_format = "{:,.2f}".format
 
 @dataclass
 class Indicator(UnitExecutor):
-    """Perform Indicator operation which are based on specific metrics used to study the performance 
-    of desired stock/company. 
+    """Perform Indicator operation which are based on specific metrics used to study the performance
+    of desired stock/company.
 
     Args:
         path ([str, optional]): Path to company yaml/json. Either path or company_name can be used.
-        company_name ([List, optional]): List of company name. If path is used then this is obsolete 
+        company_name ([List, optional]): List of company name. If path is used then this is obsolete
         as 'path' preside over 'company_name'
-    
+
     Example:
     ```python
     from stock_analysis.indicator import Indicator
     ind = Indicator('./data/company_list.yaml')
     ```
-    """    
+    """
 
-    path: str = None
-    company_name: List = None
+    path: Optional[str] = None
+    company_name: Optional[List] = None
 
     def __post_init__(self):
         if self.path is not None:
@@ -50,7 +50,7 @@ class Indicator(UnitExecutor):
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """Mean Volume Indicator based on desired days
 
         Args:
@@ -61,7 +61,7 @@ class Indicator(UnitExecutor):
 
         Returns:
             All Volume based indicator
-        
+
         Example:
         ```python
         from stock_analysis.indicator import Indicator
@@ -98,7 +98,7 @@ class Indicator(UnitExecutor):
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """Exponential moving average based on desired two period (or no of days)
 
         Args:
@@ -110,14 +110,14 @@ class Indicator(UnitExecutor):
 
         Returns:
             EMA and indicators based on it
-        
+
         Example:
         ```python
         from stock_analysis.indicator import Indicator
         ind = Indicator('./data/company_list.yaml')
         ema = ind.ema_indicator((50,200), '01/06/2020')
         ```
-        """        
+        """
 
         with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
             result = pool.starmap(
@@ -131,7 +131,9 @@ class Indicator(UnitExecutor):
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
             lambda x: percentage_diff(
-                x[f"ema{str(ema_canditate[0])}"], x[f"ema{str(ema_canditate[1])}"], return_absolute=True
+                x[f"ema{str(ema_canditate[0])}"],
+                x[f"ema{str(ema_canditate[1])}"],
+                return_absolute=True,
             ),
             axis=1,
         )
@@ -174,10 +176,10 @@ class Indicator(UnitExecutor):
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """Exponential moving average based on desired two period (or no of days) with additional info
-        which include: 
-        > regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month, 
+        which include:
+        > regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month,
         averageDailyVolume10Day, fiftyTwoWeekLowChange, fiftyTwoWeekLowChangePercent, fiftyTwoWeekRange,
         fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwoWeekHigh
 
@@ -190,7 +192,7 @@ class Indicator(UnitExecutor):
 
         Returns:
             EMA and detailed metrics for indicators
-        
+
         Example:
         ```python
         from stock_analysis.indicator import Indicator
@@ -201,7 +203,10 @@ class Indicator(UnitExecutor):
 
         logger.info("Performing EMA Indicator Task")
         ema_short = self.ema_indicator(
-            ema_canditate=ema_canditate, cutoff_date=cutoff_date, save=False, verbosity=verbosity
+            ema_canditate=ema_canditate,
+            cutoff_date=cutoff_date,
+            save=False,
+            verbosity=verbosity,
         )
 
         logger.info("Extarcting detail company quote data")
@@ -263,7 +268,7 @@ class Indicator(UnitExecutor):
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """Exponential moving average for crossover triple period technique
 
         Args:
@@ -279,9 +284,9 @@ class Indicator(UnitExecutor):
         ```python
         from stock_analysis.indicator import Indicator
         ind = Indicator('./data/company_list.yaml')
-        ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020') 
+        ema = ind.ema_crossover_detail_indicator((5,10,020), '01/06/2020')
         ```
-        """        
+        """
 
         logger.info("Performing EMA Indicator Task")
         ema_short = self._ema_indicator_n3(
@@ -343,7 +348,7 @@ class Indicator(UnitExecutor):
 
     def _ema_indicator_n3(
         self,
-        ema_canditate: Tuple[int, int] = (5, 13, 26),
+        ema_canditate: Tuple[int, int, int] = (5, 13, 26),
         cutoff_date: Union[str, datetime.datetime] = "today",
         verbosity: int = 1,
     ) -> pd.DataFrame:

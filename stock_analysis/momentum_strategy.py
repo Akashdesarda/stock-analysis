@@ -4,7 +4,7 @@ import dateutil
 import pandas as pd
 import yfinance as yf
 import multiprocessing
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 from dataclasses import dataclass
 from stock_analysis.utils.logger import logger
 from stock_analysis.indicator import Indicator
@@ -34,8 +34,8 @@ class MomentumStrategy(UnitExecutor):
         company_name ([List, optional]): List of company name. If path is used then this is obsolete as 'path' preside over 'company_name'. Default to None.
     """
 
-    path: str = None
-    company_name: List = None
+    path: Optional[str] = None
+    company_name: Optional[List] = None
 
     def __post_init__(self):
         if self.path is not None:
@@ -51,7 +51,7 @@ class MomentumStrategy(UnitExecutor):
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """The strategy is used to identity stocks which had 'good performance'
         based on desired 'return' duration
 
@@ -112,7 +112,7 @@ class MomentumStrategy(UnitExecutor):
         save: bool = True,
         export_path: str = ".",
         verbosity: int = 1,
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """The strategy is used to identity stocks with 'good performance'
         based on desired 'return' duration and 'exponential moving avg'.
 
@@ -185,7 +185,7 @@ class MomentumStrategy(UnitExecutor):
         cutoff: int = 5,
         save: bool = False,
         export_path: str = ".",
-    ) -> pd.DataFrame:
+    ) -> Optional[pd.DataFrame]:
         """Action determination based on Daily moving average and Turnover
 
         Args:
