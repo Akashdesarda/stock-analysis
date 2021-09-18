@@ -35,5 +35,6 @@ jobs:
       - name: Run Test
         run: |
           echo "Running Test"
+          pip3 install pytest
           pip3 install .
           pytest -vv
