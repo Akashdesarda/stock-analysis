@@ -1,15 +1,17 @@
-import yaml
 import datetime
+from dataclasses import dataclass
+from typing import List, Optional, Tuple
+
 import dateutil
 import pandas as pd
+import yaml
 import yfinance as yf
-import multiprocessing
-from typing import List, Optional, Tuple
-from dataclasses import dataclass
-from stock_analysis.utils.logger import logger
+from joblib import Parallel, delayed, parallel_backend
+
+from stock_analysis.executors.parallel import UnitExecutor
 from stock_analysis.indicator import Indicator
 from stock_analysis.utils.helpers import new_folder
-from stock_analysis.executors.parallel import UnitExecutor
+from stock_analysis.utils.logger import logger
 
 yf.pdr_override()
 logger = logger()
@@ -80,14 +82,15 @@ class MomentumStrategy(UnitExecutor):
             end = datetime.datetime.strptime(end_date, "%d/%m/%Y").date()
         start = end - dateutil.relativedelta.relativedelta(years=1)
 
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(
-                self.unit_momentum,
-                [(company, start, end, verbosity) for company in self.data["company"]],
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            result = Parallel()(
+                delayed(self.unit_momentum)(company, start, end, verbosity)
+                for company in self.data["company"]
             )
         momentum_df = pd.DataFrame(result)
         momentum_df.dropna(inplace=True)
         momentum_df.sort_values(by=["return_yearly"], ascending=False, inplace=True)
+        momentum_df.reset_index(inplace=True, drop=True)
 
         if verbosity > 0:
             logger.debug(f"Sample output:\n{momentum_df.head(top_company_count)}")
@@ -206,13 +209,10 @@ class MomentumStrategy(UnitExecutor):
         mes = sa.absolute_momentum_with_dma('01/06/2020', 30)
         ```
         """
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(
-                self.unit_dma_absolute,
-                [
-                    (company, end_date, period, cutoff)
-                    for company in self.data["company"]
-                ],
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            result = Parallel()(
+                delayed(self.unit_dma_absolute)(company, end_date, period, cutoff)
+                for company in self.data["company"]
             )
         dma_compile = pd.DataFrame(result)
         if save is True:

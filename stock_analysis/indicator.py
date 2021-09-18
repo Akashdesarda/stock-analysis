@@ -1,16 +1,15 @@
-import yaml
 import datetime
-import pandas as pd
-import multiprocessing
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple, Union
-from stock_analysis.utils.logger import logger
-from stock_analysis.utils.helpers import new_folder
+
+import pandas as pd
+import yaml
+from joblib import Parallel, delayed, parallel_backend
+
 from stock_analysis.executors.parallel import UnitExecutor
-from stock_analysis.utils.formula_helpers import (
-    outcome_analysis,
-    percentage_diff,
-)
+from stock_analysis.utils.formula_helpers import outcome_analysis, percentage_diff
+from stock_analysis.utils.helpers import new_folder
+from stock_analysis.utils.logger import logger
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 logger = logger()
@@ -69,10 +68,11 @@ class Indicator(UnitExecutor):
         vol = ind.volume_n_days_indicator(150)
         ```
         """
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(
-                self.unit_vol_indicator_n_days,
-                [(company, duration) for company in self.data["company"]],
+
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            result = Parallel()(
+                delayed(self.unit_vol_indicator_n_days)(company, duration)
+                for company in self.data["company"]
             )
 
         vol_ind_df = pd.DataFrame(result)
@@ -119,14 +119,14 @@ class Indicator(UnitExecutor):
         ```
         """
 
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(
-                self.unit_ema_indicator,
-                [
-                    (company, ema_canditate, cutoff_date, verbosity)
-                    for company in self.data["company"]
-                ],
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            result = Parallel()(
+                delayed(self.unit_ema_indicator)(
+                    company, ema_canditate, cutoff_date, verbosity
+                )
+                for company in self.data["company"]
             )
+
         ema_indicator_df = pd.DataFrame(result)
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
@@ -211,8 +211,11 @@ class Indicator(UnitExecutor):
 
         logger.info("Extarcting detail company quote data")
         batch_company_quote = pd.DataFrame()
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            company_quote = pool.map(self.unit_quote_retrive, ema_short["company"])
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            company_quote = Parallel()(
+                delayed(self.unit_quote_retrive)(company)
+                for company in ema_short["company"]
+            )
         for single_company_quote in company_quote:
             if isinstance(single_company_quote, pd.DataFrame):
                 batch_company_quote = batch_company_quote.append(single_company_quote)
@@ -295,8 +298,11 @@ class Indicator(UnitExecutor):
 
         logger.info("Extarcting detail company quote data")
         batch_company_quote = pd.DataFrame()
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            company_quote = pool.map(self.unit_quote_retrive, ema_short["company"])
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            company_quote = Parallel()(
+                delayed(self.unit_quote_retrive)(company)
+                for company in ema_short["company"]
+            )
         for single_company_quote in company_quote:
             if isinstance(single_company_quote, pd.DataFrame):
                 batch_company_quote = batch_company_quote.append(single_company_quote)
@@ -353,13 +359,12 @@ class Indicator(UnitExecutor):
         verbosity: int = 1,
     ) -> pd.DataFrame:
 
-        with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
-            result = pool.starmap(
-                self.unit_ema_indicator_n3,
-                [
-                    (company, ema_canditate, cutoff_date, verbosity)
-                    for company in self.data["company"]
-                ],
+        with parallel_backend(n_jobs=-1, backend="multiprocessing"):
+            result = Parallel()(
+                delayed(self.unit_ema_indicator_n3)(
+                    company, ema_canditate, cutoff_date, verbosity
+                )
+                for company in self.data["company"]
             )
         ema_indicator_df = pd.DataFrame(result)
         ema_indicator_df.dropna(inplace=True)
