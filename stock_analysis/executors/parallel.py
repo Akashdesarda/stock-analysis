@@ -1,18 +1,19 @@
-import dateutil
 import datetime
-import pandas as pd
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Union
+
+import dateutil
+import pandas as pd
 from stock_analysis.data_retrive import DataRetrive
-from stock_analysis.utils.logger import logger
-from stock_analysis.utils.helpers import get_appropriate_date_momentum
 from stock_analysis.utils.formula_helpers import (
-    turnover,
-    percentage_diff,
-    simple_moving_average,
     annualized_rate_of_return,
     exponential_moving_average,
+    percentage_diff,
+    simple_moving_average,
+    turnover,
 )
+from stock_analysis.utils.helpers import get_appropriate_date_momentum
+from stock_analysis.utils.logger import logger
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 logger = logger()

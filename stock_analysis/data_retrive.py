@@ -1,7 +1,9 @@
 import datetime
+
 import pandas as pd
-from pandas_datareader import data as pdr
 import yfinance as yf
+from pandas_datareader import data as pdr
+
 yf.pdr_override()
 
 
@@ -9,6 +11,7 @@ class DataRetrive:
     """
     Import Stock data using Yahoo Finance Api
     """
+
     # def __init__(self, path: str):
     #     """
     #     Update or create new csv using Yahoo Finance Api
@@ -20,11 +23,14 @@ class DataRetrive:
     #     """
     #     self.path = path
     @classmethod
-    def single_company_specific(cls, company_name: str,
-                                start_date: datetime.datetime,
-                                end_date: datetime.datetime,
-                                save: bool = False,
-                                export_path: str = None) -> pd.DataFrame:
+    def single_company_specific(
+        cls,
+        company_name: str,
+        start_date: datetime.datetime,
+        end_date: datetime.datetime,
+        save: bool = False,
+        export_path: str = None,
+    ) -> pd.DataFrame:
         """
         Retrive single company date from given start date and end
 
@@ -33,7 +39,7 @@ class DataRetrive:
         company_name : str
             name of desired company
         start_date : Tuple[year, month, day]
-            Start date 
+            Start date
         end_date : Tuple[year, month, day]
             End date
 
@@ -48,7 +54,8 @@ class DataRetrive:
             [description]
         """
         data = pdr.get_data_yahoo(
-            company_name, start=start_date, end=end_date, progress=False)
+            company_name, start=start_date, end=end_date, progress=False
+        )
 
         if save is True:
             data.to_csv(f"{export_path}/{company_name}.csv")
@@ -56,9 +63,9 @@ class DataRetrive:
         return data
 
     @classmethod
-    def single_company_complete(cls, company_name: str,
-                                save: bool = False,
-                                export_path: str = None) -> pd.DataFrame:
+    def single_company_complete(
+        cls, company_name: str, save: bool = False, export_path: str = None
+    ) -> pd.DataFrame:
         """Retrive complete data right from its IPO till today
 
         Parameters
@@ -82,7 +89,7 @@ class DataRetrive:
             data.to_csv(f"{export_path}/{company_name}.csv")
 
         return data
-    
-    @classmethod 
-    def single_company_quote(cls, company_name:str)->pd.DataFrame:
+
+    @classmethod
+    def single_company_quote(cls, company_name: str) -> pd.DataFrame:
         return pdr.get_quote_yahoo(company_name)

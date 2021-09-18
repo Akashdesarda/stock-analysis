@@ -11,7 +11,7 @@ class CustomFormatter(logging.Formatter):
     red = "\x1b[31;21m"
     bold_red = "\x1b[31;1m"
     reset = "\x1b[0m"
-    format_info = '[%(asctime)s] [%(levelname)s]...%(message)s'
+    format_info = "[%(asctime)s] [%(levelname)s]...%(message)s"
     format_all = "[%(asctime)s] [%(levelname)s]...%(message)s (%(filename)s:%(lineno)d)"
 
     FORMATS = {
@@ -19,7 +19,7 @@ class CustomFormatter(logging.Formatter):
         logging.INFO: green + format_info + reset,
         logging.WARNING: yellow + format_all + reset,
         logging.ERROR: red + format_all + reset,
-        logging.CRITICAL: bold_red + format_all + reset
+        logging.CRITICAL: bold_red + format_all + reset,
     }
 
     def format(self, record):
@@ -28,15 +28,15 @@ class CustomFormatter(logging.Formatter):
         return formatter.format(record)
 
 
-def logger(level: str = 'debug'):
-    
+def logger(level: str = "debug"):
+
     logger = logging.getLogger(__name__)
 
-    if level == 'debug':
+    if level == "debug":
         logger.setLevel(logging.DEBUG)
-    if level == 'info':
+    if level == "info":
         logger.setLevel(logging.INFO)
-    if level == 'warning':
+    if level == "warning":
         logger.setLevel(logging.WARNING)
 
     # Removing handlers which will(probably) added multiple time if run in multiple file
@@ -51,8 +51,8 @@ def logger(level: str = 'debug'):
 
     logger.addHandler(ch)
 
-    if level not in ['debug', 'info', 'warning']:
-        logger.error('level can be from debug, info, warning')
+    if level not in ["debug", "info", "warning"]:
+        logger.error("level can be from debug, info, warning")
         sys.exit()
 
     return logger

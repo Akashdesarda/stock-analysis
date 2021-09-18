@@ -1,7 +1,9 @@
 import datetime
-import pandas as pd
 from typing import List, Union
+
+import pandas as pd
 from stock_analysis.utils.helpers import get_appropriate_date_ema
+
 
 def annualized_rate_of_return(end_date: int, start_date: int, duration: float) -> float:
     """Calculate annulized rate of return
@@ -9,14 +11,14 @@ def annualized_rate_of_return(end_date: int, start_date: int, duration: float) -
     Args:
         end_date (int): Close value Current date or most present date. Consider
                         it as going from bottom to top.
-        start_date (int): Close value on Start date or first record. Consider 
+        start_date (int): Close value on Start date or first record. Consider
                         it as going from bottom to top.
         duration (float): Total duration wrt to year
 
     Returns:
         float: Annulized return
-    """    
-    
+    """
+
     return (((end_date / start_date) ** (1 / duration)) - 1) * 100
 
 
@@ -29,7 +31,7 @@ def simple_moving_average(data: Union[pd.Series, List], period: int) -> float:
 
     Returns:
         float: SMA calculated over given period
-    """    
+    """
     return (sum(data[:period])) / period
 
 
@@ -84,13 +86,15 @@ def exponential_moving_average(
     return float(data_df[data_df.index == date]["ema"])
 
 
-def percentage_diff(value_a: float, value_b: float, return_absolute: bool=False) -> float:
+def percentage_diff(
+    value_a: float, value_b: float, return_absolute: bool = False
+) -> float:
     """Used to calculate Percentage difference of Value of B wrt to A. It can be either absolute or not.
 
     Args:
         value_a (float): Value a
         value_b (float): Value b
-        return_absolute (bool): Return absolute percentage difference 
+        return_absolute (bool): Return absolute percentage difference
 
     Returns:
         float: percentage difference
@@ -101,7 +105,7 @@ def percentage_diff(value_a: float, value_b: float, return_absolute: bool=False)
         return (value_b - value_a) / ((value_a + value_b) / 2) * 100
 
 
-def outcome_analysis(ratio: float, cutoff: int=5) -> str:
+def outcome_analysis(ratio: float, cutoff: int = 5) -> str:
     """Used to determine closeness based on any given ratio analysis
     like percentage difference
 
@@ -111,7 +115,7 @@ def outcome_analysis(ratio: float, cutoff: int=5) -> str:
 
     Returns:
         str: Outcome of analysis
-    """    """
+    """ """
     Used to determine closeness based on any given ratio analysis
     like percentage difference
     """
@@ -121,8 +125,8 @@ def outcome_analysis(ratio: float, cutoff: int=5) -> str:
         outcome = "far away"
     return outcome
 
- 
-def turnover(volume: Union[pd.Series, List], price: float)-> float:
+
+def turnover(volume: Union[pd.Series, List], price: float) -> float:
     """Calculate given Stock's batch turnover over specified time
 
     Args:
@@ -131,5 +135,5 @@ def turnover(volume: Union[pd.Series, List], price: float)-> float:
 
     Returns:
         float
-    """   
+    """
     return (sum(volume) / len(volume)) * price
