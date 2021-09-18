@@ -1,18 +1,19 @@
-import dateutil
 import datetime
-import pandas as pd
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Union
+
+import dateutil
+import pandas as pd
 from stock_analysis.data_retrive import DataRetrive
-from stock_analysis.utils.logger import logger
-from stock_analysis.utils.helpers import get_appropriate_date_momentum
 from stock_analysis.utils.formula_helpers import (
-    turnover,
-    percentage_diff,
-    simple_moving_average,
     annualized_rate_of_return,
     exponential_moving_average,
+    percentage_diff,
+    simple_moving_average,
+    turnover,
 )
+from stock_analysis.utils.helpers import get_appropriate_date_momentum
+from stock_analysis.utils.logger import logger
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 logger = logger()
@@ -195,7 +196,7 @@ class UnitExecutor:
                 },
                 index=["Date"],
             )
-
+        action = "Invalid"
         try:
             sma = simple_moving_average(company_df["Close"][-(period - 1) :], period)
             turnover_value = turnover(company_df["Volume"][-period:], sma) / 10000000
@@ -209,10 +210,12 @@ class UnitExecutor:
                 action = "no action"
             long_name = self.unit_quote_retrive(company)["longName"][0]
             current_price = company_df["Close"][-1]
-        except (KeyError, IndexError, ValueError, TypeError):
+        except (KeyError, IndexError, ValueError, TypeError, ZeroDivisionError):
             logger.warning(f"{company} has less record than minimum rexquired")
-            long_name, sma, current_price, action, turnover_value = (
-                f"Invalid {company}",
+            long_name, sma, current_price, action, turnover_value, buy, sell = (
+                f"{company} (Invalid name)",
+                "Invalid",
+                "Invalid",
                 "Invalid",
                 "Invalid",
                 "Invalid",
