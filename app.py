@@ -41,28 +41,39 @@ elif task == "Indicator":
 if task == "Momentum strategy":
     # TODO: Add more interaction by adding start/continue button
     # if st.button('Start'):
-    data_path = st.text_input(label="Enter Company name yaml file location")
-    if data_path:
-        if Path(data_path).suffix == ".yaml":
-            with open(data_path) as f:
-                data = yaml.load(f, Loader=yaml.FullLoader)
+    company_name = st.text_input(
+        "Directly give names of all Company",
+        help="- Multiple company must be separated by ','. \n- Name must be listed symbol. \n- Eg. ADANIGREEN, HDFCAMC, WHIRLPOOL",
+    )
+    if company_name:
+        company_list = list(map(lambda x: x.strip(), company_name.split(",")))
+    st.write("OR")
+    uploaded_file = st.file_uploader(
+        label="Upload file containing company name(s)",
+        type=["yml", "yaml", "json", "csv"],
+    )
+
+    if uploaded_file:
+        if Path(uploaded_file.name).suffix == ".yaml":
+            data = yaml.load(uploaded_file, Loader=yaml.FullLoader)
             company_list_select = st.selectbox(
                 "select Stock index", options=list(data.keys())
             )
             company_list = data[company_list_select]
-        elif Path(data_path).suffix == ".csv":
-            data = pd.read_csv(data_path)
+        elif Path(uploaded_file.name).suffix == ".csv":
+            data = pd.read_csv(uploaded_file)
             company_list_select = st.selectbox(
                 "select Stock index", options=data.columns.to_list()
             )
             company_list = data.loc[:, company_list_select].dropna().to_list()
+
+    if company_name or uploaded_file:
         sa = MomentumStrategy(company_name=company_list)
-    else:
-        st.warning("Yaml/csv file with Company name must be given")
+
     sub_task = st.selectbox(
         label="Choose sub task to perform",
         options=(
-            " ",
+            "Select Options",
             "Relative momentum strategy",
             "Relative momentum strategy with EMA",
             "Absolute momentum strategy with DMA",
@@ -279,28 +290,39 @@ if task == "Momentum strategy":
                     )
 # Task for Indicator
 elif task == "Indicator":
-    data_path = st.text_input(label="Enter Company name yaml file location")
-    if data_path:
-        if Path(data_path).suffix == ".yaml":
-            with open(data_path) as f:
-                data = yaml.load(f, Loader=yaml.FullLoader)
+    company_name = st.text_input(
+        "Directly give names of all Company",
+        help="- Multiple company must be separated by ','. \n- Name must be listed symbol. \n- Eg. ADANIGREEN, HDFCAMC, WHIRLPOOL",
+    )
+    if company_name:
+        company_list = list(map(lambda x: x.strip(), company_name.split(",")))
+    st.write("OR")
+    uploaded_file = st.file_uploader(
+        label="Upload file containing company name(s)",
+        type=["yml", "yaml", "json", "csv"],
+    )
+
+    if uploaded_file:
+        if Path(uploaded_file.name).suffix == ".yaml":
+            data = yaml.load(uploaded_file, Loader=yaml.FullLoader)
             company_list_select = st.selectbox(
                 "select Stock index", options=list(data.keys())
             )
             company_list = data[company_list_select]
-        elif Path(data_path).suffix == ".csv":
-            data = pd.read_csv(data_path)
+        elif Path(uploaded_file.name).suffix == ".csv":
+            data = pd.read_csv(uploaded_file)
             company_list_select = st.selectbox(
                 "select Stock index", options=data.columns.to_list()
             )
             company_list = data.loc[:, company_list_select].dropna().to_list()
+
+    if company_name or uploaded_file:
         ind = Indicator(company_name=company_list)
-    else:
-        st.warning("Yaml file with Company name must be given")
+
     sub_task = st.selectbox(
         label="Choose sub task to perform",
         options=(
-            " ",
+            "Select Options",
             "Volume Indicator for [n] days",
             "Exponential moving average (short)",
             "Exponential moving average (detailed)",
