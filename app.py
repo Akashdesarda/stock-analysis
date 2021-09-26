@@ -1,17 +1,14 @@
-import os
+import datetime
 import glob
-import pandas as pd
+import re
 from pathlib import Path
+
+import pandas as pd
 import streamlit as st
 import yaml
+
 from stock_analysis.indicator import Indicator
 from stock_analysis.momentum_strategy import MomentumStrategy
-
-
-def newest_file(path: str) -> str:
-    file_list = glob.glob(path)
-    return max(file_list, key=os.path.getctime)
-
 
 # Sidebar and task intros
 default_intro = """
@@ -90,15 +87,17 @@ if task == "Momentum strategy":
     **Following are the Default Parameters**
     - **Date**: today
     - **Top company count**: 20
-    - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    sa.relative_momentum()
-                st.dataframe(pd.read_csv(newest_file("./momentum_result_*.csv")))
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/momentum_result_*.csv")}"""
+                    result = sa.relative_momentum(save=False)
+                st.dataframe(result)
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"momentum_result_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_20.csv",
                 )
 
         elif sub_task_mode == "Manual mode":
@@ -106,9 +105,6 @@ if task == "Momentum strategy":
             sub_task_para_date = sub_task_para_date.strftime("%d/%m/%Y")
             sub_task_para_count = st.number_input(
                 label="Input top company count", value=20
-            )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
             )
             sub_task_para_verbosity = st.number_input(
                 label="Input Verbosity (level 0: Minimal, 1: Detail)",
@@ -119,7 +115,6 @@ if task == "Momentum strategy":
             if (
                 (sub_task_para_date)
                 and (sub_task_para_count)
-                and (sub_task_para_export)
                 and (sub_task_para_verbosity) is not None
             ):
                 st.markdown(
@@ -127,24 +122,22 @@ if task == "Momentum strategy":
     **Following Parameters are given:**
     - **Date**: {sub_task_para_date}
     - **Top company count**: {sub_task_para_count}
-    - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        sa.relative_momentum(
+                        result = sa.relative_momentum(
                             end_date=sub_task_para_date,
                             top_company_count=int(sub_task_para_count),
-                            export_path=sub_task_para_export,
+                            save=False,
                             verbosity=int(sub_task_para_verbosity),
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(f"{sub_task_para_export}/momentum_result_*.csv")
-                        )
-                    )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/momentum_result_*.csv")}"""
+                    st.dataframe(result)
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"momentum_result_{sub_task_para_date.replace('/','-')}_top_{sub_task_para_count}.csv",
                     )
 
     elif sub_task == "Relative momentum strategy with EMA":
@@ -159,15 +152,17 @@ if task == "Momentum strategy":
     - **Date**: today
     - **Top company count**: 20
     - **EMA Candidate**: 50,200
-    - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    sa.relative_momentum_with_ema()
-                st.dataframe(pd.read_csv(newest_file("./momentum_ema*.csv")))
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/momentum_ema*.csv")}"""
+                    result = sa.relative_momentum_with_ema(save=False)
+                st.dataframe(result)
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"momentum_ema50-200_{datetime.datetime.now().strftime('%d-%m-%Y')}_top_20.csv",
                 )
         elif sub_task_mode == "Manual mode":
             sub_task_para_date = st.date_input(label="Input desired")
@@ -181,9 +176,6 @@ if task == "Momentum strategy":
             sub_task_para_count = st.number_input(
                 label="Input top company count", value=20
             )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
-            )
             sub_task_para_verbosity = st.number_input(
                 label="Input Verbosity (level 0: Minimal, 1: Detail)",
                 value=1,
@@ -195,7 +187,6 @@ if task == "Momentum strategy":
                 and (sub_task_para_count)
                 and (sub_task_para_emacandidate1)
                 and (sub_task_para_emacandidate2)
-                and (sub_task_para_export)
                 and (sub_task_para_verbosity) is not None
             ):
                 st.markdown(
@@ -204,28 +195,26 @@ if task == "Momentum strategy":
     - **Date**: {sub_task_para_date}
     - **EMA Candidate**: {sub_task_para_emacandidate1}, {sub_task_para_emacandidate2}
     - **Top company count**: {sub_task_para_count}
-    - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        sa.relative_momentum_with_ema(
+                        result = sa.relative_momentum_with_ema(
                             end_date=sub_task_para_date,
                             top_company_count=sub_task_para_count,
                             ema_canditate=(
                                 sub_task_para_emacandidate1,
                                 sub_task_para_emacandidate2,
                             ),
-                            export_path=sub_task_para_export,
+                            save=False,
                             verbosity=sub_task_para_verbosity,
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(f"{sub_task_para_export}/momentum_ema*.csv")
-                        )
-                    )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/momentum_ema*.csv")}"""
+                    st.dataframe(result)
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"momentum_ema{sub_task_para_emacandidate1}-{sub_task_para_emacandidate2}_{sub_task_para_date.replace('/','-')}_top_{sub_task_para_count}.csv",
                     )
 
     elif sub_task == "Absolute momentum strategy with DMA":
@@ -239,15 +228,17 @@ if task == "Momentum strategy":
     **Following are the Default Parameters**
     - **End date**: today
     - **Cutoff Percentage**: 5%
-    - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    sa.absolute_momentum_with_dma(save=True)
-                st.dataframe(pd.read_csv(newest_file("./dma_action_cutoff_*.csv")))
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/dma_action_cutoff_*.csv")}"""
+                    result = sa.absolute_momentum_with_dma(save=False)
+                st.dataframe(result.astype("str"))
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"dma_action_cutoff_5_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                 )
         elif sub_task_mode == "Manual mode":
             sub_task_para_end_date = st.date_input(label="Input desire date")
@@ -255,39 +246,28 @@ if task == "Momentum strategy":
             sub_task_para_cutoff = st.number_input(
                 label="Input Cuttoff percentage", value=5
             )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
-            )
-            if (
-                (sub_task_para_end_date)
-                and (sub_task_para_cutoff)
-                and (sub_task_para_export) is not None
-            ):
+            if (sub_task_para_end_date) and (sub_task_para_cutoff) is not None:
                 st.markdown(
                     f"""
     **Following Parameters are given:**
     - **End date**: {sub_task_para_end_date}
-    - **Cutoff Percentage**: {sub_task_para_cutoff}
-    - **Export path**: {sub_task_para_export}"""
+    - **Cutoff Percentage**: {sub_task_para_cutoff}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        sa.absolute_momentum_with_dma(
+                        result = sa.absolute_momentum_with_dma(
                             end_date=sub_task_para_end_date,
                             cutoff=int(sub_task_para_cutoff),
-                            save=True,
-                            export_path=sub_task_para_export,
+                            save=False,
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(
-                                f"{sub_task_para_export}/dma_action_cutoff_*.csv"
-                            )
-                        )
+                    st.dataframe(result.astype("str"))
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"dma_action_cutoff_{sub_task_para_cutoff}_{sub_task_para_end_date.replace('/','-')}.csv",
                     )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(sub_task_para_export)}/dma_action_cutoff_*.csv")}"""
-                    )
+
 # Task for Indicator
 elif task == "Indicator":
     company_name = st.text_input(
@@ -339,24 +319,21 @@ elif task == "Indicator":
                 """
     **Following are the Default Parameters**
     - **Duration**: 90 days
-    - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    ind.volume_n_days_indicator()
-                st.dataframe(
-                    pd.read_csv(newest_file("./VolumeIndicator90Days_detailed_*.csv"))
-                )
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/VolumeIndicator90Days_detailed_*.csv")}"""
+                    result = ind.volume_n_days_indicator(save=True)
+                st.dataframe(result)
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"VolumeIndicator90Days_detailed_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                 )
         elif sub_task_mode == "Manual mode":
             sub_task_para_duration = st.number_input(
                 label="Input desired duration", min_value=1, value=90
-            )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
             )
             sub_task_para_verbosity = st.number_input(
                 label="Input Verbosity (level 0: Minimal, 1: Detail)",
@@ -364,34 +341,26 @@ elif task == "Indicator":
                 min_value=0,
                 max_value=1,
             )
-            if (
-                (sub_task_para_duration)
-                and (sub_task_para_export)
-                and (sub_task_para_verbosity) is not None
-            ):
+            if (sub_task_para_duration) and (sub_task_para_verbosity) is not None:
                 st.markdown(
                     f"""
     **Following Parameters are given:**
     - **Duration**: {sub_task_para_duration}
-    - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        ind.volume_n_days_indicator(
+                        result = ind.volume_n_days_indicator(
                             duration=sub_task_para_duration,
-                            export_path=sub_task_para_export,
+                            save=False,
                             verbosity=sub_task_para_verbosity,
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(
-                                f"{sub_task_para_export}/VolumeIndicator90Days_detailed_*.csv"
-                            )
-                        )
-                    )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/VolumeIndicator90Days_detailed_*.csv")}"""
+                    st.dataframe(result)
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"VolumeIndicator90Days_detailed_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                     )
 
     elif sub_task == "Exponential moving average (short)":
@@ -404,15 +373,17 @@ elif task == "Indicator":
                 """
     **Following are the Default Parameters**
     - **EMA Candidate**: 50,200 days
-    - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    ind.ema_indicator()
-                st.dataframe(pd.read_csv(newest_file("./ema_indicator*.csv")))
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_indicator*.csv")}"""
+                    result = ind.ema_indicator(save=False)
+                st.dataframe(result)
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"ema_indicator50-200_{len(company_list)}_company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                 )
         elif sub_task_mode == "Manual mode":
             sub_task_para_emacandidate1 = st.number_input(
@@ -420,9 +391,6 @@ elif task == "Indicator":
             )
             sub_task_para_emacandidate2 = st.number_input(
                 label="Input desired second EMA candidate", value=200, step=1
-            )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
             )
             sub_task_para_verbosity = st.number_input(
                 label="Input Verbosity (level 0: Minimal, 1: Detail)",
@@ -433,33 +401,30 @@ elif task == "Indicator":
             if (
                 (sub_task_para_emacandidate1)
                 and (sub_task_para_emacandidate2)
-                and (sub_task_para_export)
                 and (sub_task_para_verbosity) is not None
             ):
                 st.markdown(
                     f"""
     **Following Parameters are given:**
     - **EMA candidates**: {sub_task_para_emacandidate1}, {sub_task_para_emacandidate2}
-    - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        ind.ema_indicator(
+                        result = ind.ema_indicator(
                             ema_canditate=(
                                 sub_task_para_emacandidate1,
                                 sub_task_para_emacandidate2,
                             ),
-                            export_path=sub_task_para_export,
+                            save=False,
                             verbosity=sub_task_para_verbosity,
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(f"{sub_task_para_export}/ema_indicator*.csv")
-                        )
-                    )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_indicator*.csv")}"""
+                    st.dataframe(result)
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"ema_indicator{sub_task_para_emacandidate1}-{sub_task_para_emacandidate2}_{len(company_list)}_company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                     )
 
     elif sub_task == "Exponential moving average (detailed)":
@@ -472,15 +437,17 @@ elif task == "Indicator":
                 """
     **Following are the Default Parameters**
     - **EMA Candidate**: 50, 200 days
-    - **Export path**: Same folder
     - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    ind.ema_detail_indicator()
-                st.dataframe(pd.read_csv(newest_file("./ema_detail_indicator*.csv")))
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_detail_indicator*.csv")}"""
+                    result = ind.ema_detail_indicator(save=False)
+                st.dataframe(result)
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"ema_detail_indicator50-200_{len(company_list)}_company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                 )
         elif sub_task_mode == "Manual mode":
             sub_task_para_emacandidate1 = st.number_input(
@@ -488,9 +455,6 @@ elif task == "Indicator":
             )
             sub_task_para_emacandidate2 = st.number_input(
                 label="Input desired second EMA candidate", value=200, step=1
-            )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
             )
             sub_task_para_verbosity = st.number_input(
                 label="Input Verbosity (level 0: Minimal, 1: Detail)",
@@ -501,35 +465,30 @@ elif task == "Indicator":
             if (
                 (sub_task_para_emacandidate1)
                 and (sub_task_para_emacandidate2)
-                and (sub_task_para_export)
                 and (sub_task_para_verbosity) is not None
             ):
                 st.markdown(
                     f"""
     **Following Parameters are given:**
     - **EMA candidates**: {sub_task_para_emacandidate1}, {sub_task_para_emacandidate2}
-    - **Export path**: {sub_task_para_export}
     - **Verbosity**: {sub_task_para_verbosity}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        ind.ema_detail_indicator(
+                        result = ind.ema_detail_indicator(
                             ema_canditate=(
                                 sub_task_para_emacandidate1,
                                 sub_task_para_emacandidate2,
                             ),
-                            export_path=sub_task_para_export,
+                            save=False,
                             verbosity=sub_task_para_verbosity,
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(
-                                f"{sub_task_para_export}/ema_detail_indicator*.csv"
-                            )
-                        )
-                    )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_detail_indicator*.csv")}"""
+                    st.dataframe(result)
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"ema_detail_indicator{sub_task_para_emacandidate1}-{sub_task_para_emacandidate2}_{len(company_list)}_company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                     )
 
     elif sub_task == "Exponential moving average crossover":
@@ -542,17 +501,17 @@ elif task == "Indicator":
                 """
             **Following are the Default Parameters**
             - **EMA Candidate**: 5, 13, 26 days
-            - **Export path**: Same folder
             - **Verbosity** (level of detail loging): detail """
             )
             if st.button("Continue"):
                 with st.spinner("Running the query"):
-                    ind.ema_crossover_detail_indicator()
-                st.dataframe(
-                    pd.read_csv(newest_file("./ema_crossover_detail_indicator*.csv"))
-                )
-                st.success(
-                    f"""Result have been saved to {newest_file(f"{os.path.abspath('.')}/ema_crossover_detail_indicator*.csv")}"""
+                    result = ind.ema_crossover_detail_indicator(save=False)
+                st.dataframe(result)
+                st.download_button(
+                    "Download result",
+                    data=result.to_csv(index=False).encode("utf-8"),
+                    mime="text/csv",
+                    file_name=f"ema_crossover_detail_indicator5-13-26_{len(company_list)}company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                 )
         elif sub_task_mode == "Manual mode":
             sub_task_para_emacandidate1 = st.number_input(
@@ -564,9 +523,6 @@ elif task == "Indicator":
             sub_task_para_emacandidate3 = st.number_input(
                 label="Input desired third EMA candidate", value=26, step=1
             )
-            sub_task_para_export = st.text_input(
-                label="Enter path to save result", value="."
-            )
             sub_task_para_verbosity = st.number_input(
                 label="Input Verbosity (level 0: Minimal, 1: Detail)",
                 value=1,
@@ -577,34 +533,29 @@ elif task == "Indicator":
                 (sub_task_para_emacandidate1)
                 and (sub_task_para_emacandidate2)
                 and (sub_task_para_emacandidate3)
-                and (sub_task_para_export)
                 and (sub_task_para_verbosity) is not None
             ):
                 st.markdown(
                     f"""
                 **Following Parameters are given:**
                 - **EMA candidates**: {sub_task_para_emacandidate1}, {sub_task_para_emacandidate2}, {sub_task_para_emacandidate3}
-                - **Export path**: {sub_task_para_export}
                 - **Verbosity**: {sub_task_para_verbosity}"""
                 )
                 if st.button("Continue"):
                     with st.spinner("Running the query"):
-                        ind.ema_crossover_detail_indicator(
+                        result = ind.ema_crossover_detail_indicator(
                             ema_canditate=(
                                 sub_task_para_emacandidate1,
                                 sub_task_para_emacandidate2,
                                 sub_task_para_emacandidate3,
                             ),
-                            export_path=sub_task_para_export,
+                            save=False,
                             verbosity=sub_task_para_verbosity,
                         )
-                    st.dataframe(
-                        pd.read_csv(
-                            newest_file(
-                                f"{sub_task_para_export}/ema_crossover_detail_indicator*.csv"
-                            )
-                        )
-                    )
-                    st.success(
-                        f"""Result have been saved to {newest_file(f"{os.path.abspath(f'{sub_task_para_export}')}/ema_crossover_detail_indicator*.csv")}"""
+                    st.dataframe(result)
+                    st.download_button(
+                        "Download result",
+                        data=result.to_csv(index=False).encode("utf-8"),
+                        mime="text/csv",
+                        file_name=f"ema_crossover_detail_indicator{sub_task_para_emacandidate1}-{sub_task_para_emacandidate2}-{sub_task_para_emacandidate3}_{len(company_list)}company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                     )
