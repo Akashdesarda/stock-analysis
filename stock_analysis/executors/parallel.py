@@ -1,6 +1,6 @@
 import datetime
 from dataclasses import dataclass
-from typing import Dict, List, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union
 
 import dateutil
 import pandas as pd
@@ -46,6 +46,63 @@ class UnitExecutor:
             "mean volume": company_df["Volume"].mean(),
             "close price": company_df.iloc[-1].Close,
             "action": buy_stock,
+        }
+
+    def unit_ema_absolute(
+        self,
+        company: str = None,
+        cutoff_date: Union[str, datetime.datetime] = "today",
+        period: int = 50,
+        cutoff: int = 5,
+        verbosity: int = 1,
+    ) -> Dict:
+
+        logger.info(f"Retriving data for {company}")
+        company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        if company_df["Close"].isnull().sum() != 0:
+            logger.warning(f"{company} have some missing value, fixing it")
+            company_df.dropna(inplace=True)
+        action = "Invalid"
+        try:
+            ema = exponential_moving_average(
+                data_df=company_df,
+                cutoff_date=cutoff_date,
+                period=period,
+                verbosity=verbosity,
+            )
+            turnover_value = turnover(company_df["Volume"], ema) / 10000000
+            buy = ema + (ema * (cutoff / 100))
+            sell = ema - (ema * (cutoff / 100))
+            if (buy < company_df["Close"][-1]) and (turnover_value > 1):
+                action = "buy"
+            elif (sell > company_df["Close"][-1]) and (turnover_value > 1):
+                action = "sell"
+            elif (sell < company_df["Close"][-1] < buy) and (turnover_value < 1):
+                action = "no action"
+            long_name = self.unit_quote_retrive(company)["longName"][0]
+            current_price = company_df["Close"][-1]
+        except (KeyError, IndexError, ValueError, TypeError, ZeroDivisionError):
+            logger.warning(f"{company} has less record than minimum rexquired")
+            long_name, ema, current_price, turnover_value, buy, sell, action = (
+                f"{company} (Invalid name)",
+                "Invalid",
+                "Invalid",
+                "Invalid",
+                "Invalid",
+                "Invalid",
+                "Invalid",
+            )
+            company = f"Problem with {company}"
+
+        return {
+            "company name": long_name,
+            "nse symbol": company,
+            "current price": current_price,
+            "ema": ema,
+            "ideal buy": buy,
+            "ideal sell": sell,
+            "turnover in cr.": turnover_value,
+            "action": action,
         }
 
     def unit_ema_indicator(
@@ -280,3 +337,21 @@ class UnitExecutor:
             "monthly_end_date_close": company_df.iloc[-1].Close,
             "return_monthly": ar_monthly,
         }
+
+    def unit_custom_indicator(
+        self, indicators: List[str], company: str
+    ) -> Dict[str, Any]:
+        result = {}
+        result["company symbol"] = company
+        if "daily moving average" in indicators:
+            dma_result = self.unit_dma_absolute(company=company)
+            result["comany name"] = dma_result["company name"]
+            result["dma"] = dma_result["sma"]
+            result["dma action"] = dma_result["action"]
+        if "exponential moving average" in indicators:
+            ema_result = self.unit_ema_absolute(company=company)
+            result["comany name"] = ema_result["company name"]
+            result["ema"] = ema_result["ema"]
+            result["ema action"] = ema_result["action"]
+
+        return result
