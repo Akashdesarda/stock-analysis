@@ -18,7 +18,7 @@ def test_ema_indicator():
 
     ema = ind.ema_indicator(save=False, verbosity=0)
     # Check for columns
-    assert len(ema.columns) == 7, "Incorrect column"
+    assert len(ema.columns) == 7, "Incorrect no of columns"
 
     # Check for null value
     for key, val in ema.isna().sum().to_dict().items():

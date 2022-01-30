@@ -1,6 +1,4 @@
 import datetime
-import glob
-import re
 from pathlib import Path
 
 import pandas as pd
@@ -9,21 +7,18 @@ import yaml
 
 from stock_analysis.indicator import Indicator
 from stock_analysis.momentum_strategy import MomentumStrategy
+from stock_analysis.custom_multi_indicator import CustomMultiIndicator
 
 # Sidebar and task intros
-default_intro = """
-# Welcome to Stock Analysis
-"""
-momentum_intro = """
-### This is used to perform Momentum strategy
-"""
-ind_intro = """
-### This is used to perform Indicator
-"""
+default_intro = "# Welcome to Stock Analysis"
+momentum_intro = "## This is used to perform Momentum strategy"
+ind_intro = "## This is used to perform Indicator"
+cus_mul_ind_intro = "This is used to perform Custom multichoice indicator"
+
 st.set_page_config("Stock Analysis")
 task = st.sidebar.selectbox(
     "Please select the task to start Stock Analysis",
-    ("Home", "Momentum strategy", "Indicator"),
+    ("Home", "Momentum strategy", "Indicator", "Multi choice Indicator"),
 )
 st.sidebar.info("Select a task above")
 # st.title("Stock Analysis")
@@ -33,6 +28,8 @@ elif task == "Momentum strategy":
     st.markdown(momentum_intro)
 elif task == "Indicator":
     st.markdown(ind_intro)
+elif task == "Multi choice Indicator":
+    st.markdown(cus_mul_ind_intro)
 
 # Task for Momentum strategy
 if task == "Momentum strategy":
@@ -559,3 +556,53 @@ elif task == "Indicator":
                         mime="text/csv",
                         file_name=f"ema_crossover_detail_indicator{sub_task_para_emacandidate1}-{sub_task_para_emacandidate2}-{sub_task_para_emacandidate3}_{len(company_list)}company_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
                     )
+
+# Task for Multi choice indicator
+elif task == "Multi choice Indicator":
+    company_name = st.text_input(
+        "Directly give names of all Company",
+        help="- Multiple company must be separated by ','. \n- Name must be listed symbol. \n- Eg. ADANIGREEN, HDFCAMC, WHIRLPOOL",
+    )
+    if company_name:
+        company_list = list(map(lambda x: x.strip(), company_name.split(",")))
+    st.write("OR")
+    uploaded_file = st.file_uploader(
+        label="Upload file containing company name(s)",
+        type=["yml", "yaml", "json", "csv"],
+    )
+
+    if uploaded_file:
+        if Path(uploaded_file.name).suffix == ".yaml":
+            data = yaml.load(uploaded_file, Loader=yaml.FullLoader)
+            company_list_select = st.selectbox(
+                "select Stock index", options=list(data.keys())
+            )
+            company_list = data[company_list_select]
+        elif Path(uploaded_file.name).suffix == ".csv":
+            data = pd.read_csv(uploaded_file)
+            company_list_select = st.selectbox(
+                "select Stock index", options=data.columns.to_list()
+            )
+            company_list = data.loc[:, company_list_select].dropna().to_list()
+
+    if company_name or uploaded_file:
+        multi_choice_ind = CustomMultiIndicator(company_name=company_list)
+
+        # Multi select window
+        options = st.multiselect(
+            label="Please select desired indicator(s), You can select more than one",
+            options=["daily moving average", "exponential moving average"],
+        )
+        # running query
+        if st.button("Continue"):
+            with st.spinner("Running the query"):
+                result = multi_choice_ind.multi_choice_indicator(
+                    indicators=options, save=False
+                )
+            st.dataframe(result.astype("str"))
+            st.download_button(
+                "Download result",
+                data=result.to_csv(index=False).encode("utf-8"),
+                mime="text/csv",
+                file_name=f"multi_choice_indicator_{datetime.datetime.now().strftime('%d-%m-%Y')}.csv",
+            )

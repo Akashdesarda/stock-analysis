@@ -36,7 +36,7 @@ def simple_moving_average(data: Union[pd.Series, List], period: int) -> float:
 
 
 def exponential_moving_average(
-    data_df: Union[pd.Series, List],
+    data_df: pd.DataFrame,
     period: int,
     cutoff_date: Union[str, datetime.datetime] = "today",
     smoothing_factor: int = 2,
@@ -45,7 +45,7 @@ def exponential_moving_average(
     """Calculate exponential moving avarage based on given period
 
     Args:
-        data_df (Union[pd.Series, List]): Data to calculate ema
+        data_df (pd.Dataframe): Data to calculate ema
         period (int): Period for which ema has to be calculated
         cutoff_date (Union[str, datetime.datetime], optional): . Defaults to "today".
         smoothing_factor (int, optional): Smoothing factor which will be used to calculate 'Multiplying factor'. Defaults to 2.
