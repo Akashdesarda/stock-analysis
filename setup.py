@@ -6,7 +6,7 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = "Stock analysis"
 REQUIRES_PYTHON = ">=3.7.0"
-VERSION = "1.6"
+VERSION = "1.7"
 DESCRIPTION = "Perform variety of stock analysis"
 # What packages are required for this module to be executed?
 with open("requirements.txt") as f:

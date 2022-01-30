@@ -77,7 +77,7 @@ class UnitExecutor:
                 action = "buy"
             elif (sell > company_df["Close"][-1]) and (turnover_value > 1):
                 action = "sell"
-            elif (sell < company_df["Close"][-1] < buy) and (turnover_value < 1):
+            elif (sell < company_df["Close"][-1] < buy) and (turnover_value > 1):
                 action = "no action"
             long_name = self.unit_quote_retrive(company)["longName"][0]
             current_price = company_df["Close"][-1]
@@ -263,7 +263,7 @@ class UnitExecutor:
                 action = "buy"
             elif (sell > company_df["Close"][-1]) and (turnover_value > 1):
                 action = "sell"
-            elif (sell < company_df["Close"][-1] < buy) and (turnover_value < 1):
+            elif (sell < company_df["Close"][-1] < buy) and (turnover_value > 1):
                 action = "no action"
             long_name = self.unit_quote_retrive(company)["longName"][0]
             current_price = company_df["Close"][-1]
@@ -346,11 +346,13 @@ class UnitExecutor:
         if "daily moving average" in indicators:
             dma_result = self.unit_dma_absolute(company=company)
             result["comany name"] = dma_result["company name"]
+            result["current price"] = dma_result["current price"]
             result["dma"] = dma_result["sma"]
             result["dma action"] = dma_result["action"]
         if "exponential moving average" in indicators:
             ema_result = self.unit_ema_absolute(company=company)
             result["comany name"] = ema_result["company name"]
+            result["current price"] = ema_result["current price"]
             result["ema"] = ema_result["ema"]
             result["ema action"] = ema_result["action"]
 
