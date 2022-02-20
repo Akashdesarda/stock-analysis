@@ -236,7 +236,7 @@ class UnitExecutor:
             cutoff_date = datetime.datetime.strptime(end_date, "%d/%m/%Y").date()
         start_date = cutoff_date - dateutil.relativedelta.relativedelta(months=18)
         if cutoff_date == "today":
-            sma_date = (now_strting,)
+            sma_date = now_strting
         else:
             sma_date = cutoff_date.strftime("%d-%m-%Y")
         try:
@@ -352,17 +352,17 @@ class UnitExecutor:
         self, indicators: List[str], company: str
     ) -> Dict[str, Any]:
         result = {}
-        result["company symbol"] = company
+        result["symbol"] = company
         if "daily moving average" in indicators:
             dma_result = self.unit_dma_absolute(company=company)
-            result["comany name"] = dma_result["company name"]
-            result["current price"] = dma_result["current price"]
+            result["comany"] = dma_result["company"]
+            result["price"] = dma_result[f"price ({now_strting})"]
             result["dma"] = dma_result["sma"]
             result["dma action"] = dma_result["action"]
         if "exponential moving average" in indicators:
             ema_result = self.unit_ema_absolute(company=company)
-            result["comany name"] = ema_result["company name"]
-            result["current price"] = ema_result["current price"]
+            result["comany"] = ema_result["company name"]
+            result["price"] = ema_result["current price"]
             result["ema"] = ema_result["ema"]
             result["ema action"] = ema_result["action"]
 
