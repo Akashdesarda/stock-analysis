@@ -301,6 +301,7 @@ class UnitExecutor:
                 company_name=f"{company}.NS", start_date=start, end_date=end
             )
             company_df.reset_index(inplace=True)
+            long_name = self.unit_quote_retrive(company)["longName"][0]
             ar_yearly = annualized_rate_of_return(
                 end_date=company_df.iloc[-1].Close,
                 start_date=company_df.iloc[0].Close,
@@ -316,25 +317,30 @@ class UnitExecutor:
             monthly_start_date = get_appropriate_date_momentum(
                 company_df, company, verbosity=0
             )[0].strftime("%d-%m-%Y")
-        except (IndexError, KeyError, ValueError):
+        except (IndexError, KeyError, ValueError, TypeError):
             if verbosity > 0:
                 logger.debug(f"Data is not available for: {company}")
             company_df = pd.DataFrame(
                 {"Date": [datetime.datetime(1000, 1, 1)] * 30, "Close": [pd.NA] * 30}
             )
-            ar_yearly, ar_monthly, monthly_start_date = pd.NA, pd.NA, pd.NA
+            long_name, ar_yearly, ar_monthly, monthly_start_date = (
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+            )
 
         return {
-            "company": company,
-            "yearly_start_date": company_df.iloc[0].Date.strftime("%d-%m-%Y"),
-            "yearly_start_date_close": company_df.iloc[0].Close,
-            "yearly_end_date": company_df.iloc[-1].Date.strftime("%d-%m-%Y"),
-            "yearly_end_date_close": company_df.iloc[-1].Close,
+            "symbol": company,
+            "company": long_name,
+            f"price ({company_df.iloc[0].Date.strftime('%d-%m-%Y')})": company_df.iloc[
+                0
+            ].Close,
+            f"price ({company_df.iloc[-1].Date.strftime('%d-%m-%Y')})": company_df.iloc[
+                -1
+            ].Close,
             "return_yearly": ar_yearly,
-            "monthly_start_date": monthly_start_date,
-            "monthly_start_date_close": company_df.iloc[-30].Close,
-            "monthly_end_date": company_df.iloc[-1].Date.strftime("%d-%m-%Y"),
-            "monthly_end_date_close": company_df.iloc[-1].Close,
+            f"price ({monthly_start_date})": company_df.iloc[-30].Close,
             "return_monthly": ar_monthly,
         }
 

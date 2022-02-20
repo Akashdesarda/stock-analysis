@@ -5,6 +5,7 @@ company_list = [
     "HDFCAMC",
     "WHIRLPOOL",
     "BAJAJ",
+    "ABCXYZ",
     "ABB",
     "INDIAMART",
     "CENTRALBK",
@@ -19,7 +20,7 @@ def test_relative_momentum():
     mom = ut.relative_momentum(top_company_count=3, save=False, verbosity=0)
 
     # Check for columns
-    assert len(mom.columns) == 11, "Incorrect columns"
+    assert len(mom.columns) == 7, "Incorrect columns"
 
     # Check for null value
     for key, val in mom.isna().sum().to_dict().items():
