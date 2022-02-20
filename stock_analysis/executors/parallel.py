@@ -114,10 +114,15 @@ class UnitExecutor:
     ) -> Dict:
         logger.info(f"Retriving data for {company}")
         company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        if cutoff_date == "today":
+            ema_date = now_strting
+        else:
+            ema_date = cutoff_date.strftime("%d-%m-%Y")
         if company_df["Close"].isnull().sum() != 0:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
+            long_name = self.unit_quote_retrive(company)["longName"][0]
             EMA_A = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
@@ -130,21 +135,19 @@ class UnitExecutor:
                 period=ema_canditate[1],
                 verbosity=verbosity,
             )
-            if EMA_A > EMA_B:
-                action = "buy"
-            else:
-                action = "sell"
-        except (KeyError, IndexError, ValueError):
+            # DEPRECATED - removed as part of output remodel
+            # if EMA_A > EMA_B:
+            #     action = "buy"
+            # else:
+            #     action = "sell"
+        except (KeyError, IndexError, ValueError, TypeError):
             logger.warning(f"{company} has less record than minimum rexquired")
-            EMA_A, EMA_B, action = pd.NA, pd.NA, pd.NA
+            EMA_A, EMA_B, long_name = pd.NA, pd.NA, pd.NA
         return {
-            "company": company,
-            "ema_date": now_strting
-            if cutoff_date == "today"
-            else cutoff_date.strftime("%d-%m-%Y"),
-            f"ema{str(ema_canditate[0])}": EMA_A,
-            f"ema{str(ema_canditate[1])}": EMA_B,
-            "action": action,
+            "symbol": company,
+            "company": long_name,
+            f"ema{str(ema_canditate[0])} ({ema_date})": EMA_A,
+            f"ema{str(ema_canditate[1])} ({ema_date})": EMA_B,
         }
 
     def unit_quote_retrive(self, company: str) -> pd.DataFrame:
@@ -206,7 +209,7 @@ class UnitExecutor:
             EMA_A, EMA_B, EMA_C, action = pd.NA, pd.NA, pd.NA, pd.NA
 
         return {
-            "company": company,
+            "symbol": company,
             "ema_date": now_strting
             if cutoff_date == "today"
             else cutoff_date.strftime("%d-%m-%Y"),
@@ -232,6 +235,10 @@ class UnitExecutor:
         else:
             cutoff_date = datetime.datetime.strptime(end_date, "%d/%m/%Y").date()
         start_date = cutoff_date - dateutil.relativedelta.relativedelta(months=18)
+        if cutoff_date == "today":
+            sma_date = now_strting
+        else:
+            sma_date = cutoff_date.strftime("%d-%m-%Y")
         try:
             company_df = DataRetrive.single_company_specific(
                 company_name=f"{company}.NS",
@@ -280,12 +287,9 @@ class UnitExecutor:
             )
             company = f"Problem with {company}"
         return {
-            "company name": long_name,
-            "nse symbol": company,
-            "sma_date": now_strting
-            if cutoff_date == "today"
-            else cutoff_date.strftime("%d-%m-%Y"),
-            "current price": current_price,
+            "symbol": company,
+            "company": long_name,
+            f"price ({sma_date})": current_price,
             "sma": sma,
             "ideal buy": buy,
             "ideal sell": sell,
@@ -301,6 +305,7 @@ class UnitExecutor:
                 company_name=f"{company}.NS", start_date=start, end_date=end
             )
             company_df.reset_index(inplace=True)
+            long_name = self.unit_quote_retrive(company)["longName"][0]
             ar_yearly = annualized_rate_of_return(
                 end_date=company_df.iloc[-1].Close,
                 start_date=company_df.iloc[0].Close,
@@ -316,25 +321,30 @@ class UnitExecutor:
             monthly_start_date = get_appropriate_date_momentum(
                 company_df, company, verbosity=0
             )[0].strftime("%d-%m-%Y")
-        except (IndexError, KeyError, ValueError):
+        except (IndexError, KeyError, ValueError, TypeError):
             if verbosity > 0:
                 logger.debug(f"Data is not available for: {company}")
             company_df = pd.DataFrame(
                 {"Date": [datetime.datetime(1000, 1, 1)] * 30, "Close": [pd.NA] * 30}
             )
-            ar_yearly, ar_monthly, monthly_start_date = pd.NA, pd.NA, pd.NA
+            long_name, ar_yearly, ar_monthly, monthly_start_date = (
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+            )
 
         return {
-            "company": company,
-            "yearly_start_date": company_df.iloc[0].Date.strftime("%d-%m-%Y"),
-            "yearly_start_date_close": company_df.iloc[0].Close,
-            "yearly_end_date": company_df.iloc[-1].Date.strftime("%d-%m-%Y"),
-            "yearly_end_date_close": company_df.iloc[-1].Close,
+            "symbol": company,
+            "company": long_name,
+            f"price ({company_df.iloc[0].Date.strftime('%d-%m-%Y')})": company_df.iloc[
+                0
+            ].Close,
+            f"price ({company_df.iloc[-1].Date.strftime('%d-%m-%Y')})": company_df.iloc[
+                -1
+            ].Close,
             "return_yearly": ar_yearly,
-            "monthly_start_date": monthly_start_date,
-            "monthly_start_date_close": company_df.iloc[-30].Close,
-            "monthly_end_date": company_df.iloc[-1].Date.strftime("%d-%m-%Y"),
-            "monthly_end_date_close": company_df.iloc[-1].Close,
+            f"price ({monthly_start_date})": company_df.iloc[-30].Close,
             "return_monthly": ar_monthly,
         }
 
@@ -342,17 +352,17 @@ class UnitExecutor:
         self, indicators: List[str], company: str
     ) -> Dict[str, Any]:
         result = {}
-        result["company symbol"] = company
+        result["symbol"] = company
         if "daily moving average" in indicators:
             dma_result = self.unit_dma_absolute(company=company)
-            result["comany name"] = dma_result["company name"]
-            result["current price"] = dma_result["current price"]
+            result["comany"] = dma_result["company"]
+            result["price"] = dma_result[f"price ({now_strting})"]
             result["dma"] = dma_result["sma"]
             result["dma action"] = dma_result["action"]
         if "exponential moving average" in indicators:
             ema_result = self.unit_ema_absolute(company=company)
-            result["comany name"] = ema_result["company name"]
-            result["current price"] = ema_result["current price"]
+            result["comany"] = ema_result["company name"]
+            result["price"] = ema_result["current price"]
             result["ema"] = ema_result["ema"]
             result["ema action"] = ema_result["action"]
 

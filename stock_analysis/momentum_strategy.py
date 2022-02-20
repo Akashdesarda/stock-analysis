@@ -32,8 +32,10 @@ class MomentumStrategy(UnitExecutor):
     ```
 
     Args:
-        path ([str, optional]): Path to company yaml/json. Either path or company_name can be used Default to None.
-        company_name ([List, optional]): List of company name. If path is used then this is obsolete as 'path' preside over 'company_name'. Default to None.
+        path ([str, optional]): Path to company yaml/json. Either path or company_name can be used. 
+        Default to None.
+        company_name ([List, optional]): List of company name. If path is used then this is obsolete 
+        as 'path' preside over 'company_name'. Default to None.
     """
 
     path: Optional[str] = None
@@ -59,11 +61,15 @@ class MomentumStrategy(UnitExecutor):
 
 
         Args:
-            end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to 'today'.
-            top_company_count (int, optional): No of top company to retrieve based on Annualized return. Defaults to 20.
+            end_date (str, optional): End date of of stock record to retrive. Must be in
+            format: dd/mm/yyyy. Defaults to 'today'.
+            top_company_count (int, optional): No of top company to retrieve based on Annualized
+            return. Defaults to 20.
             save (bool, optional): Wether to export to disk. Defaults to True.
-            export_path (str, optional): Path to export csv.To be used only if 'save' is True. Defaults to '.'.
-            verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
+            export_path (str, optional): Path to export csv.To be used only if 'save' is True.
+            Defaults to '.'.
+            verbosity (int, optional): Level of detail logging, 1=< Deatil, 0=Less detail.
+            Defaults to 1.
 
         Returns:
             Record based on monthly and yearly calculation
@@ -88,6 +94,14 @@ class MomentumStrategy(UnitExecutor):
                 for company in self.data["company"]
             )
         momentum_df = pd.DataFrame(result)
+
+        # NOTE - "price (01-01-1000)" & "price (<NA>)" gets added as extra column if any given company's
+        # data is not available. So need to remove this extra column.
+        if "price (01-01-1000)" in momentum_df.columns:
+            momentum_df.drop("price (01-01-1000)", axis="columns", inplace=True)
+        if "price (<NA>)" in momentum_df.columns:
+            momentum_df.drop("price (<NA>)", axis="columns", inplace=True)
+
         momentum_df.dropna(inplace=True)
         momentum_df.sort_values(by=["return_yearly"], ascending=False, inplace=True)
         momentum_df.reset_index(inplace=True, drop=True)
@@ -99,6 +113,7 @@ class MomentumStrategy(UnitExecutor):
             momentum_df.head(top_company_count).to_csv(
                 f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv",
                 index=False,
+                float_format="%.2f",
             )
             if verbosity > 0:
                 logger.debug(
@@ -120,11 +135,15 @@ class MomentumStrategy(UnitExecutor):
         based on desired 'return' duration and 'exponential moving avg'.
 
         Args:
-            end_date (str, optional): End date of of stock record to retrive. Must be in format: dd/mm/yyyy. Defaults to 'today'.
-            top_company_count (int, optional): No of top company to retrieve based on Annualized return. Defaults to 20.
-            ema_canditate (Tuple[int, int], optional): Period (or days) to calculate EMA. Defaults to (50, 200).
+            end_date (str, optional): End date of of stock record to retrive. Must be in
+            format: dd/mm/yyyy. Defaults to 'today'.
+            top_company_count (int, optional): No of top company to retrieve based on Annualized
+            return. Defaults to 20.
+            ema_canditate (Tuple[int, int], optional): Period (or days) to calculate EMA.
+            Defaults to (50, 200).
             save (bool, optional): Wether to export to disk. Defaults to True.
-            export_path (str, optional): Path to export csv.To be used only if 'save' is True. Defaults to '.'.
+            export_path (str, optional): Path to export csv.To be used only if 'save' is True.
+            Defaults to '.'.
             verbosity (int, optional): Level of detail logging,1=< Deatil, 0=Less detail. Defaults to 1.
 
         Returns:
@@ -148,7 +167,7 @@ class MomentumStrategy(UnitExecutor):
         )
         momentum_df.reset_index(drop=True, inplace=True)
 
-        ind = Indicator(company_name=momentum_df.loc[:, "company"])
+        ind = Indicator(company_name=momentum_df["symbol"])
         logger.info(
             f"Performing EMA task on top {top_company_count} company till {end_date}"
         )
@@ -165,13 +184,17 @@ class MomentumStrategy(UnitExecutor):
             save=False,
             verbosity=verbosity,
         )
-        momentum_ema_df = momentum_df.merge(ema_df, on="company", validate="1:1")
+        ema_df.drop(
+            "company", axis="columns", inplace=True
+        )  # as `momentum_df` already has it
+        momentum_ema_df = momentum_df.merge(ema_df, on="symbol", validate="1:1")
         if save is True:
             new_folder(export_path)
             momentum_ema_df.reset_index(drop=True, inplace=True)
             momentum_ema_df.to_csv(
                 f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv",
                 index=False,
+                float_format="%.2f",
             )
             logger.debug(
                 f"Saved at {export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv"
@@ -224,6 +247,7 @@ class MomentumStrategy(UnitExecutor):
             dma_compile.to_csv(
                 f"{export_path}/dma_action_cutoff_{str(cutoff)}_{end_date}.csv",
                 index=False,
+                float_format="%.2f",
             )
         else:
             return dma_compile

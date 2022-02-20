@@ -118,6 +118,10 @@ class Indicator(UnitExecutor):
         ema = ind.ema_indicator((50,200), '01/06/2020')
         ```
         """
+        if cutoff_date == "today":
+            ema_date = now_strting
+        else:
+            ema_date = cutoff_date.strftime("%d-%m-%Y")
 
         with parallel_backend(n_jobs=-1, backend="multiprocessing"):
             result = Parallel()(
@@ -131,27 +135,16 @@ class Indicator(UnitExecutor):
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
             lambda x: percentage_diff(
-                x[f"ema{str(ema_canditate[0])}"],
-                x[f"ema{str(ema_canditate[1])}"],
+                x[f"ema{str(ema_canditate[0])} ({ema_date})"],
+                x[f"ema{str(ema_canditate[1])} ({ema_date})"],
                 return_absolute=True,
             ),
             axis=1,
         )
-        ema_indicator_df["outcome"] = ema_indicator_df.apply(
-            lambda x: outcome_analysis(x["percentage_diff"]), axis=1
-        )
-
-        ema_indicator_df = ema_indicator_df[
-            [
-                "company",
-                "ema_date",
-                f"ema{str(ema_canditate[0])}",
-                f"ema{str(ema_canditate[1])}",
-                "percentage_diff",
-                "outcome",
-                "action",
-            ]
-        ]
+        # DEPRECATED - removed as part of output remodel
+        # ema_indicator_df["outcome"] = ema_indicator_df.apply(
+        #     lambda x: outcome_analysis(x["percentage_diff"]), axis=1
+        # )
 
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{ema_indicator_df.head()}")
@@ -179,16 +172,21 @@ class Indicator(UnitExecutor):
     ) -> Optional[pd.DataFrame]:
         """Exponential moving average based on desired two period (or no of days) with additional info
         which include:
+        
         > regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month,
         averageDailyVolume10Day, fiftyTwoWeekLowChange, fiftyTwoWeekLowChangePercent, fiftyTwoWeekRange,
         fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwoWeekHigh
 
         Args:
-            ema_canditate (Tuple[int, int], optional): Two number used two calculate EMA. Defaults to (50, 200).
-            cutoff_date (Union[str, datetime.datetime], optional): Desired date till which to calculate ema. Defaults to "today".
+            ema_canditate (Tuple[int, int], optional): Two number used two calculate EMA.
+            Defaults to (50, 200).
+            cutoff_date (Union[str, datetime.datetime], optional): Desired date till which to
+            calculate ema. Defaults to "today".
             save (bool, optional): Save to hard disk. Defaults to True.
-            export_path (str, optional): Path to save, to be used only if 'save' is true. Defaults to ".".
-            verbosity (int, optional): Level of detail logging,1=< Detail, 0=Less detail. Defaults to 1.
+            export_path (str, optional): Path to save, to be used only if 'save' is true.
+            Defaults to ".".
+            verbosity (int, optional): Level of detail logging,1=< Detail, 0=Less detail.
+            Defaults to 1.
 
         Returns:
             EMA and detailed metrics for indicators
@@ -202,6 +200,11 @@ class Indicator(UnitExecutor):
         """
 
         logger.info("Performing EMA Indicator Task")
+        if cutoff_date == "today":
+            ema_date = now_strting
+        else:
+            ema_date = cutoff_date.strftime("%d-%m-%Y")
+
         ema_short = self.ema_indicator(
             ema_canditate=ema_canditate,
             cutoff_date=cutoff_date,
@@ -214,20 +217,27 @@ class Indicator(UnitExecutor):
         with parallel_backend(n_jobs=-1, backend="multiprocessing"):
             company_quote = Parallel()(
                 delayed(self.unit_quote_retrive)(company)
-                for company in ema_short["company"]
+                for company in ema_short["symbol"]
             )
         for single_company_quote in company_quote:
             if isinstance(single_company_quote, pd.DataFrame):
                 batch_company_quote = batch_company_quote.append(single_company_quote)
 
         batch_company_quote = batch_company_quote.reset_index().rename(
-            columns={"index": "company"}
+            columns={"index": "symbol"}  # , "longName": "company"}
         )
-        batch_company_quote = batch_company_quote[
+        batch_company_quote["symbol"] = batch_company_quote["symbol"].str.replace(
+            ".NS", ""
+        )
+        ema_quote = ema_short.merge(batch_company_quote, on="symbol", validate="1:1")
+
+        # rearranging the columns sequence
+        ema_quote = ema_quote[
             [
-                "company",
+                "symbol",
                 "longName",
-                "price",
+                f"ema{ema_canditate[0]} ({ema_date})",
+                f"ema{ema_canditate[1]} ({ema_date})",
                 "regularMarketVolume",
                 "marketCap",
                 "bookValue",
@@ -243,12 +253,6 @@ class Indicator(UnitExecutor):
                 "fiftyTwoWeekHigh",
             ]
         ]
-
-        batch_company_quote["company"] = batch_company_quote["company"].str.replace(
-            ".NS", ""
-        )
-
-        ema_quote = ema_short.merge(batch_company_quote, on="company", validate="1:1")
 
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{ema_quote.head()}")
@@ -301,19 +305,32 @@ class Indicator(UnitExecutor):
         with parallel_backend(n_jobs=-1, backend="multiprocessing"):
             company_quote = Parallel()(
                 delayed(self.unit_quote_retrive)(company)
-                for company in ema_short["company"]
+                for company in ema_short["symbol"]
             )
         for single_company_quote in company_quote:
             if isinstance(single_company_quote, pd.DataFrame):
                 batch_company_quote = batch_company_quote.append(single_company_quote)
 
         batch_company_quote = batch_company_quote.reset_index().rename(
-            columns={"index": "company"}
+            columns={"index": "symbol", "longName": "company"}
         )
-        batch_company_quote = batch_company_quote[
+
+        batch_company_quote["symbol"] = batch_company_quote["symbol"].str.replace(
+            ".NS", ""
+        )
+
+        ema_quote = ema_short.merge(batch_company_quote, on="symbol", validate="1:1")
+
+        # rearranging the columns sequence
+        ema_quote = ema_quote[
             [
+                "symbol",
                 "company",
-                "longName",
+                "ema_date",
+                f"ema{ema_canditate[0]}",
+                f"ema{ema_canditate[1]}",
+                f"ema{ema_canditate[2]}",
+                "action",
                 "price",
                 "regularMarketVolume",
                 "marketCap",
@@ -330,12 +347,6 @@ class Indicator(UnitExecutor):
                 "fiftyTwoWeekHigh",
             ]
         ]
-
-        batch_company_quote["company"] = batch_company_quote["company"].str.replace(
-            ".NS", ""
-        )
-
-        ema_quote = ema_short.merge(batch_company_quote, on="company", validate="1:1")
 
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{ema_quote.head()}")
