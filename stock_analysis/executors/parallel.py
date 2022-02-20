@@ -117,7 +117,7 @@ class UnitExecutor:
         if cutoff_date == "today":
             ema_date = now_strting
         else:
-            ema_date = (cutoff_date.strftime("%d-%m-%Y"),)
+            ema_date = cutoff_date.strftime("%d-%m-%Y")
         if company_df["Close"].isnull().sum() != 0:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
@@ -209,7 +209,7 @@ class UnitExecutor:
             EMA_A, EMA_B, EMA_C, action = pd.NA, pd.NA, pd.NA, pd.NA
 
         return {
-            "company": company,
+            "symbol": company,
             "ema_date": now_strting
             if cutoff_date == "today"
             else cutoff_date.strftime("%d-%m-%Y"),

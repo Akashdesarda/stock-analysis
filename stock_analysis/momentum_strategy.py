@@ -167,7 +167,7 @@ class MomentumStrategy(UnitExecutor):
         )
         momentum_df.reset_index(drop=True, inplace=True)
 
-        ind = Indicator(company_name=momentum_df.loc[:, "company"])
+        ind = Indicator(company_name=momentum_df["symbol"])
         logger.info(
             f"Performing EMA task on top {top_company_count} company till {end_date}"
         )
@@ -184,7 +184,10 @@ class MomentumStrategy(UnitExecutor):
             save=False,
             verbosity=verbosity,
         )
-        momentum_ema_df = momentum_df.merge(ema_df, on="company", validate="1:1")
+        ema_df.drop(
+            "company", axis="columns", inplace=True
+        )  # as `momentum_df` already has it
+        momentum_ema_df = momentum_df.merge(ema_df, on="symbol", validate="1:1")
         if save is True:
             new_folder(export_path)
             momentum_ema_df.reset_index(drop=True, inplace=True)

@@ -1,4 +1,7 @@
 from stock_analysis.indicator import Indicator
+import datetime
+
+now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 
 company_list = [
     "BAJAJ",
@@ -30,15 +33,10 @@ def test_ema_detail_indicator():
     ema_detail = ind.ema_detail_indicator(save=False, verbosity=0)
     # Check for correct order of columns
     c = [
-        "company",
-        "ema_date",
-        "ema50",
-        "ema200",
-        "percentage_diff",
-        "outcome",
-        "action",
+        "symbol",
         "longName",
-        "price",
+        f"ema50 ({now_strting})",
+        f"ema200 ({now_strting})",
         "regularMarketVolume",
         "marketCap",
         "bookValue",
@@ -65,13 +63,13 @@ def test_ema_crossover():
 
     # Check for correct order of columns
     c = [
+        "symbol",
         "company",
         "ema_date",
         "ema5",
         "ema13",
         "ema26",
         "action",
-        "longName",
         "price",
         "regularMarketVolume",
         "marketCap",
