@@ -114,10 +114,15 @@ class UnitExecutor:
     ) -> Dict:
         logger.info(f"Retriving data for {company}")
         company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        if cutoff_date == "today":
+            ema_date = now_strting
+        else:
+            ema_date = (cutoff_date.strftime("%d-%m-%Y"),)
         if company_df["Close"].isnull().sum() != 0:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
+            long_name = self.unit_quote_retrive(company)["longName"][0]
             EMA_A = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
@@ -130,21 +135,19 @@ class UnitExecutor:
                 period=ema_canditate[1],
                 verbosity=verbosity,
             )
-            if EMA_A > EMA_B:
-                action = "buy"
-            else:
-                action = "sell"
-        except (KeyError, IndexError, ValueError):
+            # DEPRECATED - removed as part of output remodel
+            # if EMA_A > EMA_B:
+            #     action = "buy"
+            # else:
+            #     action = "sell"
+        except (KeyError, IndexError, ValueError, TypeError):
             logger.warning(f"{company} has less record than minimum rexquired")
-            EMA_A, EMA_B, action = pd.NA, pd.NA, pd.NA
+            EMA_A, EMA_B, long_name = pd.NA, pd.NA, pd.NA
         return {
-            "company": company,
-            "ema_date": now_strting
-            if cutoff_date == "today"
-            else cutoff_date.strftime("%d-%m-%Y"),
-            f"ema{str(ema_canditate[0])}": EMA_A,
-            f"ema{str(ema_canditate[1])}": EMA_B,
-            "action": action,
+            "symbol": company,
+            "company": long_name,
+            f"ema{str(ema_canditate[0])} ({ema_date})": EMA_A,
+            f"ema{str(ema_canditate[1])} ({ema_date})": EMA_B,
         }
 
     def unit_quote_retrive(self, company: str) -> pd.DataFrame:

@@ -118,6 +118,10 @@ class Indicator(UnitExecutor):
         ema = ind.ema_indicator((50,200), '01/06/2020')
         ```
         """
+        if cutoff_date == "today":
+            ema_date = now_strting
+        else:
+            ema_date = (cutoff_date.strftime("%d-%m-%Y"),)
 
         with parallel_backend(n_jobs=-1, backend="multiprocessing"):
             result = Parallel()(
@@ -131,27 +135,16 @@ class Indicator(UnitExecutor):
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
             lambda x: percentage_diff(
-                x[f"ema{str(ema_canditate[0])}"],
-                x[f"ema{str(ema_canditate[1])}"],
+                x[f"ema{str(ema_canditate[0])} ({ema_date})"],
+                x[f"ema{str(ema_canditate[1])} ({ema_date})"],
                 return_absolute=True,
             ),
             axis=1,
         )
-        ema_indicator_df["outcome"] = ema_indicator_df.apply(
-            lambda x: outcome_analysis(x["percentage_diff"]), axis=1
-        )
-
-        ema_indicator_df = ema_indicator_df[
-            [
-                "company",
-                "ema_date",
-                f"ema{str(ema_canditate[0])}",
-                f"ema{str(ema_canditate[1])}",
-                "percentage_diff",
-                "outcome",
-                "action",
-            ]
-        ]
+        # DEPRECATED - removed as part of output remodel
+        # ema_indicator_df["outcome"] = ema_indicator_df.apply(
+        #     lambda x: outcome_analysis(x["percentage_diff"]), axis=1
+        # )
 
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{ema_indicator_df.head()}")

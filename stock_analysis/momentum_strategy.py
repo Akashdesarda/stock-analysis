@@ -113,6 +113,7 @@ class MomentumStrategy(UnitExecutor):
             momentum_df.head(top_company_count).to_csv(
                 f"{export_path}/momentum_result_{end.strftime('%d-%m-%Y')}_top_{top_company_count}.csv",
                 index=False,
+                float_format="%.2f",
             )
             if verbosity > 0:
                 logger.debug(
@@ -190,6 +191,7 @@ class MomentumStrategy(UnitExecutor):
             momentum_ema_df.to_csv(
                 f"{export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv",
                 index=False,
+                float_format="%.2f",
             )
             logger.debug(
                 f"Saved at {export_path}/momentum_ema{ema_canditate[0]}-{ema_canditate[1]}_{save_date}_top_{top_company_count}.csv"
@@ -242,6 +244,7 @@ class MomentumStrategy(UnitExecutor):
             dma_compile.to_csv(
                 f"{export_path}/dma_action_cutoff_{str(cutoff)}_{end_date}.csv",
                 index=False,
+                float_format="%.2f",
             )
         else:
             return dma_compile
