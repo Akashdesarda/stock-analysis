@@ -15,6 +15,7 @@ def relative_momentum(input_response: RelativeMomentum):
         top_company_count=input_response.top_company_count,
         save=False,
     )
+    result = result.set_index("symbol").T
     return result
 
 
@@ -27,6 +28,7 @@ def relative_momentum_ema(input_response: RelativeMomentumEMA):
         ema_canditate=input_response.ema_candidate,
         save=False,
     )
+    result = result.set_index("symbol").T
     return result
 
 
@@ -39,12 +41,16 @@ def absolute_momentum_dma(input_response: AbsoluteMomentumDMA):
         cutoff=input_response.cutoff,
         save=False,
     )
+    result = result.set_index("symbol").T
+    return result
 
 
 @app.post("/api/indicator/volume-n-days/")
 def volume_n_days(input_response: VolumeNDaysIndicator):
     ind = Indicator(company_name=input_response.company)
     result = ind.volume_n_days_indicator(duration=input_response.duration, save=False)
+    result = result.set_index("symbol").T
+    return result
 
 
 @app.post("/api/indicator/ema-indicator-short/")
@@ -55,6 +61,8 @@ def ema_indicator_short(input_response: EMAIndicator):
         cutoff_date=input_response.cutoff_date,
         save=False,
     )
+    result = result.set_index("symbol").T
+    return result
 
 
 @app.post("/api/indicator/ema-indicator-detail/")
@@ -65,6 +73,8 @@ def ema_indicator_detail(input_response: EMAIndicator):
         cutoff_date=input_response.cutoff_date,
         save=False,
     )
+    result = result.set_index("symbol").T
+    return result
 
 
 @app.post("/api/indicator/ema-crossover-indicator/")
@@ -73,3 +83,5 @@ def ema_crossover_indicator(input_response: EMACrossoverIndicator):
     result = ind.ema_crossover_detail_indicator(
         ema_canditate=input_response.ema_candidate, save=False
     )
+    result = result.set_index("symbol").T
+    return result
