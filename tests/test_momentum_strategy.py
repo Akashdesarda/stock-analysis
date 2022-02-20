@@ -1,5 +1,7 @@
 from stock_analysis.momentum_strategy import MomentumStrategy
+import datetime
 
+now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 company_list = [
     "ADANIGREEN",
     "HDFCAMC",
@@ -87,11 +89,11 @@ def test_momentum_strategy_with_date():
 def test_dma():
     dma_with_per = ut.absolute_momentum_with_dma()
     # Check for correct order of columns
+
     c = [
-        "company name",
-        "nse symbol",
-        "sma_date",
-        "current price",
+        "symbol",
+        "company",
+        f"price ({now_strting})",
         "sma",
         "ideal buy",
         "ideal sell",

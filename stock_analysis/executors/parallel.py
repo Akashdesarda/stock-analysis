@@ -232,6 +232,10 @@ class UnitExecutor:
         else:
             cutoff_date = datetime.datetime.strptime(end_date, "%d/%m/%Y").date()
         start_date = cutoff_date - dateutil.relativedelta.relativedelta(months=18)
+        if cutoff_date == "today":
+            sma_date = (now_strting,)
+        else:
+            sma_date = cutoff_date.strftime("%d-%m-%Y")
         try:
             company_df = DataRetrive.single_company_specific(
                 company_name=f"{company}.NS",
@@ -280,12 +284,9 @@ class UnitExecutor:
             )
             company = f"Problem with {company}"
         return {
-            "company name": long_name,
-            "nse symbol": company,
-            "sma_date": now_strting
-            if cutoff_date == "today"
-            else cutoff_date.strftime("%d-%m-%Y"),
-            "current price": current_price,
+            "symbol": company,
+            "company": long_name,
+            f"price ({sma_date})": current_price,
             "sma": sma,
             "ideal buy": buy,
             "ideal sell": sell,
