@@ -1,7 +1,7 @@
+fastapi==0.74.0
 joblib==1.0.1
-pandas_datareader==0.10.0
 pandas==1.2.3
-streamlit==0.88.0
+pandas_datareader==0.10.0
+pydantic==1.8.2
+PyYAML==6.0
 yfinance==0.1.63
-python_dateutil==2.8.2
-PyYAML==5.4.1
