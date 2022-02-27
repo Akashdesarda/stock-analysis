@@ -8,3 +8,4 @@ results
 tests
 *.ipynb
 !.env
+!.stock_analysis/utils/data_retrive.py

@@ -1,27 +1,19 @@
+from dataclasses import dataclass
 import datetime
 
 import pandas as pd
 import yfinance as yf
 from pandas_datareader import data as pdr
+from stock_analysis.utils.logger import logger
 
 yf.pdr_override()
 
-
+@dataclass
 class DataRetrive:
     """
     Import Stock data using Yahoo Finance Api
     """
 
-    # def __init__(self, path: str):
-    #     """
-    #     Update or create new csv using Yahoo Finance Api
-
-    #     Parameters
-    #     ----------
-    #     path : str
-    #         path of older csv to be updated or to save new csv
-    #     """
-    #     self.path = path
     @classmethod
     def single_company_specific(
         cls,
@@ -31,27 +23,17 @@ class DataRetrive:
         save: bool = False,
         export_path: str = None,
     ) -> pd.DataFrame:
-        """
-        Retrive single company date from given start date and end
+        """Retrive single company date from given start date and end
 
-        Parameters
-        ----------
-        company_name : str
-            name of desired company
-        start_date : Tuple[year, month, day]
-            Start date
-        end_date : Tuple[year, month, day]
-            End date
+        Args:
+            company_name (str): name of desired company
+            start_date (datetime.datetime): Start date
+            end_date (datetime.datetime): End date
+            save (bool, optional): save to disk. Defaults to False.
+            export_path (str, optional): disk path where to save. Defaults to None.
 
-        Returns
-        -------
-        pd.DataFrame
-            Data from Yahoo finance
-
-        Raises
-        ------
-        ValueError
-            [description]
+        Returns:
+            pd.DataFrame: Data from Yahoo finance
         """
         data = pdr.get_data_yahoo(
             company_name, start=start_date, end=end_date, progress=False
@@ -68,21 +50,14 @@ class DataRetrive:
     ) -> pd.DataFrame:
         """Retrive complete data right from its IPO till today
 
-        Parameters
-        ----------
-        company_name : str
-            Name of company
-        save : bool, optional
-            save to disk, by default False
-        export_path : str, optional
-            path where to save (to be used only if save is True), by default None
+        Args:
+            company_name (str): Symbol of company
+            save (bool, optional): save to disk. Defaults to False.
+            export_path (str, optional): path where to save (to be used only if save is True). Defaults to None.
 
-        Returns
-        -------
-        pd.DataFrame
-            Data from Yahoo finance
+        Returns:
+            pd.DataFrame: Data from Yahoo finance
         """
-
         data = pdr.get_data_yahoo(company_name, progress=False)
 
         if save is True:
