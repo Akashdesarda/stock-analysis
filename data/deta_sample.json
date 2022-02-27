@@ -1,0 +1,57 @@
+[
+    {
+        "key": "3MINDIA",
+        "Nifty50": true,
+        "Nifty100": true,
+        "Nifty500": true
+    },
+    {
+        "key": "AARTIIND",
+        "Nifty50": true,
+        "Nifty100": true
+    },
+    {
+        "key": "AAVAS",
+        "Nifty50": true,
+        "Nifty100": true,
+        "Nifty500": true
+    },
+    {
+        "key": "ABB",
+        "Nifty50": true,
+        "Nifty100": true,
+        "Nifty500": true
+    },
+    {
+        "key": "ABBOTINDIA",
+        "Nifty50": true,
+        "Nifty100": true
+    },
+    {
+        "key": "ABCAPITAL",
+        "Nifty500": true
+    },
+    {
+        "key": "ABFRL",
+        "Nifty500": true
+    },
+    {
+        "key": "ACC",
+        "Nifty500": true
+    },
+    {
+        "key": "ADANIGAS",
+        "Nifty50": true,
+        "Nifty100": true
+    },
+    {
+        "key": "ADANIGREEN",
+        "Nifty500": true
+    },
+    {
+        "key": "ADANIPORTS",
+        "Nifty50": true,
+        "Nifty100": true,
+        "Nifty500": true
+    }
+]
