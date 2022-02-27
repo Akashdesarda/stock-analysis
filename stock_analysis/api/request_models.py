@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Dict, List, Tuple, Union
 from pydantic import BaseModel
 
 
@@ -48,3 +48,31 @@ class EMACrossoverIndicator(BaseModel):
 
     company: List[str]
     ema_candidate: Tuple[int, int, int]
+
+
+class DBGet(BaseModel):
+    """Request api model for Deta Base `get` ops"""
+
+    db_name: str
+    key: str
+
+
+class DBFetch(BaseModel):
+    """Request api model for Deta Base `fetch` ops"""
+
+    db_name: str
+    query: Union[Dict, list]
+
+
+class DBPut(BaseModel):
+    """Request api model for Deta Base `put` & `put_many` ops"""
+
+    db_name: str
+    data: Union[Dict, List, str, int, bool]
+
+
+class DBDelete(BaseModel):
+    """Request api model for Deta Base `delete` ops"""
+
+    db_name: str
+    key: str
