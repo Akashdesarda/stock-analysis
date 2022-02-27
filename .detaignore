@@ -1,0 +1,10 @@
+**/__pycache__
+.github
+.pytest_cache
+.vscode
+data
+docs
+results
+tests
+*.ipynb
+!.env
