@@ -16,7 +16,7 @@ def input_widget():
     """Streamlit widget/componet which is used to take desired input use
 
     Returns:
-        _type_: symbol of companies based on selected input method
+        list: symbol of companies based on selected input method
     """
     # NOTE - need to create a empty `company_list` as it will be populated eventually, but before need
     # to restrict showing error msg
@@ -26,6 +26,7 @@ def input_widget():
     input_option = st.selectbox(
         "Select input method",
         (
+            "Select Options",
             "Manual select company symbol",
             "Upload",
             "Curated Index",
@@ -136,5 +137,31 @@ def input_widget():
     return company_list
 
 
-def sidebar_widget():
-    ...
+def sidebar_widget() -> str:
+    """Stremlit sidebar widget/component that is used for sidebar activity
+
+    Returns:
+        str: chosen sidebar option
+    """
+    # Sidebar and task intros
+    default_intro = "# Welcome to Stock Analysis"
+    momentum_intro = "## This is used to perform Momentum strategy"
+    ind_intro = "## This is used to perform Indicator"
+    cus_mul_ind_intro = "## This is used to perform Custom multichoice indicator"
+
+    task = st.sidebar.selectbox(
+        "Please select the task to start Stock Analysis",
+        ("Home", "Momentum strategy", "Indicator", "Multi choice Indicator"),
+    )
+    st.sidebar.info("Select a task above")
+    # st.title("Stock Analysis")
+    if task == "Home":
+        st.markdown(default_intro)
+    elif task == "Momentum strategy":
+        st.markdown(momentum_intro)
+    elif task == "Indicator":
+        st.markdown(ind_intro)
+    elif task == "Multi choice Indicator":
+        st.markdown(cus_mul_ind_intro)
+
+    return task
