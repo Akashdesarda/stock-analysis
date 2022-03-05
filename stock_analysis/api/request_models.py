@@ -1,4 +1,4 @@
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 from pydantic import BaseModel, Field
 
 
@@ -123,8 +123,8 @@ class DBFetch(BaseModel):
     db_name: str = Field(
         ..., description="name of the database", example="nifty-index-company-db"
     )
-    query: Union[Dict, list] = Field(
-        ..., description="query to fetch data", example={"Industry": "IT"}
+    query: Optional[Union[Dict, list]] = Field(
+        None, description="query to fetch data", example={"Industry": "IT"}
     )
 
 
