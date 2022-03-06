@@ -1,9 +1,9 @@
-from typing import Union
+from typing import Union, List
 import requests
 import json
 
 
-def http_request(url_path: str, method: str, data: dict) -> Union[dict, list]:
+def http_request(url_path: str, method: str, data: dict) -> Union[dict, List]:
     """Make any `HTTP` request method
 
     Args:

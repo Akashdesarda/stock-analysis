@@ -27,11 +27,11 @@ def manual_multi_choice() -> List[str]:
 
 
 @st.cache(show_spinner=False)
-def get_available_index(index_table: Optional[list] = None) -> set:
+def get_available_index(index_table: Optional[List] = None) -> set:
     """extract available indexes 
 
     Args:
-        index_table (Optional[list], optional): response data having complete Index table.
+        index_table (Optional[List], optional): response data having complete Index table.
         Defaults to None.
 
     Returns:
@@ -56,17 +56,17 @@ def get_available_index(index_table: Optional[list] = None) -> set:
 
 @st.cache(show_spinner=False)
 def get_available_symbol_wrt_index(
-    indexes: list[str], index_table: Optional[list] = None
-) -> list:
+    indexes: List[str], index_table: Optional[List] = None
+) -> List:
     """extract symbol based on provided Index
 
     Args:
-        indexes (list[str]): desired indexses
-        index_table (Optional[list], optional): response data having complete Index table.
+        indexes (List[str]): desired indexses
+        index_table (Optional[List], optional): response data having complete Index table.
         Defaults to None.
 
     Returns:
-        list: symbol(s) based on desired indexes
+        List: symbol(s) based on desired indexes
     """
     if index_table is None:
         response_data = http_request(
@@ -92,7 +92,7 @@ def get_available_sector() -> set:
     """get the available sector/industry from db server api
 
     Returns:
-        list: available sector(s)
+        List: available sector(s)
     """
     response_data = http_request(
         "db/fetch", "get", {"db_name": "nifty-sector-company-db", "query": None}
@@ -105,7 +105,7 @@ def get_sector_table() -> pd.DataFrame:
     """get the sector table from db server api
 
     Returns:
-        list: sector data table
+        List: sector data table
     """
     response_data = http_request(
         "db/fetch", "get", {"db_name": "nifty-sector-company-db", "query": None}
@@ -114,11 +114,11 @@ def get_sector_table() -> pd.DataFrame:
 
 
 @st.cache(show_spinner=False)
-def get_index_table() -> list:
+def get_index_table() -> List:
     """fet the index table from db server api
 
     Returns:
-        list: index data table
+        List: index data table
     """
     return http_request(
         "db/fetch", "get", {"db_name": "nifty-index-company-db", "query": None}

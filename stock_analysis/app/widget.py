@@ -16,7 +16,7 @@ def input_widget():
     """Streamlit widget/componet which is used to take desired input use
 
     Returns:
-        list: symbol of companies based on selected input method
+        List: symbol of companies based on selected input method
     """
     # NOTE - need to create a empty `company_list` as it will be populated eventually, but before need
     # to restrict showing error msg
