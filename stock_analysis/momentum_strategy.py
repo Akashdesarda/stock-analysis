@@ -102,7 +102,7 @@ class MomentumStrategy(UnitExecutor):
         if "price (<NA>)" in momentum_df.columns:
             momentum_df.drop("price (<NA>)", axis="columns", inplace=True)
 
-        momentum_df.dropna(inplace=True)
+        momentum_df.dropna(axis="columns", inplace=True)
         momentum_df.sort_values(by=["return_yearly"], ascending=False, inplace=True)
         momentum_df.reset_index(inplace=True, drop=True)
 
