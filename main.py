@@ -8,7 +8,7 @@ from stock_analysis.utils.helpers import create_chunks, deta_base_client
 app = FastAPI()  # FastAPI app init
 
 # REST API for running algo strategy
-@app.get("/api/momentum/relative-momentum/")
+@app.post("/api/momentum/relative-momentum/")
 def relative_momentum(input_response: RelativeMomentum):
     ms = MomentumStrategy(company_name=input_response.company)
     result = ms.relative_momentum(
@@ -23,7 +23,7 @@ def relative_momentum(input_response: RelativeMomentum):
     return result
 
 
-@app.get("/api/momentum/relative-momentum-ema/")
+@app.post("/api/momentum/relative-momentum-ema/")
 def relative_momentum_ema(input_response: RelativeMomentumEMA):
     ms = MomentumStrategy(company_name=input_response.company)
     result = ms.relative_momentum_with_ema(
@@ -39,7 +39,7 @@ def relative_momentum_ema(input_response: RelativeMomentumEMA):
     return result
 
 
-@app.get("/api/momentum/absolute-momentum-dma/")
+@app.post("/api/momentum/absolute-momentum-dma/")
 def absolute_momentum_dma(input_response: AbsoluteMomentumDMA):
     ms = MomentumStrategy(company_name=input_response.company)
     result = ms.absolute_momentum_with_dma(
@@ -55,7 +55,7 @@ def absolute_momentum_dma(input_response: AbsoluteMomentumDMA):
     return result
 
 
-@app.get("/api/indicator/volume-n-days/")
+@app.post("/api/indicator/volume-n-days/")
 def volume_n_days(input_response: VolumeNDaysIndicator):
     ind = Indicator(company_name=input_response.company)
     result = ind.volume_n_days_indicator(duration=input_response.duration, save=False)
@@ -66,7 +66,7 @@ def volume_n_days(input_response: VolumeNDaysIndicator):
     return result
 
 
-@app.get("/api/indicator/ema-indicator-short/")
+@app.post("/api/indicator/ema-indicator-short/")
 def ema_indicator_short(input_response: EMAIndicator):
     ind = Indicator(company_name=input_response.company)
     result = ind.ema_indicator(
@@ -81,7 +81,7 @@ def ema_indicator_short(input_response: EMAIndicator):
     return result
 
 
-@app.get("/api/indicator/ema-indicator-detail/")
+@app.post("/api/indicator/ema-indicator-detail/")
 def ema_indicator_detail(input_response: EMAIndicator):
     ind = Indicator(company_name=input_response.company)
     result = ind.ema_detail_indicator(
@@ -96,7 +96,7 @@ def ema_indicator_detail(input_response: EMAIndicator):
     return result
 
 
-@app.get("/api/indicator/ema-crossover-indicator/")
+@app.post("/api/indicator/ema-crossover-indicator/")
 def ema_crossover_indicator(input_response: EMACrossoverIndicator):
     ind = Indicator(company_name=input_response.company)
     result = ind.ema_crossover_detail_indicator(
