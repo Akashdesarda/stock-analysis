@@ -132,6 +132,13 @@ class Indicator(UnitExecutor):
             )
 
         ema_indicator_df = pd.DataFrame(result)
+        # NOTE -"price (01-01-1000)" & "price (<NA>)" gets added as extra column if any given company's
+        # data is not available. So need to remove this extra column.
+        if "price (01-01-1000)" in ema_indicator_df.columns:
+            ema_indicator_df.drop("price (01-01-1000)", axis="columns", inplace=True)
+        if "price (<NA>)" in ema_indicator_df.columns:
+            ema_indicator_df.drop("price (<NA>)", axis="columns", inplace=True)
+
         ema_indicator_df.dropna(inplace=True)
         ema_indicator_df["percentage_diff"] = ema_indicator_df.apply(
             lambda x: percentage_diff(
@@ -172,7 +179,7 @@ class Indicator(UnitExecutor):
     ) -> Optional[pd.DataFrame]:
         """Exponential moving average based on desired two period (or no of days) with additional info
         which include:
-        
+
         > regularMarketVolume, marketCap, bookValue, priceToBook, averageDailyVolume3Month,
         averageDailyVolume10Day, fiftyTwoWeekLowChange, fiftyTwoWeekLowChangePercent, fiftyTwoWeekRange,
         fiftyTwoWeekHighChange, fiftyTwoWeekHighChangePercent, fiftyTwoWeekLow, fiftyTwoWeekHigh

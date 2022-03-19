@@ -1,6 +1,7 @@
-from typing import Union, List
-import requests
 import json
+from typing import List, Union
+
+import requests
 
 
 def http_request(url_path: str, method: str, data: dict) -> Union[dict, List]:

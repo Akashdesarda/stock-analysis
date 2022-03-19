@@ -1,14 +1,13 @@
 import datetime
 
 import streamlit as st
-from stock_analysis.app.widget import input_widget
 
+from stock_analysis.app.widget import input_widget
 from stock_analysis.momentum_strategy import MomentumStrategy
 
 
 def momentum_strategy_sub_app():
-    """It creates streamlit sub-page for momentum strategy 
-    """
+    """It creates streamlit sub-page for momentum strategy"""
     try:
         company_symbol_list = input_widget()
         with st.expander("See the selected Company symbol based on chosen criteria"):

@@ -1,14 +1,13 @@
 import datetime
 
 import streamlit as st
-from stock_analysis.app.widget import input_widget
 
+from stock_analysis.app.widget import input_widget
 from stock_analysis.indicator import Indicator
 
 
 def indicator_sub_app():
-    """It creates a streamlit sub page for Indicator
-    """
+    """It creates a streamlit sub page for Indicator"""
     try:
         company_symbol_list = input_widget()
         with st.expander("See the selected Company symbol based on chosen criteria"):
@@ -32,7 +31,8 @@ def indicator_sub_app():
     if sub_task == "Volume Indicator for [n] days":
         st.markdown("**Please continue and provide input parameters**")
         sub_task_mode = st.selectbox(
-            f"Select the mode to perform {sub_task}", ("Default mode", "Manual mode"),
+            f"Select the mode to perform {sub_task}",
+            ("Default mode", "Manual mode"),
         )
         if sub_task_mode == "Default mode":
             st.markdown(
@@ -86,7 +86,8 @@ def indicator_sub_app():
     elif sub_task == "Exponential moving average (short)":
         st.markdown("**Please continue and provide input parameters**")
         sub_task_mode = st.selectbox(
-            f"Select the mode to perform {sub_task}", ("Default mode", "Manual mode"),
+            f"Select the mode to perform {sub_task}",
+            ("Default mode", "Manual mode"),
         )
         if sub_task_mode == "Default mode":
             st.markdown(
@@ -152,7 +153,8 @@ def indicator_sub_app():
     elif sub_task == "Exponential moving average (detailed)":
         st.markdown("**Please continue and provide input parameters**")
         sub_task_mode = st.selectbox(
-            f"Select the mode to perform {sub_task}", ("Default mode", "Manual mode"),
+            f"Select the mode to perform {sub_task}",
+            ("Default mode", "Manual mode"),
         )
         if sub_task_mode == "Default mode":
             st.markdown(
@@ -218,7 +220,8 @@ def indicator_sub_app():
     elif sub_task == "Exponential moving average crossover":
         st.markdown("**Please continue and provide input parameters**")
         sub_task_mode = st.selectbox(
-            f"Select the mode to perform {sub_task}", ("Default mode", "Manual mode"),
+            f"Select the mode to perform {sub_task}",
+            ("Default mode", "Manual mode"),
         )
         if sub_task_mode == "Default mode":
             st.markdown(

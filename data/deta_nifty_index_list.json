@@ -1,3312 +1,3312 @@
 [
-    {
-        "key": "3MINDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AARTIDRUGS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AARTIIND",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "AAVAS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ABB",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ABBOTINDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ABCAPITAL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ABFRL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ACC",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ADANIENT",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ADANIGREEN",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ADANIPORTS",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ADANITRANS",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ADVENZYMES",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AEGISCHEM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AFFLE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AIAENG",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AJANTPHARM",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ALEMBICLTD",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ALKEM",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ALKYLAMINE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ALOKINDS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AMARAJABAT",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "AMBER",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AMBUJACEM",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ANGELONE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ANURAS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "APLAPOLLO",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "APLLTD",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "APOLLOHOSP",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "APOLLOTYRE",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ASAHIINDIA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ASHOKA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ASHOKLEY",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ASIANPAINT",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ASTERDM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ASTRAL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ASTRAZEN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ATGL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ATUL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AUBANK",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "AUROPHARMA",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "AVANTIFEED",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "AXISBANK",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BAJAJ",
-        "Nifty50": true
-    },
-    {
-        "key": "BAJAJ-AUTO",
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BAJAJCON",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BAJAJELEC",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BAJAJFINSV",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BAJAJHLDNG",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BAJFINANCE",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BALAMINES",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BALKRISIND",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "BALRAMCHIN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BANDHANBNK",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BANKBARODA",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BANKINDIA",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "BASF",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BATAINDIA",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "BAYERCROP",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BBTC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BDL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BEL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "BEML",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BERGEPAINT",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BHARATFORG",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "BHARATRAS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BHARTIARTL",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BHEL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "BIOCON",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BIRLACORPN",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BLUEDART",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BLUESTARCO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BOSCHLTD",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BPCL",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BRIGADE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BRITANNIA",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "BSE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "BSOFT",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CADILAHC",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "CAMS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CANBK",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "CANFINHOME",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CAPLIPOINT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CARBORUNIV",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CASTROLIND",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "CCL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CDSL",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CEATLTD",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CENTRALBK",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CENTURYPLY",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CENTURYTEX",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CERA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CESC",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CGCL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CGPOWER",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CHALET",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CHAMBLFERT",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CHOLAFIN",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "CHOLAHLDNG",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CIPLA",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "COALINDIA",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "COCHINSHIP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "COFORGE",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "COLPAL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "CONCOR",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "COROMANDEL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "CREDITACC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CRISIL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CROMPTON",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "CSBBANK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "CUB",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "CUMMINSIND",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "CYIENT",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "DABUR",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "DALBHARAT",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "DBL",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "DCBBANK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "DCMSHRIRAM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "DEEPAKNTR",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "DELTACORP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "DHANI",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "DHANUKA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "DIVISLAB",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "DIXON",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "DLF",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "DMART",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "DRREDDY",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ECLERX",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EDELWEISS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EICHERMOT",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "EIDPARRY",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EIHOTEL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ELGIEQUIP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EMAMILTD",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ENDURANCE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ENGINERSIN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EPL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EQUITAS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "EQUITASBNK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ERIS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ESCORTS",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "EXIDEIND",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "FACT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FDC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FEDERALBNK",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "FINCABLES",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FINEORG",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FINPIPE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FLUOROCHEM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FORTIS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "FRETAIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "FSL",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GAEL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GAIL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "GALAXYSURF",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GARFIBRES",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GESHIP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GICRE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GILLETTE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GLAND",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "GLAXO",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GLENMARK",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "GMMPFAUDLR",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GNFC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GODFRYPHLP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GODREJAGRO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GODREJCP",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "GODREJIND",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "GODREJPROP",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "GPPL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GRANULES",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GRAPHITE",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GRASIM",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "GREAVESCOT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GRINDWELL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GSFC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GSPL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "GUJALKALI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "GUJGASLTD",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "HAL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "HAPPSTMNDS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HATHWAY",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HATSUN",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HAVELLS",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HCLTECH",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HDFC",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HDFCAMC",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HDFCBANK",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HDFCLIFE",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HEG",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HEIDELBERG",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HEMIPROP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HEROMOTOCO",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HFCL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HGS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HIKAL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HINDALCO",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HINDCOPPER",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "HINDPETRO",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HINDUNILVR",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "HINDZINC",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "HOMEFIRST",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HONAUT",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "HUDCO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IBREALEST",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IBULHSGFIN",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ICICIBANK",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ICICIGI",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ICICIPRULI",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ICIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IDBI",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IDEA",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "IDFC",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IDFCFIRSTB",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "IEX",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IFBIND",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IGL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "IIFL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IIFLWAM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INDHOTEL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "INDIACEM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INDIAMART",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "INDIANB",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "INDIGO",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "INDIGOPNTS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INDOCO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INDUSINDBK",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "INDUSTOWER",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "INFIBEAM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INFY",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "INGERRAND",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INOXLEISUR",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "INTELLECT",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IOB",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IOC",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "IOLCP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IPCALAB",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "IRB",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IRCON",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "IRCTC",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "IRFC",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ISEC",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ITC",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ITI",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JAMNAAUTO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JBCHEPHARM",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JCHAC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JINDALSAW",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JINDALSTEL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "JKCEMENT",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JKLAKSHMI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JKPAPER",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JKTYRE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JMFINANCIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JSL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JSLHISAR",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JSWENERGY",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "JSWSTEEL",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "JUBLFOOD",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "JUBLINGREA",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JUBLPHARMA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JUSTDIAL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "JYOTHYLAB",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KAJARIACER",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KALPATPOWR",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KALYANKJIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KANSAINER",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KARURVYSYA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KEC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KEI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KNRCON",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KOTAKBANK",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "KPITTECH",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KPRMILL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KRBL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KSB",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "KSCL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "L&TFH",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "LALPATHLAB",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "LAOPALA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "LAURUSLABS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "LAXMIMACH",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "LEMONTREE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "LICHSGFIN",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "LINDEINDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "LODHA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "LT",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "LTI",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "LTTS",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "LUPIN",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "LUXIND",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "LXCHEM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "M&M",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "M&MFIN",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MAHABANK",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MAHINDCIE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MAHLOG",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MANAPPURAM",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MARICO",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "MARUTI",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "MASTEK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MAXHEALTH",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MAZDOCK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MCDOWELL",
-        "NiftyNext50": true
-    },
-    {
-        "key": "MCDOWELL-N",
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "MCX",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "METROPOLIS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MFSL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MGL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MHRIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MIDHANI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MINDACORP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MINDAIND",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MINDTREE",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MMTC",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MOIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MOTILALOFS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MPHASIS",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MRF",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "MRPL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "MUTHOOTFIN",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "NAM-INDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "NATCOPHARM",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "NATIONALUM",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "NAUKRI",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "NAVINFLUOR",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "NAZARA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NBCC",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NCC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NESCO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NESTLEIND",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "NETWORK18",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NFL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NH",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NHPC",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NIACL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NILKAMAL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NLCINDIA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NMDC",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "NOCIL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "NTPC",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "OBEROIRLTY",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "OFSS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "OIL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ONGC",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ORIENTELEC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PAGEIND",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "PCBL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PEL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "PERSISTENT",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PETRONET",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "PFC",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "PFIZER",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "PGHH",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "PGHL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PHOENIXLTD",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PIDILITIND",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "PIIND",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "PNB",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "PNBHOUSING",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PNCINFRA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "POLYCAB",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "POLYMED",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "POLYPLEX",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "POONAWALLA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "POWERGRID",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "POWERINDIA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PRAJIND",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PRESTIGE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "PRINCEPIPE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PRSMJOHNSN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "PVR",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "QUESS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RADICO",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RAILTEL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RAIN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RAJESHEXPO",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RALLIS",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RAMCOCEM",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "RATNAMANI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RBA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RBLBANK",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "RCF",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RECLTD",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "REDINGTON",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RELAXO",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RELIANCE",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "RHIM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RITES",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ROSSARI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ROUTE",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "RVNL",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SAIL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SANOFI",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "SBICARD",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SBILIFE",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SBIN",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SCHAEFFLER",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SCHNEIDER",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SCI",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SEQUENT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SFL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SHARDACROP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SHILPAMED",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SHREECEM",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SHRIRAMCIT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SIEMENS",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SIS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SJVN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SKFINDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SOBHA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SOLARA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SOLARINDS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SONACOMS",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "SONATSOFTW",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SPANDANA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SPARC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SPICEJET",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SRF",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "SRTRANSFIN",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "STAR",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "STARCEMENT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "STLTECH",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUDARSCHEM",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUMICHEM",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUNDARMFIN",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUNDRMFAST",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUNPHARMA",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "SUNTECK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUNTV",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "SUPPETRO",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUPRAJIT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUPREMEIND",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUVENPHAR",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SUZLON",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SWSOLAR",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SYMPHONY",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "SYNGENE",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TANLA",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TASTYBITE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TATACHEM",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TATACOFFEE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TATACOMM",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TATACONSUM",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "TATAELXSI",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TATAMOTORS",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "TATAMTRDVR",
-        "Nifty500": true
-    },
-    {
-        "key": "TATAPOWER",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TATASTEEL",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "TATASTLLP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TCIEXP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TCNSBRANDS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TCS",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "TEAMLEASE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TECHM",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "THERMAX",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "THYROCARE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TIINDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TIMKEN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TITAN",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "TORNTPHARM",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "TORNTPOWER",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TRENT",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "TRIDENT",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TRITURBINE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TTKPRESTIG",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TTML",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TV18BRDCST",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "TVSMOTOR",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "UBL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "UCOBANK",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "UFLEX",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "UJJIVAN",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "UJJIVANSFB",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ULTRACEMCO",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "UNIONBANK",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "UPL",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "UTIAMC",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VAIBHAVGBL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VAKRANGEE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VALIANTORG",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VARROC",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VBL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "VEDL",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "VENKEYS",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VGUARD",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VINATIORGA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VIPIND",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VMART",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "VOLTAS",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "VTL",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "WABCOINDIA",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "WELCORP",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "WELSPUNIND",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "WESTLIFE",
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "WHIRLPOOL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "WIPRO",
-        "Nifty50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "WOCKPHARMA",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "YESBANK",
-        "NiftyNext50": true,
-        "Nifty500": true,
-        "Nifty200": true,
-        "Nifty100": true
-    },
-    {
-        "key": "ZEEL",
-        "NiftyMidcap50": true,
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true,
-        "Nifty200": true
-    },
-    {
-        "key": "ZENSARTECH",
-        "NiftySmallcap50": true,
-        "NiftySmallcap250": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    },
-    {
-        "key": "ZYDUSWELL",
-        "NiftyMidcap150": true,
-        "NiftyMidcap400": true,
-        "Nifty500": true
-    }
+  {
+    "key": "3MINDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AARTIDRUGS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AARTIIND",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "AAVAS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ABB",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ABBOTINDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ABCAPITAL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ABFRL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ACC",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ADANIENT",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ADANIGREEN",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ADANIPORTS",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ADANITRANS",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ADVENZYMES",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AEGISCHEM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AFFLE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AIAENG",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AJANTPHARM",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ALEMBICLTD",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ALKEM",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ALKYLAMINE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ALOKINDS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AMARAJABAT",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "AMBER",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AMBUJACEM",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ANGELONE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ANURAS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "APLAPOLLO",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "APLLTD",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "APOLLOHOSP",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "APOLLOTYRE",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ASAHIINDIA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ASHOKA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ASHOKLEY",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ASIANPAINT",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ASTERDM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ASTRAL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ASTRAZEN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ATGL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ATUL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AUBANK",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "AUROPHARMA",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "AVANTIFEED",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "AXISBANK",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BAJAJ",
+    "Nifty50": true
+  },
+  {
+    "key": "BAJAJ-AUTO",
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BAJAJCON",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BAJAJELEC",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BAJAJFINSV",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BAJAJHLDNG",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BAJFINANCE",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BALAMINES",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BALKRISIND",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "BALRAMCHIN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BANDHANBNK",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BANKBARODA",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BANKINDIA",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "BASF",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BATAINDIA",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "BAYERCROP",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BBTC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BDL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BEL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "BEML",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BERGEPAINT",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BHARATFORG",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "BHARATRAS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BHARTIARTL",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BHEL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "BIOCON",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BIRLACORPN",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BLUEDART",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BLUESTARCO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BOSCHLTD",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BPCL",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BRIGADE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BRITANNIA",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "BSE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "BSOFT",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CADILAHC",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "CAMS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CANBK",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "CANFINHOME",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CAPLIPOINT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CARBORUNIV",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CASTROLIND",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "CCL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CDSL",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CEATLTD",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CENTRALBK",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CENTURYPLY",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CENTURYTEX",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CERA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CESC",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CGCL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CGPOWER",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CHALET",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CHAMBLFERT",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CHOLAFIN",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "CHOLAHLDNG",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CIPLA",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "COALINDIA",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "COCHINSHIP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "COFORGE",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "COLPAL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "CONCOR",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "COROMANDEL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "CREDITACC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CRISIL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CROMPTON",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "CSBBANK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "CUB",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "CUMMINSIND",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "CYIENT",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "DABUR",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "DALBHARAT",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "DBL",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "DCBBANK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "DCMSHRIRAM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "DEEPAKNTR",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "DELTACORP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "DHANI",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "DHANUKA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "DIVISLAB",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "DIXON",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "DLF",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "DMART",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "DRREDDY",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ECLERX",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EDELWEISS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EICHERMOT",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "EIDPARRY",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EIHOTEL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ELGIEQUIP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EMAMILTD",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ENDURANCE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ENGINERSIN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EPL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EQUITAS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "EQUITASBNK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ERIS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ESCORTS",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "EXIDEIND",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "FACT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FDC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FEDERALBNK",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "FINCABLES",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FINEORG",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FINPIPE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FLUOROCHEM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FORTIS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "FRETAIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "FSL",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GAEL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GAIL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "GALAXYSURF",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GARFIBRES",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GESHIP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GICRE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GILLETTE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GLAND",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "GLAXO",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GLENMARK",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "GMMPFAUDLR",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GNFC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GODFRYPHLP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GODREJAGRO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GODREJCP",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "GODREJIND",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "GODREJPROP",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "GPPL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GRANULES",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GRAPHITE",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GRASIM",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "GREAVESCOT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GRINDWELL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GSFC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GSPL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "GUJALKALI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "GUJGASLTD",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "HAL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "HAPPSTMNDS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HATHWAY",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HATSUN",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HAVELLS",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HCLTECH",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HDFC",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HDFCAMC",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HDFCBANK",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HDFCLIFE",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HEG",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HEIDELBERG",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HEMIPROP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HEROMOTOCO",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HFCL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HGS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HIKAL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HINDALCO",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HINDCOPPER",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "HINDPETRO",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HINDUNILVR",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "HINDZINC",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "HOMEFIRST",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HONAUT",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "HUDCO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IBREALEST",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IBULHSGFIN",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ICICIBANK",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ICICIGI",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ICICIPRULI",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ICIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IDBI",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IDEA",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "IDFC",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IDFCFIRSTB",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "IEX",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IFBIND",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IGL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "IIFL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IIFLWAM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INDHOTEL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "INDIACEM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INDIAMART",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "INDIANB",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "INDIGO",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "INDIGOPNTS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INDOCO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INDUSINDBK",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "INDUSTOWER",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "INFIBEAM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INFY",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "INGERRAND",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INOXLEISUR",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "INTELLECT",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IOB",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IOC",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "IOLCP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IPCALAB",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "IRB",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IRCON",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "IRCTC",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "IRFC",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ISEC",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ITC",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ITI",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JAMNAAUTO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JBCHEPHARM",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JCHAC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JINDALSAW",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JINDALSTEL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "JKCEMENT",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JKLAKSHMI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JKPAPER",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JKTYRE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JMFINANCIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JSL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JSLHISAR",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JSWENERGY",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "JSWSTEEL",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "JUBLFOOD",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "JUBLINGREA",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JUBLPHARMA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JUSTDIAL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "JYOTHYLAB",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KAJARIACER",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KALPATPOWR",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KALYANKJIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KANSAINER",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KARURVYSYA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KEC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KEI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KNRCON",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KOTAKBANK",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "KPITTECH",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KPRMILL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KRBL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KSB",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "KSCL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "L&TFH",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "LALPATHLAB",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "LAOPALA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "LAURUSLABS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "LAXMIMACH",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "LEMONTREE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "LICHSGFIN",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "LINDEINDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "LODHA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "LT",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "LTI",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "LTTS",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "LUPIN",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "LUXIND",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "LXCHEM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "M&M",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "M&MFIN",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MAHABANK",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MAHINDCIE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MAHLOG",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MANAPPURAM",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MARICO",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "MARUTI",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "MASTEK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MAXHEALTH",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MAZDOCK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MCDOWELL",
+    "NiftyNext50": true
+  },
+  {
+    "key": "MCDOWELL-N",
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "MCX",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "METROPOLIS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MFSL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MGL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MHRIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MIDHANI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MINDACORP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MINDAIND",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MINDTREE",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MMTC",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MOIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MOTILALOFS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MPHASIS",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MRF",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "MRPL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "MUTHOOTFIN",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "NAM-INDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "NATCOPHARM",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "NATIONALUM",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "NAUKRI",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "NAVINFLUOR",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "NAZARA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NBCC",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NCC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NESCO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NESTLEIND",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "NETWORK18",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NFL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NH",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NHPC",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NIACL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NILKAMAL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NLCINDIA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NMDC",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "NOCIL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "NTPC",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "OBEROIRLTY",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "OFSS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "OIL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ONGC",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ORIENTELEC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PAGEIND",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "PCBL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PEL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "PERSISTENT",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PETRONET",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "PFC",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "PFIZER",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "PGHH",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "PGHL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PHOENIXLTD",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PIDILITIND",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "PIIND",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "PNB",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "PNBHOUSING",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PNCINFRA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "POLYCAB",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "POLYMED",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "POLYPLEX",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "POONAWALLA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "POWERGRID",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "POWERINDIA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PRAJIND",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PRESTIGE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "PRINCEPIPE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PRSMJOHNSN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "PVR",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "QUESS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RADICO",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RAILTEL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RAIN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RAJESHEXPO",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RALLIS",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RAMCOCEM",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "RATNAMANI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RBA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RBLBANK",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "RCF",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RECLTD",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "REDINGTON",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RELAXO",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RELIANCE",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "RHIM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RITES",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ROSSARI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ROUTE",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "RVNL",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SAIL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SANOFI",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "SBICARD",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SBILIFE",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SBIN",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SCHAEFFLER",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SCHNEIDER",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SCI",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SEQUENT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SFL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SHARDACROP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SHILPAMED",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SHREECEM",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SHRIRAMCIT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SIEMENS",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SIS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SJVN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SKFINDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SOBHA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SOLARA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SOLARINDS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SONACOMS",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "SONATSOFTW",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SPANDANA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SPARC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SPICEJET",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SRF",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "SRTRANSFIN",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "STAR",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "STARCEMENT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "STLTECH",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUDARSCHEM",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUMICHEM",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUNDARMFIN",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUNDRMFAST",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUNPHARMA",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "SUNTECK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUNTV",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "SUPPETRO",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUPRAJIT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUPREMEIND",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUVENPHAR",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SUZLON",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SWSOLAR",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SYMPHONY",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "SYNGENE",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TANLA",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TASTYBITE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TATACHEM",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TATACOFFEE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TATACOMM",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TATACONSUM",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "TATAELXSI",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TATAMOTORS",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "TATAMTRDVR",
+    "Nifty500": true
+  },
+  {
+    "key": "TATAPOWER",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TATASTEEL",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "TATASTLLP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TCIEXP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TCNSBRANDS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TCS",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "TEAMLEASE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TECHM",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "THERMAX",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "THYROCARE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TIINDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TIMKEN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TITAN",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "TORNTPHARM",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "TORNTPOWER",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TRENT",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "TRIDENT",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TRITURBINE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TTKPRESTIG",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TTML",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TV18BRDCST",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "TVSMOTOR",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "UBL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "UCOBANK",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "UFLEX",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "UJJIVAN",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "UJJIVANSFB",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ULTRACEMCO",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "UNIONBANK",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "UPL",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "UTIAMC",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VAIBHAVGBL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VAKRANGEE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VALIANTORG",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VARROC",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VBL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "VEDL",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "VENKEYS",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VGUARD",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VINATIORGA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VIPIND",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VMART",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "VOLTAS",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "VTL",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "WABCOINDIA",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "WELCORP",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "WELSPUNIND",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "WESTLIFE",
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "WHIRLPOOL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "WIPRO",
+    "Nifty50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "WOCKPHARMA",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "YESBANK",
+    "NiftyNext50": true,
+    "Nifty500": true,
+    "Nifty200": true,
+    "Nifty100": true
+  },
+  {
+    "key": "ZEEL",
+    "NiftyMidcap50": true,
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true,
+    "Nifty200": true
+  },
+  {
+    "key": "ZENSARTECH",
+    "NiftySmallcap50": true,
+    "NiftySmallcap250": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  },
+  {
+    "key": "ZYDUSWELL",
+    "NiftyMidcap150": true,
+    "NiftyMidcap400": true,
+    "Nifty500": true
+  }
 ]

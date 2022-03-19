@@ -3,6 +3,7 @@
 ### Many trading strategies that the traders use, one of the most popular strategies is the momentum strategy. Traders measure momentum in many different ways to identify opportunity pockets. The core idea across all these strategies remains the same i.e to identify momentum and ride the wave.
 
 ## What is Momentum
+
 ‘Momentum’ is a physics term, it refers to the quantity of motion that an object has. If you look at this definition in the context of stocks markets, then everything remains the same, except that you will have to replace ‘object’ by stocks or the index.
 
 Simply put, momentum is the rate of change of returns of the stock or the index. If the rate of change of returns is high, then the momentum is considered high and if the rate of change of returns is low, the momentum is considered low.
@@ -15,8 +16,8 @@ The rate of change of return, as it states the return generated  (or eroded) be
 
 Before we discuss this strategy,below few things need to be taken into consideration –
 
--   The agenda here is to highlight how a momentum portfolio can be set up. However, this is not the only way to build a momentum portfolio
--   You will need programming skills to implement this strategy or to build any other momentum strategy. 
+- The agenda here is to highlight how a momentum portfolio can be set up. However, this is not the only way to build a momentum portfolio
+- You will need programming skills to implement this strategy or to build any other momentum strategy.
 
 Given the above, here is a systematic guide to building a ‘Momentum Portfolio’.
 
@@ -62,7 +63,7 @@ Quite straightforward, I guess.
 
 ### **Step 4 – Rank the returns**
 
-Once the returns are calculated, you need to rank the returns from the highest to the lowest returns. 
+Once the returns are calculated, you need to rank the returns from the highest to the lowest returns.
 
 So what does this ranking tell us?
 
@@ -90,9 +91,9 @@ By doing so, you create an equally weighted momentum portfolio. Of course, you c
 
 If you like to experiment with skewed portfolios, here are few ideas –
 
--   50% of capital allocation across the top 5 momentum stocks (rank 1 to 5), and 50% across the remaining 7 stocks
--   Top 3 stocks get 40% and the balance 60% across 9 stocks
--   If you are a contrarian and expect the lower rank stocks to perform better than the higher rank stocks, then allocate more to last 5 stocks
+- 50% of capital allocation across the top 5 momentum stocks (rank 1 to 5), and 50% across the remaining 7 stocks
+- Top 3 stocks get 40% and the balance 60% across 9 stocks
+- If you are a contrarian and expect the lower rank stocks to perform better than the higher rank stocks, then allocate more to last 5 stocks
 
 So on and so forth. Ideally, the approach to capital allocation should come from your backtesting process, this also means you will have to backtest various capital allocation techniques to figure out which works well for you.
 
@@ -102,9 +103,9 @@ So far, we have created a tracking universe, calculated the 12-month returns, ra
 
 There are few assumptions here –
 
--   The portfolio is created and bought on the 1st trading day of the month
--   The above implies that all the number crunching happens on the last day of the month, post-market close
--   Once the portfolio is created and bought, you hold on to the stocks till the last day of the month
+- The portfolio is created and bought on the 1st trading day of the month
+- The above implies that all the number crunching happens on the last day of the month, post-market close
+- Once the portfolio is created and bought, you hold on to the stocks till the last day of the month
 
 Now the question is, what really happens at the end of the month?
 
@@ -118,18 +119,18 @@ So on and so forth.
 
 The returns have been calculated on a 12-month portfolio and the stocks are held for a month. However, you don’t have to stick to this. You can try out various options, like –
 
--   Calculate return and rank the stocks based on their monthly performance and hold the portfolio for the month
--   Calculate return and rank the stocks based on fortnightly performance and hold the portfolio for 15 days
--   Rank on a weekly basis and hold for a week
--   Calculate on a daily basis and even do an intraday momentum portfolio
+- Calculate return and rank the stocks based on their monthly performance and hold the portfolio for the month
+- Calculate return and rank the stocks based on fortnightly performance and hold the portfolio for 15 days
+- Rank on a weekly basis and hold for a week
+- Calculate on a daily basis and even do an intraday momentum portfolio
 
 As you can see, the options are plenty and it’s only restricted by your imagination. If you think about what we have discussed so far, the momentum portfolio is price based. However, you can build a fundamental based momentum strategy as well. Here are a few ideas –
 
--   Build a tracking universe of fundamentally good stocks
--   Note the difference in quarterly sales number (% wise)
--   Rank the stocks based on quarterly sales. Company with the highest jump in sales gets rank one and so on
--   Buy the top 10 – 12 stocks
--   Rebalance at the end of the quarter
+- Build a tracking universe of fundamentally good stocks
+- Note the difference in quarterly sales number (% wise)
+- Rank the stocks based on quarterly sales. Company with the highest jump in sales gets rank one and so on
+- Buy the top 10 – 12 stocks
+- Rebalance at the end of the quarter
 
 You can do this on any fundamental parameter – EPS growth, profit margin, EBITDA margin etc. The beauty of these strategies is that the data is available, hence backtesting gets a lot easier.
 

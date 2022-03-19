@@ -4,6 +4,7 @@ from typing import List, Optional
 
 import pandas as pd
 import streamlit as st
+
 from stock_analysis.api import http_request
 from stock_analysis.utils.helpers import unique_list
 
@@ -28,7 +29,7 @@ def manual_multi_choice() -> List[str]:
 
 @st.cache(show_spinner=False)
 def get_available_index(index_table: Optional[List] = None) -> set:
-    """extract available indexes 
+    """extract available indexes
 
     Args:
         index_table (Optional[List], optional): response data having complete Index table.
