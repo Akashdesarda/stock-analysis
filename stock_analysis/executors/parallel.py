@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Tuple, Union
 import dateutil
 import pandas as pd
 
-from stock_analysis.data_retrive import DataRetrive
+# from stock_analysis.data_retrive import DataRetrive
 from stock_analysis.utils.formula_helpers import (
     annualized_rate_of_return,
     exponential_moving_average,
