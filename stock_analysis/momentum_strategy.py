@@ -1,3 +1,5 @@
+"""This packs all the api functionality w.r.t. Momentum strategy
+"""
 import datetime
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
@@ -32,9 +34,9 @@ class MomentumStrategy(UnitExecutor):
     ```
 
     Args:
-        path ([str, optional]): Path to company yaml/json. Either path or company_name can be used. 
+        path ([str, optional]): Path to company yaml/json. Either path or company_name can be used.
         Default to None.
-        company_name ([List, optional]): List of company name. If path is used then this is obsolete 
+        company_name ([List, optional]): List of company name. If path is used then this is obsolete
         as 'path' preside over 'company_name'. Default to None.
     """
 
@@ -43,8 +45,8 @@ class MomentumStrategy(UnitExecutor):
 
     def __post_init__(self):
         if self.path is not None:
-            with open(self.path, "r") as f:
-                self.data = yaml.load(f, Loader=yaml.FullLoader)
+            with open(self.path, "r", encoding="utf-8") as input_file:
+                self.data = yaml.load(input_file, Loader=yaml.FullLoader)
         else:
             self.data = {"company": self.company_name}
 
@@ -95,15 +97,20 @@ class MomentumStrategy(UnitExecutor):
             )
         momentum_df = pd.DataFrame(result)
 
-        # NOTE - "price (01-01-1000)" & "price (<NA>)" gets added as extra column if any given company's
+        # NOTE -"price (01-01-1000)" & "price (<NA>)" gets added as extra column if any given company's
         # data is not available. So need to remove this extra column.
         if "price (01-01-1000)" in momentum_df.columns:
             momentum_df.drop("price (01-01-1000)", axis="columns", inplace=True)
         if "price (<NA>)" in momentum_df.columns:
             momentum_df.drop("price (<NA>)", axis="columns", inplace=True)
+        # need to drop a row who is have at three or more values as `NA`
+        momentum_df.dropna(axis="index", thresh=3, inplace=True)
+        # also need to drop a column who is having more than 2 values as `NA`
+        momentum_df.dropna(axis="columns", thresh=2, inplace=True)
 
-        momentum_df.dropna(inplace=True)
+        # need sorting based on "return_yearly" to display the result
         momentum_df.sort_values(by=["return_yearly"], ascending=False, inplace=True)
+
         momentum_df.reset_index(inplace=True, drop=True)
 
         if verbosity > 0:
@@ -184,9 +191,8 @@ class MomentumStrategy(UnitExecutor):
             save=False,
             verbosity=verbosity,
         )
-        ema_df.drop(
-            "company", axis="columns", inplace=True
-        )  # as `momentum_df` already has it
+        # droping company, price (date) column as `momentum_df` already has it
+        ema_df.drop(columns=ema_df.columns[[1, 2]], inplace=True)
         momentum_ema_df = momentum_df.merge(ema_df, on="symbol", validate="1:1")
         if save is True:
             new_folder(export_path)
@@ -238,6 +244,13 @@ class MomentumStrategy(UnitExecutor):
                 for company in self.data["company"]
             )
         dma_compile = pd.DataFrame(result)
+        # NOTE -"price (<NA>)" gets added as extra column if any given company's data is not available.
+        # So need to remove this extra column.
+        if "price (<NA>)" in dma_compile.columns:
+            dma_compile.drop("price (<NA>)", axis="columns", inplace=True)
+        # further droping row will at least 4 NA values
+        dma_compile.dropna(thresh=4, inplace=True)
+
         if save is True:
             new_folder(export_path)
             if end_date == "today":

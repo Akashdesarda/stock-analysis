@@ -2,6 +2,7 @@ import datetime
 from typing import List, Union
 
 import pandas as pd
+
 from stock_analysis.utils.helpers import get_appropriate_date_ema
 
 

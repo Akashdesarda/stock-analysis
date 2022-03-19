@@ -74,6 +74,12 @@ class CustomMultiIndicator(UnitExecutor):
             )
 
         multi_choice_df = pd.DataFrame(result)
+        # NOTE -"price (<NA>)" gets added as extra column if any given company's data is not available.
+        # So need to remove this extra column.
+        if "price (<NA>)" in multi_choice_df.columns:
+            multi_choice_df.drop("price (<NA>)", axis="columns", inplace=True)
+        multi_choice_df.dropna(inplace=True)
+
         if verbosity > 0:
             logger.debug(f"Here are sample 5 company\n{multi_choice_df.head()}")
         if save is True:

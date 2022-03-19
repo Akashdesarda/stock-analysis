@@ -5,6 +5,7 @@ from typing import Generator, List, Tuple
 import dateutil
 import pandas as pd
 from deta import Deta
+
 from stock_analysis.utils.logger import logger
 
 logger = logger()
@@ -144,3 +145,15 @@ def create_chunks(data: List, n: int) -> Generator[List, List, List]:
     # looping till length l
     for i in range(0, len(data), n):
         yield data[i : i + n]
+
+
+def unique_list(l: List) -> List:
+    """Takes list and return unique list
+
+    Args:
+        l (List): input list
+
+    Returns:
+        List: unique list
+    """
+    return list(set(l))

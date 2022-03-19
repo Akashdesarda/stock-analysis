@@ -144,4 +144,3 @@ class DBDelete(BaseModel):
 
     db_name: str = Field(..., description="name of the database", example="dummy-db")
     key: str = Field(..., description="key to perform ops", example="TCS")
-
