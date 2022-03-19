@@ -13,3 +13,5 @@ results/momentum_ema50-200_27-09-2020_top_20.csv
 site
 *.ipynb
 .env
+.isort.cfg
+.flake8
