@@ -1,9 +1,12 @@
+"""This packs all the individual function with the scope of running for just unit input data.
+"""
 import datetime
 from dataclasses import dataclass
 from typing import Any, Dict, List, Tuple, Union
 
 import dateutil
 import pandas as pd
+
 from stock_analysis.data_retrive import DataRetrive
 from stock_analysis.utils.formula_helpers import (
     annualized_rate_of_return,
@@ -50,7 +53,7 @@ class UnitExecutor:
 
     def unit_ema_absolute(
         self,
-        company: str = None,
+        company: str,
         cutoff_date: Union[str, datetime.datetime] = "today",
         period: int = 50,
         cutoff: int = 5,
@@ -58,18 +61,24 @@ class UnitExecutor:
     ) -> Dict:
 
         logger.info(f"Retriving data for {company}")
-        company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        company_df = DataRetrive.single_company_complete(
+            company_name=f"{company}.NS"
+        )  # NS = Nifty
+        # need to drop rows which have Null values
         if company_df["Close"].isnull().sum() != 0:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
-        action = "Invalid"
+        action = "Invalid"  # deafult value, if not used then error occurs of `UnboundLocalError`
         try:
+            closing_date = company_df.index[-1].strftime("%d-%m-%Y")
+            closing_price = company_df["Close"][-1]
             ema = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=period,
                 verbosity=verbosity,
             )
+            # NOTE - turnover needs to be relative to 1 cr so dividing it by 1 cr
             turnover_value = turnover(company_df["Volume"], ema) / 10000000
             buy = ema + (ema * (cutoff / 100))
             sell = ema - (ema * (cutoff / 100))
@@ -80,24 +89,37 @@ class UnitExecutor:
             elif (sell < company_df["Close"][-1] < buy) and (turnover_value > 1):
                 action = "no action"
             long_name = self.unit_quote_retrive(company)["longName"][0]
-            current_price = company_df["Close"][-1]
+
         except (KeyError, IndexError, ValueError, TypeError, ZeroDivisionError):
-            logger.warning(f"{company} has less record than minimum rexquired")
-            long_name, ema, current_price, turnover_value, buy, sell, action = (
-                f"{company} (Invalid name)",
-                "Invalid",
-                "Invalid",
-                "Invalid",
-                "Invalid",
-                "Invalid",
-                "Invalid",
+            logger.warning(
+                f"{company}'s record are less than minimum required or delisted or incorrect"
             )
-            company = f"Problem with {company}"
+            (
+                company,
+                long_name,
+                ema,
+                closing_date,
+                closing_price,
+                turnover_value,
+                buy,
+                sell,
+                action,
+            ) = (
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+            )
 
         return {
-            "company name": long_name,
-            "nse symbol": company,
-            "current price": current_price,
+            "symbol": company,
+            "company": long_name,
+            f"price ({closing_date})": closing_price,
             "ema": ema,
             "ideal buy": buy,
             "ideal sell": sell,
@@ -107,47 +129,61 @@ class UnitExecutor:
 
     def unit_ema_indicator(
         self,
-        company: str = None,
+        company: str,
         ema_canditate: Tuple[int, int] = (50, 200),
         cutoff_date: Union[str, datetime.datetime] = "today",
         verbosity: int = 1,
     ) -> Dict:
         logger.info(f"Retriving data for {company}")
-        company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        company_df = DataRetrive.single_company_complete(
+            company_name=f"{company}.NS"
+        )  # NS = Nifty
         if cutoff_date == "today":
             ema_date = now_strting
         else:
             ema_date = cutoff_date.strftime("%d-%m-%Y")
+
+        # need to drop rows which have Null values
         if company_df["Close"].isnull().sum() != 0:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
+
         try:
+            closing_date = company_df.index[-1].strftime("%d-%m-%Y")
+            closing_price = company_df["Close"][-1]
             long_name = self.unit_quote_retrive(company)["longName"][0]
-            EMA_A = exponential_moving_average(
+            ema_candidate_a = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[0],
                 verbosity=verbosity,
             )
-            EMA_B = exponential_moving_average(
+            ema_candidate_b = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[1],
                 verbosity=verbosity,
             )
             # DEPRECATED - removed as part of output remodel
-            # if EMA_A > EMA_B:
+            # if ema_candidate_a > ema_candidate_b:
             #     action = "buy"
             # else:
             #     action = "sell"
         except (KeyError, IndexError, ValueError, TypeError):
             logger.warning(f"{company} has less record than minimum rexquired")
-            EMA_A, EMA_B, long_name = pd.NA, pd.NA, pd.NA
+            ema_candidate_a, ema_candidate_b, long_name, closing_date, closing_price = (
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+            )
         return {
             "symbol": company,
             "company": long_name,
-            f"ema{str(ema_canditate[0])} ({ema_date})": EMA_A,
-            f"ema{str(ema_canditate[1])} ({ema_date})": EMA_B,
+            f"price ({closing_date})": closing_price,
+            f"ema{str(ema_canditate[0])} ({ema_date})": ema_candidate_a,
+            f"ema{str(ema_canditate[1])} ({ema_date})": ema_candidate_b,
         }
 
     def unit_quote_retrive(self, company: str) -> pd.DataFrame:
@@ -161,7 +197,7 @@ class UnitExecutor:
     def unit_ema_indicator_n3(
         self,
         company: str,
-        ema_canditate: Tuple[int, int] = (5, 13, 26),
+        ema_canditate: Tuple[int, int, int] = (5, 13, 26),
         cutoff_date: Union[str, datetime.datetime] = "today",
         verbosity: int = 1,
     ) -> Dict:
@@ -171,28 +207,34 @@ class UnitExecutor:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
         try:
-            EMA_A = exponential_moving_average(
+            ema_candidate_a = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[0],
                 verbosity=verbosity,
             )
-            EMA_B = exponential_moving_average(
+            ema_candidate_b = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[1],
                 verbosity=verbosity,
             )
-            EMA_C = exponential_moving_average(
+            ema_candidate_c = exponential_moving_average(
                 data_df=company_df,
                 cutoff_date=cutoff_date,
                 period=ema_canditate[2],
                 verbosity=verbosity,
             )
 
-            percentage_diff_cb = percentage_diff(EMA_C, EMA_B, return_absolute=True)
-            percentage_diff_ca = percentage_diff(EMA_C, EMA_A, return_absolute=True)
-            percentage_diff_ba = percentage_diff(EMA_B, EMA_A, return_absolute=True)
+            percentage_diff_cb = percentage_diff(
+                ema_candidate_c, ema_candidate_b, return_absolute=True
+            )
+            percentage_diff_ca = percentage_diff(
+                ema_candidate_c, ema_candidate_a, return_absolute=True
+            )
+            percentage_diff_ba = percentage_diff(
+                ema_candidate_b, ema_candidate_a, return_absolute=True
+            )
 
             if (
                 (percentage_diff_cb < 1)
@@ -203,19 +245,24 @@ class UnitExecutor:
             else:
                 action = "sell"
 
-        except (KeyError, IndexError, ValueError):
+        except (KeyError, IndexError, ValueError, TypeError):
             logger.warning(f"{company} has less record than minimum required")
 
-            EMA_A, EMA_B, EMA_C, action = pd.NA, pd.NA, pd.NA, pd.NA
+            ema_candidate_a, ema_candidate_b, ema_candidate_c, action = (
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+            )
 
         return {
             "symbol": company,
             "ema_date": now_strting
             if cutoff_date == "today"
             else cutoff_date.strftime("%d-%m-%Y"),
-            f"ema{str(ema_canditate[0])}": EMA_A,
-            f"ema{str(ema_canditate[1])}": EMA_B,
-            f"ema{str(ema_canditate[2])}": EMA_C,
+            f"ema{str(ema_canditate[0])}": ema_candidate_a,
+            f"ema{str(ema_canditate[1])}": ema_candidate_b,
+            f"ema{str(ema_canditate[2])}": ema_candidate_c,
             # 'percentage_diffCB': percentage_diff_cb,
             # 'percentage_diffCA': percentage_diff_ca,
             # 'percentage_diffBA': percentage_diff_ba,
@@ -273,23 +320,23 @@ class UnitExecutor:
             elif (sell < company_df["Close"][-1] < buy) and (turnover_value > 1):
                 action = "no action"
             long_name = self.unit_quote_retrive(company)["longName"][0]
-            current_price = company_df["Close"][-1]
+            closing_price = company_df["Close"][-1]
         except (KeyError, IndexError, ValueError, TypeError, ZeroDivisionError):
             logger.warning(f"{company} has less record than minimum rexquired")
-            long_name, sma, current_price, action, turnover_value, buy, sell = (
+            long_name, sma, closing_price, action, turnover_value, buy, sell = (
                 f"{company} (Invalid name)",
-                "Invalid",
-                "Invalid",
-                "Invalid",
-                "Invalid",
-                "Invalid",
-                "Invalid",
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
+                pd.NA,
             )
             company = f"Problem with {company}"
         return {
             "symbol": company,
             "company": long_name,
-            f"price ({sma_date})": current_price,
+            f"price ({sma_date})": closing_price,
             "sma": sma,
             "ideal buy": buy,
             "ideal sell": sell,
@@ -355,15 +402,19 @@ class UnitExecutor:
         result["symbol"] = company
         if "daily moving average" in indicators:
             dma_result = self.unit_dma_absolute(company=company)
-            result["comany"] = dma_result["company"]
-            result["price"] = dma_result[f"price ({now_strting})"]
-            result["dma"] = dma_result["sma"]
-            result["dma action"] = dma_result["action"]
+            # name of `price` key will keep on chaning so need to unpack it
+            _, dma_company, dma_price, dma_sma, _, _, _, dma_action = dma_result.keys()
+            result["comany"] = dma_result[dma_company]
+            result[dma_price] = dma_result[dma_price]
+            result["dma"] = dma_result[dma_sma]
+            result["dma action"] = dma_result[dma_action]
         if "exponential moving average" in indicators:
             ema_result = self.unit_ema_absolute(company=company)
-            result["comany"] = ema_result["company name"]
-            result["price"] = ema_result["current price"]
-            result["ema"] = ema_result["ema"]
-            result["ema action"] = ema_result["action"]
+            # name of `price` key will keep on chaning so need to unpack it
+            _, ema_company, ema_price, ema, _, _, _, ema_action = ema_result.keys()
+            result["comany"] = ema_result[ema_company]
+            result[ema_price] = ema_result[ema_price]
+            result["ema"] = ema_result[ema]
+            result["ema action"] = ema_result[ema_action]
 
         return result
