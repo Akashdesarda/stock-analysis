@@ -1,5 +1,6 @@
-import os
 import json
+import os
+
 from deta import Deta
 from tqdm import tqdm
 
