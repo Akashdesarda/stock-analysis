@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 import yaml
+
 from stock_analysis.utils.logger import logger
 
 data_path = (Path().cwd() / "data").as_posix()

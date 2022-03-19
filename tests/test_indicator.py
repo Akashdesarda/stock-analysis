@@ -1,5 +1,6 @@
-from stock_analysis.indicator import Indicator
 import datetime
+
+from stock_analysis.indicator import Indicator
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 
@@ -21,7 +22,7 @@ def test_ema_indicator():
 
     ema = ind.ema_indicator(save=False, verbosity=0)
     # Check for columns
-    assert len(ema.columns) == 5, "Incorrect no of columns"
+    assert len(ema.columns) == 6, "Incorrect no of columns"
 
     # Check for null value
     for key, val in ema.isna().sum().to_dict().items():
@@ -62,7 +63,7 @@ def test_ema_crossover():
     ema_cross = ind.ema_crossover_detail_indicator(save=False, verbosity=0)
 
     # Check for correct order of columns
-    c = [
+    recquired_columns = [
         "symbol",
         "company",
         "ema_date",
@@ -85,7 +86,9 @@ def test_ema_crossover():
         "fiftyTwoWeekLow",
         "fiftyTwoWeekHigh",
     ]
-    assert c == list(ema_cross.columns), "Either less or misplaced columns"
+    assert recquired_columns == list(
+        ema_cross.columns
+    ), "Either less or misplaced columns"
     # Check for null value
     for key, val in ema_cross.isna().sum().to_dict().items():
         assert val == 0, f"Found Null value in {key}"
