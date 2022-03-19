@@ -5,6 +5,7 @@ from typing import Generator, List, Tuple
 import dateutil
 import pandas as pd
 from deta import Deta
+
 from stock_analysis.utils.logger import logger
 
 logger = logger()

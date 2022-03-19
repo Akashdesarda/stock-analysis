@@ -1,5 +1,8 @@
-from stock_analysis.momentum_strategy import MomentumStrategy
+"""Unit test for Momentum Strategy
+"""
 import datetime
+
+from stock_analysis.momentum_strategy import MomentumStrategy
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
 company_list = [
@@ -18,7 +21,7 @@ ut = MomentumStrategy(company_name=company_list)
 
 
 def test_relative_momentum():
-
+    """test to check relative momentum"""
     mom = ut.relative_momentum(top_company_count=3, save=False, verbosity=0)
 
     # Check for columns
@@ -30,7 +33,7 @@ def test_relative_momentum():
 
 
 def test_relative_momentum_date():
-
+    """test to check relative momentum with date parameter"""
     mom = ut.relative_momentum(
         end_date="01/01/2022", top_company_count=3, save=False, verbosity=0
     )
@@ -46,7 +49,7 @@ def test_relative_momentum_date():
 
 
 def test_momentum_strategy_with_ema():
-
+    """test to check momentum strategy with EMA"""
     mom_ema = ut.relative_momentum_with_ema(
         top_company_count=3, save=False, verbosity=0
     )
@@ -59,7 +62,7 @@ def test_momentum_strategy_with_ema():
 
 
 def test_momentum_strategy_with_ema_and_date():
-
+    """test to check to check momentum strategy with EMA & date parameter"""
     mom_ema = ut.relative_momentum_with_ema(
         end_date="01/01/2022", top_company_count=3, save=False, verbosity=0
     )
@@ -75,10 +78,11 @@ def test_momentum_strategy_with_ema_and_date():
 
 
 def test_dma():
+    """test to check DMA"""
     dma_with_per = ut.absolute_momentum_with_dma()
     # Check for correct order of columns
 
-    c = [
+    required_column = [
         "symbol",
         "company",
         f"price ({now_strting})",
@@ -88,7 +92,9 @@ def test_dma():
         "turnover in cr.",
         "action",
     ]
-    assert c == list(dma_with_per.columns), "Either less or misplaced columns"
+    assert required_column == list(
+        dma_with_per.columns
+    ), "Either less or misplaced columns"
     # Check for null value
     for key, val in dma_with_per.isna().sum().to_dict().items():
         assert val == 0, f"Found Null value in {key}"

@@ -1,9 +1,9 @@
-from stock_analysis.app.widget import sidebar_widget
-from stock_analysis.app.momentum_strategy_page import momentum_strategy_sub_app
-from stock_analysis.app.indicator_page import indicator_sub_app
 from stock_analysis.app.custom_multi_indicator_page import (
     custom_multi_indicator_sub_app,
 )
+from stock_analysis.app.indicator_page import indicator_sub_app
+from stock_analysis.app.momentum_strategy_page import momentum_strategy_sub_app
+from stock_analysis.app.widget import sidebar_widget
 
 # adding sidebar widget
 task = sidebar_widget()

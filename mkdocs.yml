@@ -6,8 +6,8 @@ theme:
     primary: deep orange
     accent: green
     features:
-    - navigation.instant
-    - navigation.tabs
+      - navigation.instant
+      - navigation.tabs
   icon:
     repo: fontawesome/brands/github
 repo_url: https://github.com/Akashdesarda/stock-analysis
@@ -45,11 +45,11 @@ plugins:
 nav:
   - Home: index.md
   - Concept Reference:
-    - Generic Terminology: theory/generic_term.md
-    - Practical Usage: theory/prac_usage.md
+      - Generic Terminology: theory/generic_term.md
+      - Practical Usage: theory/prac_usage.md
   - Code Reference:
-    - Momentum Strategy: reference/momentum_docs.md
-    - Indicators: reference/indicators_docs.md
-    - Utilities: reference/utils.md
+      - Momentum Strategy: reference/momentum_docs.md
+      - Indicators: reference/indicators_docs.md
+      - Utilities: reference/utils.md
   - Web App:
-    - Usage: reference/web_app.md
+      - Usage: reference/web_app.md

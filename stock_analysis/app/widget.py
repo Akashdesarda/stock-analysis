@@ -3,6 +3,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 import yaml
+
 from stock_analysis.utils.streamlit import (
     get_available_index,
     get_available_symbol_wrt_index,
@@ -74,7 +75,8 @@ def input_widget():
                 st.session_state["index_table"] = get_index_table()
         # multibox select widget for index
         selected_index = st.multiselect(
-            "Select Index", get_available_index(st.session_state["index_table"]),
+            "Select Index",
+            get_available_index(st.session_state["index_table"]),
         )
         if selected_index:
             # filtering symbol for selected index(s)
@@ -115,7 +117,8 @@ def input_widget():
         with index_column:
             # multibox select widget for index
             selected_index = st.multiselect(
-                "Select Index", get_available_index(st.session_state["index_table"]),
+                "Select Index",
+                get_available_index(st.session_state["index_table"]),
             )
             index_company_list = get_available_symbol_wrt_index(
                 selected_index, st.session_state["index_table"]

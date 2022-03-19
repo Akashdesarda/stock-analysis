@@ -36,7 +36,7 @@ def test_multi_indicator():
     mul_ind = cus_mul_ind.multi_choice_indicator(indicators=indicators, save=False)
 
     # Check for columns
-    assert len(mul_ind.columns) == 3 + (len(indicators) * 2), "Incorrect no of columns"
+    assert len(mul_ind.columns) == 8, "Incorrect no of columns"
 
     # Check for null value
     for key, val in mul_ind.isna().sum().to_dict().items():
