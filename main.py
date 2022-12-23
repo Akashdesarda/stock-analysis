@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from fastapi import FastAPI
 
-from stock_analysis.api.schemas import *
+from stock_analysis.schema.api import *
 from stock_analysis.indicator import Indicator
 from stock_analysis.momentum_strategy import MomentumStrategy
 from stock_analysis.utils.helpers import create_chunks, deta_base_client
