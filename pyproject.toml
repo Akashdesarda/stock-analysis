@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "stock-analysis"
+version = "1.7"
+description = "Perform variety of stock analysis"
+authors = ["Akash Desarda <desardaakash@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "stock_analysis" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.88.0"
+joblib = "^1.2.0"
+pandas = "^1.5.2"
+pandas-datareader = "^0.10.0"
+pydantic = "^1.10.2"
+streamlit = "^1.5.1"
+tqdm = "^4.64.1"
+yfinance = "^0.2.3"
+loguru = "^0.6.0"
+bunnet = "^1.0.1"
+pyyaml = "^6.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.15.9"
+black = "^22.12.0"
+ipykernel = "^6.19.4"
+python-dotenv = "^0.21.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
