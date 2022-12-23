@@ -32,9 +32,15 @@ jobs:
           # Version range or exact version of a Python version to use, using SemVer's version range syntax.
           python-version: 3.x
 
+      - name: Setup Poetry
+      # You may pin to the exact commit or the version.
+      # uses: Gr1N/setup-poetry@09236184f6c1ab47c0dc9c1001c7fe200cf2afb0
+        uses: Gr1N/setup-poetry@v7
+      
+
+
       - name: Run Test
         run: |
           echo "Running Test"
-          pip3 install pytest
-          pip3 install .
-          pytest -vv
+          poetry install
+          poetry run pytest -vv
