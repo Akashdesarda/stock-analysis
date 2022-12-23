@@ -7,7 +7,6 @@ import yaml
 from stock_analysis.utils.streamlit import (
     get_available_index,
     get_available_symbol_wrt_index,
-    get_index_table,
     get_sector_table,
     manual_multi_choice,
 )
@@ -70,42 +69,40 @@ def input_widget():
     # Input logic for Index method
     if input_option == "Curated Index":
         # adding index table into session if not already present
-        with st.spinner("Retriving data from the Database"):
-            if "index_table" not in st.session_state:
-                st.session_state["index_table"] = get_index_table()
+        with st.spinner("Retrieving data from the Database"):
+            if "index_list" not in st.session_state:
+                st.session_state["index_list"] = get_available_index()
         # multibox select widget for index
         selected_index = st.multiselect(
             "Select Index",
-            get_available_index(st.session_state["index_table"]),
+            get_available_index(),
         )
         if selected_index:
             # filtering symbol for selected index(s)
-            company_list = get_available_symbol_wrt_index(
-                selected_index, st.session_state["index_table"]
-            )
+            company_list = get_available_symbol_wrt_index(selected_index)
 
     # Input logic for Curated Sector method
     if input_option == "Curated Sector":
         # adding sector table into session if not already present
-        with st.spinner("Retriving data from the Database"):
+        with st.spinner("Retrieving data from the Database"):
             if "sector_table" not in st.session_state:
                 st.session_state["sector_table"] = get_sector_table()
         # multibox select widget for sector
         selected_sector = st.multiselect(
-            "Select Sector", st.session_state["sector_table"]["Industry"].unique()
+            "Select Sector", st.session_state["sector_table"]["industry"].unique()
         )
         if selected_sector:
             # filtering symbol for selected sector/industry
             company_list = st.session_state["sector_table"][
-                st.session_state["sector_table"]["Industry"].isin(selected_sector)
-            ]["key"].to_list()
+                st.session_state["sector_table"]["industry"].isin(selected_sector)
+            ]["symbol"].to_list()
 
     # Input logic for combination method
     if input_option == "Combination (Curated Index + Sector)":
-        with st.spinner("Retriving data from the Database"):
+        with st.spinner("Retrieving data from the Database"):
             # adding index table into session if not already present
-            if "index_table" not in st.session_state:
-                st.session_state["index_table"] = get_index_table()
+            if "index_list" not in st.session_state:
+                st.session_state["index_list"] = get_available_index()
             # adding sector table into session if not already present
             if "sector_table" not in st.session_state:
                 st.session_state["sector_table"] = get_sector_table()
@@ -118,23 +115,21 @@ def input_widget():
             # multibox select widget for index
             selected_index = st.multiselect(
                 "Select Index",
-                get_available_index(st.session_state["index_table"]),
+                get_available_index(),
             )
-            index_company_list = get_available_symbol_wrt_index(
-                selected_index, st.session_state["index_table"]
-            )
+            index_company_list = get_available_symbol_wrt_index(selected_index)
 
         # ops on sector column
         with sector_column:
             # multibox select widget for sector
             selected_sector = st.multiselect(
-                "Select Sector", st.session_state["sector_table"]["Industry"].unique()
+                "Select Sector", st.session_state["sector_table"]["industry"].unique()
             )
             # if selected_sector:
             # filtering symbol for selected sector/industry
             sector_company_list = st.session_state["sector_table"][
-                st.session_state["sector_table"]["Industry"].isin(selected_sector)
-            ]["key"].to_list()
+                st.session_state["sector_table"]["industry"].isin(selected_sector)
+            ]["symbol"].to_list()
         company_list = list(set(index_company_list).intersection(sector_company_list))
 
     return company_list

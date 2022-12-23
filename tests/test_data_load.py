@@ -3,10 +3,10 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-from stock_analysis.utils.logger import logger
+from stock_analysis.utils.logger import set_logger
 
 data_path = (Path().cwd() / "data").as_posix()
-logger = logger()
+logger = set_logger()
 
 
 def test_yaml():

@@ -6,9 +6,9 @@ import dateutil
 import pandas as pd
 from deta import Deta
 
-from stock_analysis.utils.logger import logger
+from stock_analysis.utils.logger import set_logger
 
-logger = logger()
+logger = set_logger()
 
 
 def get_appropriate_date_ema(

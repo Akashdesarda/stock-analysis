@@ -1,7 +1,8 @@
 from http import HTTPStatus
+
 from fastapi import FastAPI
 
-from stock_analysis.api.request_models import *
+from stock_analysis.schema.api import *
 from stock_analysis.indicator import Indicator
 from stock_analysis.momentum_strategy import MomentumStrategy
 from stock_analysis.utils.helpers import create_chunks, deta_base_client
@@ -20,6 +21,7 @@ def _index():
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
     }
+
 
 # REST API for running algo strategy
 @app.post("/api/momentum/relative-momentum/")

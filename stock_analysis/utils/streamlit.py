@@ -1,91 +1,66 @@
 """Packs all the utilities need while creating streamlit web app"""
-from itertools import chain
-from typing import List, Optional
-
 import pandas as pd
 import streamlit as st
+from bunnet import init_bunnet
+from pymongo import MongoClient
 
-from stock_analysis.api import http_request
+from stock_analysis.schema.db import *
 from stock_analysis.utils.helpers import unique_list
+
+# creating async client
+client = MongoClient(st.secrets["MONGODB_CONNECTION_STRING"])
+
+# Initialize beanie
+# NOTE - db name is stock-repo-db & document_models will eventually become collection
+init_bunnet(database=client["stock-repo-db"], document_models=[NiftyIndex, NiftySector])
 
 
 @st.cache(show_spinner=False)
-def manual_multi_choice() -> List[str]:
+def manual_multi_choice() -> list[str]:
     """fetch all the available symbol from index db
 
     Returns:
-        List[str]: all available symbol
+        list[str]: all available symbol
     """
-    # extract all company symbol using rest api
-    # EG - response_data = [{...,"key":"xyz"},{...,"key":"xyz"},...,{...,"key":"xyz"}]
-    response_data = http_request(
-        "db/fetch", "get", {"db_name": "nifty-index-company-db", "query": None}
-    )
-    company_symbol_list = [
-        response_data[idx]["key"] for idx, _ in enumerate(response_data)
-    ]
+    nifty_index_data = NiftyIndex.find_all().project(ProjectSymbol).to_list()
+    company_symbol_list = [i.symbol for i in nifty_index_data]
     return company_symbol_list
 
 
 @st.cache(show_spinner=False)
-def get_available_index(index_table: Optional[List] = None) -> set:
+def get_available_index() -> list[str]:
     """extract available indexes
 
     Args:
-        index_table (Optional[List], optional): response data having complete Index table.
+        index_table (Optional[list], optional): response data having complete Index table.
         Defaults to None.
 
     Returns:
         set: Index table
     """
-    if index_table is None:
-        response_data = http_request(
-            "db/fetch", "get", {"db_name": "nifty-index-company-db", "query": None}
-        )
-        indexes = set(chain.from_iterable(response_data))
-
-        # removing 'key' as it is not an index
-        indexes.remove("key")
-        return indexes
-    else:
-        indexes = set(chain.from_iterable(index_table))
-
-        # removing 'key' as it is not an index
-        indexes.remove("key")
-        return indexes
+    properties = NiftyIndex.schema()["properties"]
+    # removing not needed keys
+    del properties["_id"], properties["symbol"]
+    return list(properties.keys())
 
 
 @st.cache(show_spinner=False)
 def get_available_symbol_wrt_index(
-    indexes: List[str], index_table: Optional[List] = None
-) -> List:
-    """extract symbol based on provided Index
+    indexes: list[str],
+) -> list:
+    """extract all symbols based on provided Index(s)
 
     Args:
-        indexes (List[str]): desired indexses
-        index_table (Optional[List], optional): response data having complete Index table.
-        Defaults to None.
+        indexes (list[str]): desired indexses
 
     Returns:
-        List: symbol(s) based on desired indexes
+        list: symbol(s) based on desired indexes
     """
-    if index_table is None:
-        response_data = http_request(
-            "db/fetch",
-            "get",
-            {
-                "db_name": "nifty-index-company-db",
-                "query": {index: True for index in indexes},
-            },
-        )
-        return [unit_response["key"] for unit_response in response_data]
-    else:
-        symbol_list = []
-        for unit_response in index_table:
-            for index in indexes:
-                if index in unit_response:
-                    symbol_list.append(unit_response["key"])
-        return unique_list(symbol_list)
+    symbol_query_result = NiftyIndex.find_many(
+        {index: True for index in indexes}
+    ).project(ProjectSymbol)
+    symbol_list = [i.symbol for i in symbol_query_result]
+    return unique_list(symbol_list)
 
 
 @st.cache(show_spinner=False)
@@ -93,12 +68,9 @@ def get_available_sector() -> set:
     """get the available sector/industry from db server api
 
     Returns:
-        List: available sector(s)
+        list: available sector(s)
     """
-    response_data = http_request(
-        "db/fetch", "get", {"db_name": "nifty-sector-company-db", "query": None}
-    )
-    return set([unit_response["Industry"] for unit_response in response_data])
+    return NiftySector.distinct(NiftySector.industry)
 
 
 @st.cache(show_spinner=False)
@@ -106,21 +78,7 @@ def get_sector_table() -> pd.DataFrame:
     """get the sector table from db server api
 
     Returns:
-        List: sector data table
+        list: sector data table
     """
-    response_data = http_request(
-        "db/fetch", "get", {"db_name": "nifty-sector-company-db", "query": None}
-    )
-    return pd.DataFrame(response_data)
 
-
-@st.cache(show_spinner=False)
-def get_index_table() -> List:
-    """fet the index table from db server api
-
-    Returns:
-        List: index data table
-    """
-    return http_request(
-        "db/fetch", "get", {"db_name": "nifty-index-company-db", "query": None}
-    )
+    return pd.DataFrame(i.dict(exclude={"id"}) for i in NiftySector.find_all())
