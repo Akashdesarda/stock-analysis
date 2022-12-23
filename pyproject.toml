@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stock-analysis"
-version = "1.7"
+version = "1.9.0"
 description = "Perform variety of stock analysis"
 authors = ["Akash Desarda <desardaakash@gmail.com>"]
 readme = "README.md"
