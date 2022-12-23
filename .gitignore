@@ -11,7 +11,10 @@ multi.ipynb
 results/momentum_ema50-200_27-09-2020_top_20.csv
 .pytest_cache
 site
-*.ipynb
+dummy.ipynb
+bug_fix.ipynb
 .env
 .isort.cfg
 .flake8
+.env
+.streamlit
