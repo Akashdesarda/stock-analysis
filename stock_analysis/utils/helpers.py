@@ -1,10 +1,9 @@
 import datetime
 import os
-from typing import Generator, List, Tuple
+from typing import Generator, Tuple
 
 import dateutil
 import pandas as pd
-from deta import Deta
 
 from stock_analysis.utils.logger import set_logger
 
@@ -118,42 +117,28 @@ def new_folder(path: str):
         os.mkdir(path)
 
 
-def deta_base_client(db_name: str):
-    """Provides deta base client to interact with Deta Base
-
-    Args:
-        db_name (str): name of the Deta Base db
-    """
-    PROJECT_ID = os.environ.get("DETA_PROJECT_ID")
-    PROJECT_KEY = os.environ.get("DETA_PROJECT_KEY")
-
-    # creating Deta client
-    deta_client = Deta(project_id=PROJECT_ID, project_key=PROJECT_KEY)
-    return deta_client.Base(db_name)
-
-
-def create_chunks(data: List, n: int) -> Generator[List, List, List]:
+def create_chunks(data: list, n: int) -> Generator[list, list, list]:
     """create chunks of given data based on user provided choice
 
     Args:
-        data (List): data on which chunks ops is to tb performed
+        data (list): data on which chunks ops is to tb performed
         n (int): no. of element in individual chunks
 
     Returns:
-        Generator[List]: chunked data of original data
+        Generator[list]: chunked data of original data
     """
     # looping till length l
     for i in range(0, len(data), n):
         yield data[i : i + n]
 
 
-def unique_list(l: List) -> List:
+def unique_list(l: list) -> list:
     """Takes list and return unique list
 
     Args:
-        l (List): input list
+        l (list): input list
 
     Returns:
-        List: unique list
+        list: unique list
     """
     return list(set(l))
