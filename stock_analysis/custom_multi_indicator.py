@@ -8,10 +8,10 @@ from joblib import Parallel, delayed, parallel_backend
 
 from stock_analysis.executors.parallel import UnitExecutor
 from stock_analysis.utils.helpers import new_folder
-from stock_analysis.utils.logger import logger
+from stock_analysis.utils.logger import set_logger
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
-logger = logger()
+logger = set_logger()
 pd.options.display.float_format = "{:,.2f}".format
 
 

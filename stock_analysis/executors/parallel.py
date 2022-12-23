@@ -16,10 +16,10 @@ from stock_analysis.utils.formula_helpers import (
     turnover,
 )
 from stock_analysis.utils.helpers import get_appropriate_date_momentum
-from stock_analysis.utils.logger import logger
+from stock_analysis.utils.logger import set_logger
 
 now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
-logger = logger()
+logger = set_logger()
 pd.options.display.float_format = "{:,.2f}".format
 
 
