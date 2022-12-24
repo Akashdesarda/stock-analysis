@@ -7,7 +7,7 @@ from pandas_datareader import data as pdr
 yf.pdr_override()
 
 
-class DataRetrive:
+class DataRetrieve:
     """
     Import Stock data using Yahoo Finance Api
     """

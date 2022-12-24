@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Tuple, Union
 import dateutil
 import pandas as pd
 
-from stock_analysis.data_retrive import DataRetrive
+# from stock_analysis.data_retrieve import DataRetrieve
 from stock_analysis.utils.formula_helpers import (
     annualized_rate_of_return,
     exponential_moving_average,
@@ -17,10 +17,102 @@ from stock_analysis.utils.formula_helpers import (
 )
 from stock_analysis.utils.helpers import get_appropriate_date_momentum
 from stock_analysis.utils.logger import set_logger
+import yfinance as yf
+from pandas_datareader import data as pdr
 
-now_strting = datetime.datetime.now().strftime("%d-%m-%Y")
+yf.pdr_override()
+
+now_string = datetime.datetime.now().strftime("%d-%m-%Y")
 logger = set_logger()
 pd.options.display.float_format = "{:,.2f}".format
+
+
+class DataRetrieve:
+    """
+    Import Stock data using Yahoo Finance Api
+    """
+
+    # def __init__(self, path: str):
+    #     """
+    #     Update or create new csv using Yahoo Finance Api
+
+    #     Parameters
+    #     ----------
+    #     path : str
+    #         path of older csv to be updated or to save new csv
+    #     """
+    #     self.path = path
+    @classmethod
+    def single_company_specific(
+        cls,
+        company_name: str,
+        start_date: datetime.datetime,
+        end_date: datetime.datetime,
+        save: bool = False,
+        export_path: str = None,
+    ) -> pd.DataFrame:
+        """
+        Retrive single company date from given start date and end
+
+        Parameters
+        ----------
+        company_name : str
+            name of desired company
+        start_date : Tuple[year, month, day]
+            Start date
+        end_date : Tuple[year, month, day]
+            End date
+
+        Returns
+        -------
+        pd.DataFrame
+            Data from Yahoo finance
+
+        Raises
+        ------
+        ValueError
+            [description]
+        """
+        data = pdr.get_data_yahoo(
+            company_name, start=start_date, end=end_date, progress=False
+        )
+
+        if save is True:
+            data.to_csv(f"{export_path}/{company_name}.csv")
+
+        return data
+
+    @classmethod
+    def single_company_complete(
+        cls, company_name: str, save: bool = False, export_path: str = None
+    ) -> pd.DataFrame:
+        """Retrive complete data right from its IPO till today
+
+        Parameters
+        ----------
+        company_name : str
+            Name of company
+        save : bool, optional
+            save to disk, by default False
+        export_path : str, optional
+            path where to save (to be used only if save is True), by default None
+
+        Returns
+        -------
+        pd.DataFrame
+            Data from Yahoo finance
+        """
+
+        data = pdr.get_data_yahoo(company_name, progress=False)
+
+        if save is True:
+            data.to_csv(f"{export_path}/{company_name}.csv")
+
+        return data
+
+    @classmethod
+    def single_company_quote(cls, company_name: str) -> pd.DataFrame:
+        return pdr.get_quote_yahoo(company_name)
 
 
 @dataclass
@@ -35,7 +127,7 @@ class UnitExecutor:
         end = datetime.datetime.now()
         start = end - dateutil.relativedelta.relativedelta(days=duration)
         logger.info(f"Retriving data for {company}")
-        company_df = DataRetrive.single_company_specific(
+        company_df = DataRetrieve.single_company_specific(
             company_name=f"{company}.NS", start_date=start, end_date=end
         )
 
@@ -60,8 +152,8 @@ class UnitExecutor:
         verbosity: int = 1,
     ) -> Dict:
 
-        logger.info(f"Retriving data for {company}")
-        company_df = DataRetrive.single_company_complete(
+        logger.info(f"Retrieving data for {company}")
+        company_df = DataRetrieve.single_company_complete(
             company_name=f"{company}.NS"
         )  # NS = Nifty
         # need to drop rows which have Null values
@@ -135,11 +227,11 @@ class UnitExecutor:
         verbosity: int = 1,
     ) -> Dict:
         logger.info(f"Retriving data for {company}")
-        company_df = DataRetrive.single_company_complete(
+        company_df = DataRetrieve.single_company_complete(
             company_name=f"{company}.NS"
         )  # NS = Nifty
         if cutoff_date == "today":
-            ema_date = now_strting
+            ema_date = now_string
         else:
             ema_date = cutoff_date.strftime("%d-%m-%Y")
 
@@ -189,7 +281,7 @@ class UnitExecutor:
     def unit_quote_retrive(self, company: str) -> pd.DataFrame:
         logger.info(f"Retriving Detail Quote data for {company}")
         try:
-            return DataRetrive.single_company_quote(f"{company}.NS")
+            return DataRetrieve.single_company_quote(f"{company}.NS")
         except (KeyError, IndexError, ValueError):
             logger.warning(f"Cannot retrive data for {company}")
             return "Invalid"
@@ -202,7 +294,7 @@ class UnitExecutor:
         verbosity: int = 1,
     ) -> Dict:
         logger.info(f"Retriving data for {company}")
-        company_df = DataRetrive.single_company_complete(company_name=f"{company}.NS")
+        company_df = DataRetrieve.single_company_complete(company_name=f"{company}.NS")
         if company_df["Close"].isnull().sum() != 0:
             logger.warning(f"{company} have some missing value, fixing it")
             company_df.dropna(inplace=True)
@@ -257,7 +349,7 @@ class UnitExecutor:
 
         return {
             "symbol": company,
-            "ema_date": now_strting
+            "ema_date": now_string
             if cutoff_date == "today"
             else cutoff_date.strftime("%d-%m-%Y"),
             f"ema{str(ema_canditate[0])}": ema_candidate_a,
@@ -283,11 +375,11 @@ class UnitExecutor:
             cutoff_date = datetime.datetime.strptime(end_date, "%d/%m/%Y").date()
         start_date = cutoff_date - dateutil.relativedelta.relativedelta(months=18)
         if cutoff_date == "today":
-            sma_date = now_strting
+            sma_date = now_string
         else:
             sma_date = cutoff_date.strftime("%d-%m-%Y")
         try:
-            company_df = DataRetrive.single_company_specific(
+            company_df = DataRetrieve.single_company_specific(
                 company_name=f"{company}.NS",
                 start_date=start_date,
                 end_date=cutoff_date,
@@ -348,7 +440,7 @@ class UnitExecutor:
 
         logger.info(f"Retriving data for {company}")
         try:
-            company_df = DataRetrive.single_company_specific(
+            company_df = DataRetrieve.single_company_specific(
                 company_name=f"{company}.NS", start_date=start, end_date=end
             )
             company_df.reset_index(inplace=True)

@@ -145,3 +145,25 @@ class DBDelete(BaseModel):
 
     db_name: str = Field(..., description="name of the database", example="dummy-db")
     key: str = Field(..., description="key to perform ops", example="TCS")
+
+
+class NiftyIndex(BaseModel):
+    symbol: str
+    Nifty50: bool = False
+    Nifty100: bool = False
+    Nifty200: bool = False
+    Nifty500: bool = False
+    NiftySmallcap50: bool = False
+    NiftySmallcap250: bool = False
+    NiftyMidcap50: bool = False
+    NiftyMidcap150: bool = False
+    NiftyMidcap400: bool = False
+    NiftyNext50: bool = False
+
+
+class NiftySector(BaseModel):
+    symbol: str
+    company_name: str
+    isin_code: str
+    industry: str
+    series: str

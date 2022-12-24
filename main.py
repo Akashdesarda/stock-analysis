@@ -1,26 +1,31 @@
-from http import HTTPStatus
-
+import os
+from typing import Union
+from beanie import init_beanie
+from beanie.odm.operators.update.general import Set
+from dotenv import load_dotenv
 from fastapi import FastAPI
+from motor.motor_asyncio import AsyncIOMotorClient
 
-from stock_analysis.schema.api import *
 from stock_analysis.indicator import Indicator
 from stock_analysis.momentum_strategy import MomentumStrategy
-from stock_analysis.utils.helpers import create_chunks, deta_base_client
+from stock_analysis.schema.api import *
+from stock_analysis.schema.db import AsyncNiftyIndex, AsyncNiftySector
+
+load_dotenv()
+client = AsyncIOMotorClient(os.environ["MONGODB_CONNECTION_STRING"])
+__version__ = "2.2"
 
 # FastAPI app init
 app = FastAPI(
     title="Stock Analysis",
-    description="An helping hand to identify & analyse stocks/company to invest",
-    version="2.0",
+    description="An helping hand to identify & analyze stocks/company to invest",
+    version=__version__,
 )
 # REST API for heal check
 @app.get("/")
 def _index():
     """Health check"""
-    return {
-        "message": HTTPStatus.OK.phrase,
-        "status-code": HTTPStatus.OK,
-    }
+    return {"message": "OK", "version": __version__}
 
 
 # REST API for running algo strategy
@@ -132,45 +137,93 @@ def ema_crossover_indicator(input_response: EMACrossoverIndicator):
     return result
 
 
-# REST API for performing CRUD ops on Deta Base db
-# NOTE - `get` can be used to read/fetch/pull based on just `key`
-@app.get("/api/db/get/")
-def db_get(input_response: DBGet):
-    """REST API for for performing CRUD ops-GET on Deta Base db"""
-    db_client = deta_base_client(input_response.db_name)
-    return db_client.get(input_response.key)
+# REST API for performing CRUD ops on MongoDB
+@app.get("/api/db/{collection}/{document_id}")
+async def _db_get_document(collection: str, document_id: str):
+    """REST API for for performing MongoDB CRUD Ops - GET a specific document from desired collection"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[AsyncNiftyIndex, AsyncNiftySector],
+    )
+    if collection == "nifty-index":
+        return await AsyncNiftyIndex.get(document_id)
+    if collection == "nifty-sector":
+        return await AsyncNiftySector.get(document_id)
 
 
-# NOTE - `fetch` can be used to retrive data based on Deta base compatible query
-@app.get("/api/db/fetch/")
-def db_fetch(input_response: DBFetch):
-    """REST API for for performing CRUD ops-Fetch on Deta Base db"""
-    db_client = deta_base_client(input_response.db_name)
-    return db_client.fetch(input_response.query).items
+@app.post("/api/db/{collection}/query")
+async def _db_find_documents(
+    collection: str,
+    query: dict,
+    skip: Union[int, None] = None,
+    limit: Union[int, None] = None,
+):
+    """REST API for for performing MongoDB CRUD Ops - Find document(s) based on desired query"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[AsyncNiftyIndex, AsyncNiftySector],
+    )
+    if collection == "nifty-index":
+        return await AsyncNiftyIndex.find_many(query).skip(skip).limit(limit).to_list()
+    if collection == "nifty-sector":
+        return await AsyncNiftySector.find_many(query).skip(skip).limit(limit).to_list()
 
 
-# NOTE - `put` can be used for insert as well as update
-@app.put("/api/db/put/")
-def db_put(input_response: DBPut):
-    """REST API for for performing CRUD ops-Put on Deta Base db"""
-    db_client = deta_base_client(input_response.db_name)
-    # since data is list then we can use `put_many` to speedup the ops
-    if isinstance(input_response.data, list):
-        if len(input_response.data) <= 25:
-            db_client.put_many(input_response.data)
-        else:
-            # NOTE - Deta has hard limit of 25 for `put_many`.So need to create chunks of 25 element
-            # of data so that we can still use `put_many`
-            chunked_data = create_chunks(input_response.data, 25)
-            for unit_chunk in chunked_data:
-                db_client.put_many(unit_chunk)
-    else:
-        db_client.put(input_response.data)
+@app.post("/api/db/nifty-index/insert")
+async def _insert_document_nifty_index(documents: list[NiftyIndex]):
+    """REST API for for performing MongoDB CRUD Ops - Insert/Add document nifty-index collection"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[AsyncNiftyIndex],
+    )
+    await AsyncNiftyIndex.insert_many(
+        [AsyncNiftyIndex(**document.dict()) for document in documents]
+    )
+    return {"message": "OK"}
 
 
-# NOTE - the `delete` ops take place at `key` level so only key is required
-@app.delete("/api/db/delete/")
-def db_delete(input_response: DBDelete):
-    """REST API for for performing CRUD ops-Delete on Deta Base db"""
-    db_client = deta_base_client(input_response.db_name)
-    return db_client.delete(input_response.key)
+@app.post("/api/db/nifty-index/insert")
+async def _insert_document_nifty_sector(documents: list[NiftySector]):
+    """REST API for for performing MongoDB CRUD Ops - Insert/Add document nifty-index collection"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[NiftySector],
+    )
+    await AsyncNiftySector.insert_many(
+        [AsyncNiftySector(**document.dict()) for document in documents]
+    )
+    return {"message": "OK"}
+
+
+@app.delete("/api/db/{collection}/remove")
+async def _delete_document(collection: str, query: dict):
+    """REST API for for performing MongoDB CRUD Ops - Delete a document based on query"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[AsyncNiftyIndex, AsyncNiftySector],
+    )
+    if collection == "nifty-index":
+        await AsyncNiftyIndex.find(query).delete()
+    if collection == "nifty-sector":
+        await AsyncNiftySector.find(query).delete()
+    return {"message": "OK"}
+
+
+@app.patch("/api/db/{collection}/update")
+async def _update_document(collection: str, find_query: dict, update_query: dict):
+    """REST API for for performing MongoDB CRUD Ops - Update desired document"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[AsyncNiftyIndex, AsyncNiftySector],
+    )
+    if collection == "nifty-index":
+        await AsyncNiftyIndex.find(find_query).update(Set(update_query))
+    if collection == "nifty-sector":
+        await AsyncNiftySector.find(find_query).update(Set(update_query))
+    return {"message": "OK"}
