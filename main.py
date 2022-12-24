@@ -1,5 +1,5 @@
 import os
-
+from typing import Union
 from beanie import init_beanie
 from beanie.odm.operators.update.general import Set
 from dotenv import load_dotenv
@@ -154,7 +154,10 @@ async def _db_get_document(collection: str, document_id: str):
 
 @app.post("/api/db/{collection}/query")
 async def _db_find_documents(
-    collection: str, query: dict, skip: int | None = None, limit: int | None = None
+    collection: str,
+    query: dict,
+    skip: Union[int, None] = None,
+    limit: Union[int, None] = None,
 ):
     """REST API for for performing MongoDB CRUD Ops - Find document(s) based on desired query"""
     # Initialize beanie with the Product document class
