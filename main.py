@@ -3,6 +3,7 @@ from http import HTTPStatus
 from typing import Union
 
 from beanie import init_beanie
+from beanie.odm.operators.update.general import Set
 from dotenv import load_dotenv
 from fastapi import FastAPI, Path
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -142,7 +143,6 @@ def ema_crossover_indicator(input_response: EMACrossoverIndicator):
 
 
 # REST API for performing CRUD ops on MongoDB
-# NOTE - `get` can be used to read/fetch/pull based on just `key`
 @app.get("/api/db/{collection}/{document_id}")
 async def _db_get_document(collection: str, document_id: str):
     """REST API for for performing MongoDB CRUD Ops - GET a specific document from desired collection"""
@@ -157,7 +157,6 @@ async def _db_get_document(collection: str, document_id: str):
         return await AsyncNiftySector.get(document_id)
 
 
-# NOTE - `fetch` can be used to retrieve data based on Deta base compatible query
 @app.post("/api/db/{collection}/query")
 async def _db_find_documents(
     collection: str, query: dict, skip: int | None = None, limit: int | None = None
@@ -185,6 +184,7 @@ async def _insert_document_nifty_index(documents: list[NiftyIndex]):
     await AsyncNiftyIndex.insert_many(
         [AsyncNiftyIndex(**document.dict()) for document in documents]
     )
+    return {"message": "OK"}
 
 
 @app.post("/api/db/nifty-index/insert")
@@ -198,11 +198,11 @@ async def _insert_document_nifty_sector(documents: list[NiftySector]):
     await AsyncNiftySector.insert_many(
         [AsyncNiftySector(**document.dict()) for document in documents]
     )
+    return {"message": "OK"}
 
 
-# NOTE - the `delete` ops take place at `key` level so only key is required
 @app.delete("/api/db/{collection}/remove")
-async def db_delete(collection: str, query: dict):
+async def _delete_document(collection: str, query: dict):
     """REST API for for performing MongoDB CRUD Ops - Delete a document based on query"""
     # Initialize beanie with the Product document class
     await init_beanie(
@@ -213,3 +213,19 @@ async def db_delete(collection: str, query: dict):
         await AsyncNiftyIndex.find(query).delete()
     if collection == "nifty-sector":
         await AsyncNiftySector.find(query).delete()
+    return {"message": "OK"}
+
+
+@app.patch("/api/db/{collection}/update")
+async def _update_document(collection: str, find_query: dict, update_query: dict):
+    """REST API for for performing MongoDB CRUD Ops - Update desired document"""
+    # Initialize beanie with the Product document class
+    await init_beanie(
+        database=client["stock-repo-db"],
+        document_models=[AsyncNiftyIndex, AsyncNiftySector],
+    )
+    if collection == "nifty-index":
+        await AsyncNiftyIndex.find(find_query).update(Set(update_query))
+    if collection == "nifty-sector":
+        await AsyncNiftySector.find(find_query).update(Set(update_query))
+    return {"message": "OK"}
