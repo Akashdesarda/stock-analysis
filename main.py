@@ -1,11 +1,9 @@
 import os
-from http import HTTPStatus
-from typing import Union
 
 from beanie import init_beanie
 from beanie.odm.operators.update.general import Set
 from dotenv import load_dotenv
-from fastapi import FastAPI, Path
+from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from stock_analysis.indicator import Indicator
@@ -15,22 +13,19 @@ from stock_analysis.schema.db import AsyncNiftyIndex, AsyncNiftySector
 
 load_dotenv()
 client = AsyncIOMotorClient(os.environ["MONGODB_CONNECTION_STRING"])
-
+__version__ = "2.2"
 
 # FastAPI app init
 app = FastAPI(
     title="Stock Analysis",
     description="An helping hand to identify & analyze stocks/company to invest",
-    version="2.2",
+    version=__version__,
 )
 # REST API for heal check
 @app.get("/")
 def _index():
     """Health check"""
-    return {
-        "message": HTTPStatus.OK.phrase,
-        "status-code": HTTPStatus.OK,
-    }
+    return {"message": "OK", "version": __version__}
 
 
 # REST API for running algo strategy
